@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/routes/routers.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class PersonalPage extends StatefulWidget {
+  const PersonalPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<PersonalPage> createState() => _PersonalPageState();
 }
 
-class _HomePageState extends State<HomePage>
+class _PersonalPageState extends State<PersonalPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -28,16 +28,19 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomePage'),
+        title: const Text('PersonalPage'),
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: ElevatedButton(
+      body: Column(
+        children: [
+          const Text("Personal Page"),
+          ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, Routes.settingPage);
+            Navigator.pushNamed(context, Routes.detailPage);
           },
-          child: const Text('go Setting'),
+          child: const Text('go detail'),
         ),
+        ],
       ),
     );
   }

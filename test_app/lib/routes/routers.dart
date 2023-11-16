@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/pages/detail_page.dart';
+import 'package:test_app/pages/first_page.dart';
 
 import 'package:test_app/pages/home_page.dart';
+import 'package:test_app/pages/personal_page.dart';
 import 'package:test_app/pages/setting_page.dart';
 
 class RouteArg {
@@ -10,12 +13,18 @@ class RouteArg {
 }
 
 class Routes {
-  static String homePage = '/pages/home_page.dart';
-  static String settingPage = '/pages/setting_page.dart';
+  static String firstPage = '/';
+  static String homePage = '/home';
+  static String settingPage = '/setting';
+  static String personalPage = '/personal';
+  static String detailPage = '/detail';
 
   static var routesConfig = {
+    firstPage: (context) => const FirstPage(),
     homePage: (context) => const HomePage(),
     settingPage: (context) => const SettingPage(),
+    personalPage: (context) => const PersonalPage(),
+    detailPage: (context) => const DetailPage(),
   };
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";

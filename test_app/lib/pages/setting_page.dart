@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/routes/routers.dart';
-import 'package:test_app/widgets/bottom_bar.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -40,7 +39,6 @@ class _SettingPageState extends State<SettingPage> {
               ))
         ]),
       ),
-      bottomNavigationBar: const BottomBar('setting'),
     );
   }
 }
