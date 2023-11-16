@@ -4,7 +4,8 @@ import 'package:test_app/pages/personal_page.dart';
 import 'package:test_app/pages/setting_page.dart';
 
 class FirstPage extends StatefulWidget {
-  const FirstPage({super.key});
+  final int idPage;
+  const FirstPage(this.idPage, {super.key});
 
   @override
   State<FirstPage> createState() => _FirstPageState();
@@ -22,6 +23,13 @@ class _FirstPageState extends State<FirstPage> {
   void _navigateBottomBar (int key) {
     setState(() {
       _indexKey = key;
+    });
+  }
+  @override
+  initState() {
+    super.initState();
+    setState(() {
+      _indexKey = widget.idPage;
     });
   }
   

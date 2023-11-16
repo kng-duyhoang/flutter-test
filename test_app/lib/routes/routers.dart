@@ -20,10 +20,10 @@ class Routes {
   static String detailPage = '/detail';
 
   static var routesConfig = {
-    firstPage: (context) => const FirstPage(),
-    homePage: (context) => const HomePage(),
-    settingPage: (context) => const SettingPage(),
-    personalPage: (context) => const PersonalPage(),
+    firstPage: (context) => const FirstPage(0),
+    homePage: (context) => const FirstPage(0),
+    settingPage: (context) => const FirstPage(1),
+    personalPage: (context) => const FirstPage(2),
     detailPage: (context) => const DetailPage(),
   };
   static Route<dynamic>? onGenerateRoute(settings) {
