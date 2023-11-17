@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:test_app/pages/detail_page.dart';
 import 'package:test_app/pages/first_page.dart';
 
-import 'package:test_app/pages/home_page.dart';
-import 'package:test_app/pages/personal_page.dart';
-import 'package:test_app/pages/setting_page.dart';
-
 class RouteArg {
   final Map<String, dynamic>? values;
 
