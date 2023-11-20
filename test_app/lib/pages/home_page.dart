@@ -34,9 +34,9 @@ class _HomePageState extends State<HomePage>
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, Routes.settingPage);
+            Navigator.pushNamed(context, Routes.loginPage);
           },
-          child: const Text('go Setting'),
+          child: const Text('go Login'),
         ),
       ),
     );

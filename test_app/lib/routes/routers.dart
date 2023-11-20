@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/pages/detail_page.dart';
 import 'package:test_app/pages/first_page.dart';
+import 'package:test_app/pages/login.dart';
 
 class RouteArg {
   final Map<String, dynamic>? values;
@@ -14,6 +15,7 @@ class Routes {
   static String settingPage = '/setting';
   static String personalPage = '/personal';
   static String detailPage = '/detail';
+  static String loginPage = '/login';
 
   static var routesConfig = {
     firstPage: (context) => const FirstPage(0),
@@ -21,6 +23,7 @@ class Routes {
     settingPage: (context) => const FirstPage(1),
     personalPage: (context) => const FirstPage(2),
     detailPage: (context) => const DetailPage(),
+    loginPage: (context) => const LoginPage(),
   };
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";
