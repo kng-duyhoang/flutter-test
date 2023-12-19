@@ -11,25 +11,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Future<void> _onPressed () async {
-    final url = Uri.parse(ApiUrl.baseUrl + '/user/login');
+  Future<void> _onPressed() async {
+    final url = Uri.parse('${ApiUrl.baseUrl}/user/login');
     final user = ModelLoginRequest(gmail: 'vinh@gmail.com', password: '1234');
     final response = await http.post(
       url,
       body: user.toJson(),
     );
     if (response.statusCode == 200) {
-      print(response.body);
+      // print(response.body);
     } else {
-      print('Request failed with status: ${response.statusCode}.');
+      // print('Request failed with status: ${response.statusCode}.');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login'),),
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
       body: Column(children: [
-        ElevatedButton(onPressed: _onPressed, child: Text('Login'))
+        ElevatedButton(onPressed: _onPressed, child: const Text('Login'))
       ]),
     );
   }

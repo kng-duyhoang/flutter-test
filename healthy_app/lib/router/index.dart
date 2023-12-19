@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:healthy_app/screen/first_screen.dart';
 import 'package:healthy_app/screen/home_screen.dart';
+import 'package:healthy_app/screen/login_screen.dart';
+import 'package:healthy_app/screen/started/index.dart';
 
 
 class RouteArg {
@@ -13,10 +15,14 @@ class RouteArg {
 class Routes {
   static String firstScreen = '/';
   static String homeScreen = '/home';
+  static String loginScreen = '/login';
+  static String startScreen = '/start';
 
   static var routesConfig = {
     firstScreen: (context) => const FirstScreen(),
-    homeScreen: (context) => const HomeScreen()
+    homeScreen: (context) => const HomeScreen(),
+    loginScreen: (context) => const LoginScreen(),
+    startScreen: (context) => const StartNavigation(),
   };
 
   static Route<dynamic>? onGenerateRoute(settings) {
