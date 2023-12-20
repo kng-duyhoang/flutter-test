@@ -11,13 +11,20 @@ class UpdateStatusScreen extends StatefulWidget {
 class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
   final TextEditingController _usernameController = TextEditingController();
 
+  void _onPressed() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Status'),
+        automaticallyImplyLeading: false,
+      ),
       body: Container(
-        alignment: Alignment.center,
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               'Profile',
@@ -31,28 +38,35 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
               'Introduce yourself!',
               style: TextStyle(fontSize: 15, color: AppColor.lightColor4),
             ),
-            const SizedBox(height: 50),
-            Row(
-              children: [
-                Text("Your name:"),
-                TextField(
-                controller: _usernameController,
-                textAlignVertical: TextAlignVertical.center,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  border: InputBorder.none,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Color.fromARGB(255, 89, 92, 91), width: 1.0),
+            Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 16),
+                  const Text("Your name:"),
+                  const SizedBox(height: 5),
+                  TextField(
+                    controller: _usernameController,
+                    textAlignVertical: TextAlignVertical.center,
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.all(10.0),
+                      border: InputBorder.none,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 89, 92, 91), width: 1.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 102, 90, 89),
+                            width: 1.0),
+                      ),
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Color.fromARGB(255, 102, 90, 89), width: 1.0),
-                  ),
-                ),
+                ],
               ),
-              ],
-            )
+            ),
+            ElevatedButton(onPressed: _onPressed, child: const Text("Next"))
           ],
         ),
       ),
