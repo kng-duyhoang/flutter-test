@@ -12,16 +12,16 @@ class StartNavigation extends StatefulWidget {
 class _StartNavigationState extends State<StartNavigation> {
   int _indexKey = 0;
 
-  void goPage2() {
+  void goPage(int key) async {
     setState(() {
-      _indexKey = 1;
+      _indexKey = key;
     });
   }
 
   Widget body() {
     switch(_indexKey) {
       case 0: 
-        return HelloScreen(goPage2: goPage2);
+        return HelloScreen(goPage);
       case 1: 
         return const UpdateStatusScreen();
     }

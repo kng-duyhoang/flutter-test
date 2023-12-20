@@ -1,11 +1,18 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/images.dart';
 
-class HelloScreen extends StatelessWidget {
-  final void Function() goPage2;
-  
-  const HelloScreen({super.key, required this.goPage2});
+class HelloScreen extends StatefulWidget {
+  late Function(int) goPage;
 
+  HelloScreen(this.goPage, {super.key});
+
+  @override
+  State<HelloScreen> createState() => _HelloScreenState();
+}
+
+class _HelloScreenState extends State<HelloScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +44,10 @@ class HelloScreen extends StatelessWidget {
               ),
               const SizedBox(height: 13),
               ElevatedButton(
-                onPressed: goPage2,
-                child: const Text('Start Introduction')
-              ),
+                  onPressed: () {
+                    widget.goPage(1);
+                  },
+                  child: const Text('Start Introduction')),
             ],
           ),
         ),

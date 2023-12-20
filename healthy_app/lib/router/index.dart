@@ -13,7 +13,7 @@ class RouteArg {
 }
 
 class Routes {
-  static String firstScreen = '/';
+  static String firstScreen = '/first';
   static String homeScreen = '/home';
   static String loginScreen = '/login';
   static String startScreen = '/start';
@@ -27,7 +27,7 @@ class Routes {
 
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";
-    var routeName = (settings.name == rootRoute) ? Routes.firstScreen : settings.name;
+    var routeName = (settings.name == rootRoute) ? Routes.startScreen : settings.name;
     if (Routes.routesConfig.containsKey(routeName)) {
       return PageRouteBuilder(
         settings: RouteSettings(name: routeName, arguments: settings.arguments),
