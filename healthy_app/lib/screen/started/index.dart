@@ -12,18 +12,30 @@ class StartNavigation extends StatefulWidget {
 class _StartNavigationState extends State<StartNavigation> {
   int _indexKey = 0;
 
-  void goPage(int key) async {
+  Map<String, dynamic> data = {
+    'name': "",
+    'birthDay': "",
+    'gender': 0,
+  };
+
+  void goPage(int key) {
     setState(() {
       _indexKey = key;
     });
   }
 
+  void changeData(dynamic value, String keyname) {
+    setState(() {
+      data[keyname] = value;
+    });
+  }
+
   Widget body() {
     switch(_indexKey) {
-      case 0: 
+      case 0:
         return HelloScreen(goPage);
-      case 1: 
-        return const UpdateStatusScreen();
+      case 1:
+        return UpdateStatusScreen(goPage, changeData);
     }
     return Container();
   }

@@ -20,17 +20,17 @@ class AppText {
   );
   static const bodyLarge = TextStyle(
     fontSize: 22,
-    color: AppColor.lightColor2,
+    color: AppColor.lightColor4,
     fontWeight: FontWeight.bold,
   );
   static const bodyMedium = TextStyle(
     fontSize: 18,
-    color: AppColor.lightColor3,
+    color: AppColor.lightColor4,
     fontWeight: FontWeight.w500,
   );
   static const bodySmall = TextStyle(
     fontSize: 14,
-    color: AppColor.lightColor4,
+    color: AppColor.blackColor1,
     fontWeight: FontWeight.normal,
   );
 }

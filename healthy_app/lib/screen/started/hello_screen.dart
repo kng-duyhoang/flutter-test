@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/images.dart';
+import 'package:healthy_app/constant/text.dart';
 
 class HelloScreen extends StatefulWidget {
   late Function(int) goPage;
@@ -31,16 +32,13 @@ class _HelloScreenState extends State<HelloScreen> {
             children: [
               const Text(
                 "Welcome, let's exercise together",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                style: AppText.titleLarge,
               ),
               const SizedBox(height: 10),
               const Text(
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy ",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: AppText.titleSmall,
               ),
               const SizedBox(height: 13),
               ElevatedButton(
