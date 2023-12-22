@@ -21,10 +21,14 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool isLoading = false;
 
   void _onLoginHandler(String userName, String password) async {
     final login = LoginResponsi().onLogin;
     EasyLoading.show(status: 'loading...');
+    setState(() {
+      isLoading = true;
+    });
 
     var response = await login(userName, password);
     if (response.statusCode == 200) {
@@ -33,6 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
       Store.instance.setString(StoreKeys.token, dataResponse.token);
       await Navigator.pushNamed(context, Routes.homeScreen);
     } else {}
+    setState(() {
+      isLoading = false;
+    });
     EasyLoading.dismiss();
   }
 
@@ -56,15 +63,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20),
                   renderInput(_passwordController, 'Password'),
                   const SizedBox(height: 30),
-                  ElevatedButton(
-                    onPressed: () {
-                      final userName = _usernameController.text;
-                      final password = _passwordController.text;
-                      _onLoginHandler(userName, password);
-                    },
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(fontSize: 20),
+                  IgnorePointer(
+                    ignoring: isLoading,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        final userName = _usernameController.text;
+                        final password = _passwordController.text;
+                        _onLoginHandler(userName, password);
+                      },
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ),
                 ],

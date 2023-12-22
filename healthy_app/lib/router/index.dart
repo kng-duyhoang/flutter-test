@@ -24,7 +24,7 @@ class Routes {
 
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";
-    var routeName = (settings.name == rootRoute) ? Routes.startScreen : settings.name;
+    var routeName = (settings.name == rootRoute) ? Routes.loginScreen : settings.name;
     if (Routes.routesConfig.containsKey(routeName)) {
       return PageRouteBuilder(
         settings: RouteSettings(name: routeName, arguments: settings.arguments),
