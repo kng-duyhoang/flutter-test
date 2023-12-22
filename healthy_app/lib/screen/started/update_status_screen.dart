@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/screen/started/dialog.dart';
+import 'package:healthy_app/widget/dialog/dialog_height.dart';
 
 class UpdateStatusScreen extends StatefulWidget {
   late Function(int) goPage;
@@ -97,11 +97,10 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
+                          const RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.all(const Radius.circular(10)),
+                                  BorderRadius.all(Radius.circular(10)),
                               side: BorderSide(color: AppColor.borderColor)))),
-
                   onPressed: () {
                     showDialog(
                         context: context,
@@ -109,12 +108,12 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                         builder: (BuildContext context) =>
                             HeightDialog(context));
                   },
-                  child: Text(
+                  child: const Text(
                     "Input Your Height",
                     style: TextStyle(color: AppColor.blackColor1),
                   )),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),

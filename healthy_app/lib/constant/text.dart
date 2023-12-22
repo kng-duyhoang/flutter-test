@@ -33,4 +33,14 @@ class AppText {
     color: AppColor.blackColor1,
     fontWeight: FontWeight.normal,
   );
+  static const textLight = TextStyle(
+    fontSize: 16,
+    color: AppColor.lightColor1,
+    fontWeight: FontWeight.normal,
+  );
+  static const textBlack = TextStyle(
+    fontSize: 20,
+    color: AppColor.blackColor1,
+    fontWeight: FontWeight.bold,
+  );
 }

@@ -4,11 +4,8 @@ import 'package:healthy_app/screen/first_screen.dart';
 import 'package:healthy_app/screen/home_screen.dart';
 import 'package:healthy_app/screen/login_screen.dart';
 import 'package:healthy_app/screen/started/index.dart';
-
-
 class RouteArg {
   final Map<String, dynamic>? values;
-
   RouteArg(this.values);
 }
 
