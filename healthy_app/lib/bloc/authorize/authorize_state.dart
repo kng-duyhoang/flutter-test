@@ -1,7 +1,17 @@
 part of "authorize_bloc.dart";
 
-class AuthorizeState {}
+class AuthorizeState extends Equatable{
+  const AuthorizeState();
 
-class AuthorizeInit extends AuthorizeState {}
-class AuthorizeSuccess extends AuthorizeState {}
-class AuthorizeFail extends AuthorizeState {}
+  @override
+  List<Object> get props => [];
+}
+
+class AuthorizeStateInitial extends AuthorizeState {
+  final String token = Store.instance.getString(StoreKeys.token) ?? "";
+
+  @override
+  List<String> get props => [token];
+}
+class AuthorizeStateSuccess extends AuthorizeState {}
+class AuthorizeStateFail extends AuthorizeState{}

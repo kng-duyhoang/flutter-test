@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:healthy_app/screen/first_screen.dart';
 import 'package:healthy_app/screen/home_screen.dart';
 import 'package:healthy_app/screen/login_screen.dart';
 import 'package:healthy_app/screen/started/index.dart';
@@ -10,13 +9,11 @@ class RouteArg {
 }
 
 class Routes {
-  static String firstScreen = '/first';
   static String homeScreen = '/home';
   static String loginScreen = '/login';
   static String startScreen = '/start';
 
   static var routesConfig = {
-    firstScreen: (context) => const FirstScreen(),
     homeScreen: (context) => const HomeScreen(),
     loginScreen: (context) => const LoginScreen(),
     startScreen: (context) => const StartNavigation(),
@@ -24,7 +21,8 @@ class Routes {
 
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";
-    var routeName = (settings.name == rootRoute) ? Routes.loginScreen : settings.name;
+    // var  routeName = (settings.name == rootRoute) ? Store.instance.containsKey(StoreKeys.token) ? Routes.homeScreen : Routes.loginScreen : settings.name;
+    var  routeName = (settings.name == rootRoute) ? Routes.startScreen : settings.name;
     if (Routes.routesConfig.containsKey(routeName)) {
       return PageRouteBuilder(
         settings: RouteSettings(name: routeName, arguments: settings.arguments),
