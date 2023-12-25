@@ -13,12 +13,9 @@ class AuthorizeBloc extends Bloc<AuthorizeEvent, AuthorizeState> {
     return _instance!;
   }
 
-  // static String? token;
-
   AuthorizeBloc() : super(AuthorizeStateInitial()) {
     on<AuthorizeEventSuccess>(authorizeEventSuccess);
     on<AuthorizeEventFail>(authorizeEventFail);
-
   }
 
   void authorizeEventSuccess(AuthorizeEventSuccess event, Emitter<AuthorizeState> emit) async {

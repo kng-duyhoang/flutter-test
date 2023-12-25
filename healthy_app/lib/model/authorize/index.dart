@@ -1,3 +1,5 @@
+import 'package:healthy_app/model/user/index.dart';
+
 class UserInforModel {
   String userName;
   String birthday;
@@ -36,8 +38,11 @@ class UserInforModel {
 
 class LoginResponse {
   String token;
+  User user;
+  
   LoginResponse({
-    required this.token
+    required this.token,
+    required this.user,
   });
 }
 

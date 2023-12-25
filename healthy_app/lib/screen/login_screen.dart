@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:healthy_app/apis/user/index.dart';
+import 'package:healthy_app/apis/authorize/index.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
+import 'package:healthy_app/bloc/user/user_bloc.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/router/index.dart';
 
@@ -20,62 +21,58 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
 
   void _onLoginHandler(String userName, String password) async {
-   final data = LoginRequest(gmail: userName, password: password);
+    final data = LoginRequest(gmail: userName, password: password);
     EasyLoading.show(status: 'loading...');
-    
+    setState(() {
+      isLoading = true;
+    });
+
     final loginResponse = await AuthorizeApi().login(data);
-    print(loginResponse.token);
-    if(loginResponse.token != null) {
+    if (loginResponse.token != null) {
       AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
+      UserBloc.instance.add(UserEventSuccess(loginResponse.user));
       Navigator.pushNamed(context, Routes.homeScreen);
-      
-    } else {
-      setState(() {
-        isLoading = true;
-      });
-    }
+    } 
+    setState(() {
+      isLoading = false;
+    });
     EasyLoading.dismiss();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Center(child: Text('Login', textAlign: TextAlign.center)),
-        automaticallyImplyLeading: false,
-      ),
-      body: BlocListener<AuthorizeBloc, AuthorizeState>(
-          listener: (context, state) => {},
-          child: BlocBuilder<AuthorizeBloc, AuthorizeState>(
-              builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ListView(
-                children: [
-                  renderInput(_usernameController, 'Email'),
-                  const SizedBox(height: 20),
-                  renderInput(_passwordController, 'Password'),
-                  const SizedBox(height: 30),
-                  IgnorePointer(
-                    ignoring: isLoading,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        final userName = _usernameController.text;
-                        final password = _passwordController.text;
-                        _onLoginHandler(userName, password);
-                      },
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title:
+              const Center(child: Text('Login', textAlign: TextAlign.center)),
+          automaticallyImplyLeading: false,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            children: [
+              renderInput(_usernameController, 'Email'),
+              const SizedBox(height: 20),
+              renderInput(_passwordController, 'Password'),
+              const SizedBox(height: 30),
+              IgnorePointer(
+                ignoring: isLoading,
+                child: ElevatedButton(
+                  onPressed: () {
+                    final userName = _usernameController.text;
+                    final password = _passwordController.text;
+                    _onLoginHandler(userName, password);
+                  },
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(fontSize: 20),
                   ),
-                ],
+                ),
               ),
-            );
-          })),
-    );
+            ],
+          ),
+        ));
   }
 
   Column renderInput(TextEditingController controller, String fieldName) {

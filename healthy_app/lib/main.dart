@@ -13,6 +13,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
 import 'package:healthy_app/bloc/locale/locale_bloc.dart';
+import 'package:healthy_app/bloc/user/user_bloc.dart';
 import 'package:healthy_app/router/index.dart';
 import 'package:healthy_app/constant/locale.dart';
 import 'package:healthy_app/store/index.dart';
@@ -34,6 +35,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => AuthorizeBloc.instance,
+        ),
+        BlocProvider(
+          create: (context) => UserBloc.instance,
         ),
       ],
       child: const App(),

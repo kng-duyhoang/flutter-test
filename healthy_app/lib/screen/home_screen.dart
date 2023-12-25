@@ -25,11 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const Text("say SOme Thing ?"),
           ElevatedButton(onPressed: removeToken, child: const Text("remove Token")),
+          
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.loginScreen);
+              Navigator.pushNamed(context, Routes.settingScreen);
             },
-            child: const Text("Login")),
+            child: const Text("Setting")
+          ),
         ],
       ),
     );
