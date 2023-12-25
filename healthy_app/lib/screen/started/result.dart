@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/model/user/user.dart';
+import 'package:healthy_app/model/authorize/index.dart';
 
 class ResultStatusScreen extends StatefulWidget {
   final UserInforModel data;

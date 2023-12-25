@@ -1,17 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/apis/user/index.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
-import 'package:healthy_app/model/login.dart';
-import 'package:healthy_app/model/user/user.dart';
+import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/router/index.dart';
-import 'package:healthy_app/store/index.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

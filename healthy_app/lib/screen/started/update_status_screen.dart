@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/model/user/user.dart';
+import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/widget/dialog/scrollwheelview_dialog.dart';
 
 class UpdateStatusScreen extends StatefulWidget {

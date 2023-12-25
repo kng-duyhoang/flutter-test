@@ -1,7 +1,6 @@
 import 'package:healthy_app/apis/base_api.dart';
 import 'package:healthy_app/apis/core_api.dart';
-import 'package:healthy_app/model/login.dart';
-import 'package:healthy_app/model/user/user.dart';
+import 'package:healthy_app/model/authorize/index.dart';
 
 class AuthorizeApi {
   Future<LoginResponse> login(data) async {

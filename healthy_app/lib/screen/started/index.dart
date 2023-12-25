@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_app/model/user/user.dart';
+import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/screen/started/hello_screen.dart';
 import 'package:healthy_app/screen/started/result.dart';
 import 'package:healthy_app/screen/started/update_status_screen.dart';
