@@ -2,30 +2,61 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/text.dart';
+import 'package:healthy_app/model/user/user.dart';
 
-class HeightDialog extends StatefulWidget {
+class ScrollWeightDialog extends StatefulWidget {
+  final UserInforModel data;
+  final String keyName;
   
-  const HeightDialog(BuildContext context, {super.key});
+  const ScrollWeightDialog(BuildContext context, this.data, this.keyName, {super.key});
 
   @override
-  State<HeightDialog> createState() => _HeightDialogState();
+  State<ScrollWeightDialog> createState() => _ScrollWeightDialogState();
 }
 
-class _HeightDialogState extends State<HeightDialog> {
-  int height = 160;
+class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
+  int initialItem = 20;
 
   void _onClose() {
     Navigator.pop(context);
   }
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.keyName == "height") {
+      if (widget.data.height == "") {
+        widget.data.height = (20 + 140).toString();
+      } else {
+        setState(() {
+          initialItem = int.parse(widget.data.height) - 140;
+        });
+      }
+    } else {
+      if (widget.data.weight == "") {
+        widget.data.weight = (20 + 40).toString();
+      } else {
+        setState(() {
+          initialItem = int.parse(widget.data.height) - 40;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    final bool isHeight = widget.keyName == "height";
+    final int valueChange = isHeight ? 140 : 40;
+
     return Dialog(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: SizedBox(
-        height: 300.0,
+        height: 350.0,
         width: 300.0,
         child: Column(
           children: [
@@ -33,8 +64,8 @@ class _HeightDialogState extends State<HeightDialog> {
               height: 50,
               width: 300,
               child: Stack(children: [
-                const Center(
-                  child: Text("Select Height",
+                Center(
+                  child: Text("Select ${isHeight ? 'Height': 'Weight'}",
                       style: AppText.titleLarge, textAlign: TextAlign.center),
                 ),
                 Positioned(
@@ -59,21 +90,25 @@ class _HeightDialogState extends State<HeightDialog> {
                     child: ListWheelScrollView.useDelegate(
                       itemExtent: 40,
                       perspective: 0.0000000001,
-                      controller: FixedExtentScrollController(initialItem: 20),
+                      controller: FixedExtentScrollController(initialItem: initialItem),
                       renderChildrenOutsideViewport: false,
                       useMagnifier: true,
                       magnification: 1.5,
                       physics: const FixedExtentScrollPhysics(),
                       onSelectedItemChanged: (value) {
                         setState(() {
-                          height = value + 140;
+                          if (isHeight) {
+                            widget.data.changeHeight = (value + valueChange).toString();
+                          } else {
+                            widget.data.changeWeight = (value + valueChange).toString();
+                          }
                         });
                       },
                       childDelegate: ListWheelChildBuilderDelegate(
-                        childCount: 50,
+                        childCount: valueChange,
                         builder: (context, index) {
-                          return MyHeight(
-                              height: index + 140, heightActive: height);
+                          return MyData(
+                              currentData: (index + valueChange).toString(), dataActive: isHeight ? widget.data.height : widget.data.weight);
                         },
                       ),
                     ),
@@ -89,8 +124,8 @@ class _HeightDialogState extends State<HeightDialog> {
                       childDelegate: ListWheelChildBuilderDelegate(
                         childCount: 1,
                         builder: (context, index) {
-                          return const Center(
-                            child: Text('CM', style: AppText.textBlack),
+                          return Center(
+                            child: Text( isHeight ? 'CM' : 'mg', style: AppText.textBlack),
                           );
                         },
                       ),
@@ -99,6 +134,8 @@ class _HeightDialogState extends State<HeightDialog> {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+            SizedBox(height: 50, child: ElevatedButton(onPressed: _onClose, child: const Text('Submit'))),
           ],
         ),
       ),
@@ -106,20 +143,19 @@ class _HeightDialogState extends State<HeightDialog> {
   }
 }
 
-class MyHeight extends StatelessWidget {
-  int height;
-  int heightActive;
-  MyHeight({super.key, required this.height, required this.heightActive});
+class MyData extends StatelessWidget {
+  String currentData;
+  String dataActive;
+  MyData({super.key, required this.currentData, required this.dataActive});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Center(
-        child: Text(height.toString(),
-            style: height == heightActive
-                ? AppText.textBlack
-                : AppText.textLight),
+        child: Text(currentData,
+            style: dataActive == currentData ? AppText.textBlack : AppText.textLight,
+        )
       ),
     );
   }

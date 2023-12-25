@@ -4,10 +4,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/apis/user/index.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
 import 'package:healthy_app/model/login.dart';
+import 'package:healthy_app/model/user/user.dart';
 import 'package:healthy_app/router/index.dart';
 import 'package:healthy_app/store/index.dart';
 
@@ -24,22 +26,20 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
 
   void _onLoginHandler(String userName, String password) async {
-    final login = LoginResponsi().onLogin;
+   final data = LoginRequest(gmail: userName, password: password);
     EasyLoading.show(status: 'loading...');
-    setState(() {
-      isLoading = true;
-    });
-
-    var response = await login(userName, password);
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body.toString());
-      var dataResponse = ModelLoginResponse.fromJson(data);
-      Store.instance.setString(StoreKeys.token, dataResponse.token);
-      await Navigator.pushNamed(context, Routes.homeScreen);
-    } else {}
-    setState(() {
-      isLoading = false;
-    });
+    
+    final loginResponse = await AuthorizeApi().login(data);
+    print(loginResponse.token);
+    if(loginResponse.token != null) {
+      AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
+      Navigator.pushNamed(context, Routes.homeScreen);
+      
+    } else {
+      setState(() {
+        isLoading = true;
+      });
+    }
     EasyLoading.dismiss();
   }
 

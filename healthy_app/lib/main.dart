@@ -1,11 +1,16 @@
 // ignore_for_file: depend_on_referenced_packages, unused_import
 
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
 import 'package:healthy_app/bloc/locale/locale_bloc.dart';
 import 'package:healthy_app/router/index.dart';
@@ -17,6 +22,10 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Store.init();
+  await dotenv.load();
+  if(!kReleaseMode && !kProfileMode) {
+    HttpOverrides.global = MyHttpOverrides();
+  }
   runApp(
     MultiBlocProvider(
       providers: [

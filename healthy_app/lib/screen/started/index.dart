@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:healthy_app/model/user/user.dart';
 import 'package:healthy_app/screen/started/hello_screen.dart';
+import 'package:healthy_app/screen/started/result.dart';
 import 'package:healthy_app/screen/started/update_status_screen.dart';
 
 class StartNavigation extends StatefulWidget {
@@ -9,24 +11,21 @@ class StartNavigation extends StatefulWidget {
   State<StartNavigation> createState() => _StartNavigationState();
 }
 
+
 class _StartNavigationState extends State<StartNavigation> {
   int _indexKey = 0;
 
-  Map<String, dynamic> data = {
-    'name': "",
-    'birthDay': "",
-    'gender': 0,
-  };
+  UserInforModel data = UserInforModel(
+    userName: "",
+    gender: "",
+    height: "",
+    weight: "",
+    birthday: ""
+  );
 
   void goPage(int key) {
     setState(() {
       _indexKey = key;
-    });
-  }
-
-  void changeData(dynamic value, String keyname) {
-    setState(() {
-      data[keyname] = value;
     });
   }
 
@@ -35,7 +34,9 @@ class _StartNavigationState extends State<StartNavigation> {
       case 0:
         return HelloScreen(goPage);
       case 1:
-        return UpdateStatusScreen(goPage, changeData);
+        return UpdateStatusScreen(goPage, data);
+      case 2: 
+      return ResultStatusScreen(data);
     }
     return Container();
   }

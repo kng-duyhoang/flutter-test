@@ -35,11 +35,11 @@ class AppText {
   );
   static const textLight = TextStyle(
     fontSize: 16,
-    color: AppColor.lightColor1,
+    color: AppColor.lightColor2,
     fontWeight: FontWeight.normal,
   );
   static const textBlack = TextStyle(
-    fontSize: 20,
+    fontSize: 16,
     color: AppColor.blackColor1,
     fontWeight: FontWeight.bold,
   );
