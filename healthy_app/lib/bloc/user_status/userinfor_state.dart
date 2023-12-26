@@ -36,57 +36,7 @@ class UserInforState extends Equatable {
     userName,
     weight,
     height,
-    gender
+    gender,
+    birthday
   ];
-
-}
-
-// class UserInforStateData extends UserInforState {
-//   String userName;
-//   String id;
-//   String weight;
-//   String height;
-//   String birthday;
-//   String gender;
-
-//   UserInforStateData({
-//     required this.userName,
-//     required this.id,
-//     required this.weight,
-//     required this.height,
-//     required this.birthday,
-//     required this.gender
-//   });
-
-//   set changeUserName(String newName) {
-//     userName = newName;
-//   }
-
-//   UserInforStateData updateUserName(String newName) {
-//     return UserInforStateData(
-//       birthday: birthday,
-//       gender: gender,
-//       height: height,
-//       id: id,
-//       weight: weight,
-//       userName: newName
-//     );
-//   }
-// }
-
-class User {
-  String userName;
-  String id;
-  String weight;
-  String height;
-  String birthday;
-  String gender;
-
-  User(
-      {required this.userName,
-      required this.id,
-      required this.weight,
-      required this.height,
-      required this.birthday,
-      required this.gender});
 }

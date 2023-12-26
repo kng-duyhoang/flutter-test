@@ -23,11 +23,18 @@ class UpdateStatusScreen extends StatefulWidget {
 class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
   final TextEditingController _usernameController = TextEditingController();
   int? genderData = 0;
-  DateTime selectedDate = DateTime.now();
 
-  DateTime convertStringToDatetime(String data) {
-    DateTime tempDate = DateTime.parse(data);
-    return tempDate;
+  @override
+  void initState() {
+    super.initState();
+    _usernameController.text = UserInforBloc.instance.state.userName;
+    setState(() {
+      genderData = UserInforBloc.instance.state.gender == "Male" ? 1 : 0;
+    });
+  }
+
+  void _callbackChangeGender() {
+    UserInforBloc.instance.add(UserEventUpdateGender(genderData == 1 ? 'Female' : 'Male'));
   }
 
   @override
@@ -88,8 +95,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     onChanged: (int? value) {
                       setState(() {
                         genderData = value;
-                        UserInforBloc.instance.add(UserEventUpdateGender(
-                            value == 1 ? 'Female' : 'Male'));
+                        _callbackChangeGender();
                       });
                     },
                   ),
@@ -103,8 +109,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     onChanged: (int? value) {
                       setState(() {
                         genderData = value;
-                        UserInforBloc.instance.add(UserEventUpdateGender(
-                            value == 1 ? 'Female' : 'Male'));
+                        _callbackChangeGender();
                       });
                     },
                   ),

@@ -40,3 +40,28 @@ class UserUpdateResponse {
     required this.user
   });
 }
+
+class UserUpdateRequest {
+  String username;
+  String gender;
+  String birthday;
+  String height;
+  String weight;
+
+  UserUpdateRequest({
+    required this.username,
+    required this.gender,
+    required this.birthday,
+    required this.height,
+    required this.weight,
+  });
+
+  Map<String, dynamic> toJson() => {
+    "username": username,
+    "gender": gender,
+    "birthday": birthday,
+    "height": height,
+    "weight": weight,
+  };
+
+}

@@ -2,8 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:healthy_app/apis/authorize/index.dart';
+import 'package:healthy_app/apis/user/index.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
+import 'package:healthy_app/model/user/index.dart';
 
 class ResultStatusScreen extends StatefulWidget {
   late Function(int) goPage;
@@ -17,24 +21,28 @@ class ResultStatusScreen extends StatefulWidget {
 class _ResultStatusScreenState extends State<ResultStatusScreen> {
   bool isLoading = false;
 
-  // void _updateUser() async {
-  //   final data = ;
-  //   EasyLoading.show(status: 'loading...');
-  //   setState(() {
-  //     isLoading = true;
-  //   });
+  void _updateUser() async {
+    final data = UserUpdateRequest(
+      username: UserInforBloc.instance.state.userName,
+      birthday: UserInforBloc.instance.state.birthday,
+      gender: UserInforBloc.instance.state.gender,
+      height: UserInforBloc.instance.state.height,
+      weight: UserInforBloc.instance.state.weight
+    );
 
-  //   final loginResponse = await AuthorizeApi().login(data);
-  //   if (loginResponse.token != null) {
-  //     AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
-  //     UserBloc.instance.add(UserEventSuccess(loginResponse.user));
-  //     Navigator.pushNamed(context, Routes.homeScreen);
-  //   }
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  //   EasyLoading.dismiss();
-  // }
+    EasyLoading.show(status: 'loading...');
+    setState(() {
+      isLoading = true;
+    });
+
+    final loginResponse = await UserApi().updateUser(data);
+    print(loginResponse.user.username);
+    
+    setState(() {
+      isLoading = false;
+    });
+    EasyLoading.dismiss();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +65,7 @@ class _ResultStatusScreenState extends State<ResultStatusScreen> {
               FormValue('Weight', state.weight),
               FormValue('Gender', state.gender),
               FormValue('Birthday', state.birthday),
-              // ElevatedButton(onPressed: onPressed, child: child)
+              ElevatedButton(onPressed: _updateUser, child: const Text('Update'))
             ]),
           );
         }));

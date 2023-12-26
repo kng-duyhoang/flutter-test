@@ -19,7 +19,6 @@ class _CupertinoDatePickerDialogState extends State<CupertinoDatePickerDialog> {
     Navigator.pop(context);
   }
 
-
   @override
   void initState() {
     super.initState();
@@ -69,6 +68,11 @@ class _CupertinoDatePickerDialogState extends State<CupertinoDatePickerDialog> {
                   },
                 ),
               ),
+            const SizedBox(height: 20),
+            SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                    onPressed: _onClose, child: const Text('Submit'))),
           ],
         ),
       ),
