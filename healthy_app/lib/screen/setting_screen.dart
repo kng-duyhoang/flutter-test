@@ -30,7 +30,7 @@ class _SettingScreenState extends State<SettingScreen> {
         if (state is UserData) {
           user = state.user;
         }
-        return Container(
+        return SizedBox(
           width: double.infinity,
           child: Column(
             children: [

@@ -36,7 +36,7 @@ class _StartNavigationState extends State<StartNavigation> {
       case 1:
         return UpdateStatusScreen(goPage, data);
       case 2: 
-      return ResultStatusScreen(data);
+      return ResultStatusScreen(goPage);
     }
     return Container();
   }

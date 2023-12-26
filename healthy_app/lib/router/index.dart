@@ -7,7 +7,6 @@ import 'package:healthy_app/screen/loading_screen.dart';
 import 'package:healthy_app/screen/login_screen.dart';
 import 'package:healthy_app/screen/setting_screen.dart';
 import 'package:healthy_app/screen/started/index.dart';
-import 'package:healthy_app/store/index.dart';
 class RouteArg {
   final Map<String, dynamic>? values;
   RouteArg(this.values);
@@ -30,8 +29,8 @@ class Routes {
 
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";
-    var  routeName = (settings.name == rootRoute) ? Store.instance.containsKey(StoreKeys.token) ? Routes.loadingScreen : Routes.loginScreen : settings.name;
-    // var  routeName = (settings.name == rootRoute) ? Routes.loginScreen : settings.name;
+    // var  routeName = (settings.name == rootRoute) ? Store.instance.containsKey(StoreKeys.token) ? Routes.loadingScreen : Routes.loginScreen : settings.name;
+    var  routeName = (settings.name == rootRoute) ? Routes.startScreen : settings.name;
     if (Routes.routesConfig.containsKey(routeName)) {
       return PageRouteBuilder(
         settings: RouteSettings(name: routeName, arguments: settings.arguments),

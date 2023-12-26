@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/apis/authorize/index.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
@@ -28,12 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     final loginResponse = await AuthorizeApi().login(data);
-    if (loginResponse.token != null) {
-      AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
-      UserBloc.instance.add(UserEventSuccess(loginResponse.user));
-      Navigator.pushNamed(context, Routes.homeScreen);
-    } 
-    setState(() {
+    AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
+    UserBloc.instance.add(UserEventSuccess(loginResponse.user));
+    Navigator.pushNamed(context, Routes.homeScreen);
+      setState(() {
       isLoading = false;
     });
     EasyLoading.dismiss();

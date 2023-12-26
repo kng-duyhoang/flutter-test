@@ -1,5 +1,5 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healthy_app/model/authorize/index.dart';
 
 part "userinfor_event.dart";
 part "userinfor_state.dart";
@@ -11,13 +11,32 @@ class UserInforBloc extends Bloc<UserInforEvent, UserInforState>{
     return _instance!;
   }
 
-  UserInforBloc() : super(UserInforStateInit()) {
-    on<UserInforEventUpdate>(userInforEventUpdate);
+  UserInforBloc() : super(const UserInforState()) {
+    on<UserEventUpdateName>(userEventUpdateName);
+    on<UserEventUpdateGender>(userEventUpdateGender);
+    on<UserEventUpdateWeight>(userEventUpdateWeight);
+    on<UserEventUpdateHeight>(userEventUpdateHeight);
+    on<UserEventUpdateBirthday>(userEventUpdateBirthday);
   }
 
-  void userInforEventUpdate(UserInforEventUpdate event, Emitter<UserInforState> emit) async {
-    emit(UserInforStateData(
-      user: event.user
-    ));
+ 
+  void userEventUpdateName(UserEventUpdateName event, Emitter<UserInforState> emit) async {
+    emit(state.copyWith(userName: () => event.userName));
+  } 
+
+  void userEventUpdateGender(UserEventUpdateGender event, Emitter<UserInforState> emit) async {
+    emit(state.copyWith(gender: () => event.gender));
+  } 
+
+  void userEventUpdateWeight(UserEventUpdateWeight event, Emitter<UserInforState> emit) async {
+    emit(state.copyWith(weight: () => event.weight));
+  } 
+
+  void userEventUpdateHeight(UserEventUpdateHeight event, Emitter<UserInforState> emit) async {
+    emit(state.copyWith(height: () => event.height));
+  } 
+
+  void userEventUpdateBirthday(UserEventUpdateBirthday event, Emitter<UserInforState> emit) async {
+    emit(state.copyWith(birthday: () => event.birthday));
   } 
 }

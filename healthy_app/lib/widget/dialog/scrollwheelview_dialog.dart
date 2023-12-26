@@ -1,14 +1,13 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/model/authorize/index.dart';
 
 class ScrollWeightDialog extends StatefulWidget {
-  final UserInforModel data;
   final String keyName;
-  
-  const ScrollWeightDialog(BuildContext context, this.data, this.keyName, {super.key});
+
+  const ScrollWeightDialog(BuildContext context, this.keyName, {super.key});
 
   @override
   State<ScrollWeightDialog> createState() => _ScrollWeightDialogState();
@@ -23,30 +22,19 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    if (widget.keyName == "height") {
-      if (widget.data.height == "") {
-        widget.data.changeHeight = (20 + 140).toString();
-      } else {
-        setState(() {
-          initialItem = int.parse(widget.data.height) - 140;
-        });
-      }
+    final bool isHeight = widget.keyName == "height";
+
+    final int valueChange = isHeight ? 140 : 40;
+    if (isHeight) {
+      UserInforBloc.instance.add(UserEventUpdateHeight(valueChange.toString()));
     } else {
-      if (widget.data.weight == "") {
-        widget.data.changeWeight = (20 + 40).toString();
-      } else {
-        setState(() {
-          initialItem = int.parse(widget.data.height) - 40;
-        });
-      }
+      UserInforBloc.instance.add(UserEventUpdateWeight(valueChange.toString()));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     final bool isHeight = widget.keyName == "height";
     final int valueChange = isHeight ? 140 : 40;
 
@@ -64,7 +52,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
               width: 300,
               child: Stack(children: [
                 Center(
-                  child: Text("Select ${isHeight ? 'Height': 'Weight'}",
+                  child: Text("Select ${isHeight ? 'Height' : 'Weight'}",
                       style: AppText.titleLarge, textAlign: TextAlign.center),
                 ),
                 Positioned(
@@ -89,7 +77,8 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                     child: ListWheelScrollView.useDelegate(
                       itemExtent: 40,
                       perspective: 0.0000000001,
-                      controller: FixedExtentScrollController(initialItem: initialItem),
+                      controller:
+                          FixedExtentScrollController(initialItem: initialItem),
                       renderChildrenOutsideViewport: false,
                       useMagnifier: true,
                       magnification: 1.5,
@@ -97,9 +86,11 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                       onSelectedItemChanged: (value) {
                         setState(() {
                           if (isHeight) {
-                            widget.data.changeHeight = (value + valueChange).toString();
+                            UserInforBloc.instance.add(UserEventUpdateHeight(
+                                (value + valueChange).toString()));
                           } else {
-                            widget.data.changeWeight = (value + valueChange).toString();
+                            UserInforBloc.instance.add(UserEventUpdateWeight(
+                                (value + valueChange).toString()));
                           }
                         });
                       },
@@ -107,7 +98,8 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                         childCount: valueChange,
                         builder: (context, index) {
                           return MyData(
-                              currentData: (index + valueChange).toString(), dataActive: isHeight ? widget.data.height : widget.data.weight);
+                              currentData: (index + valueChange).toString(),
+                              dataActive: index.toString());
                         },
                       ),
                     ),
@@ -124,7 +116,8 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                         childCount: 1,
                         builder: (context, index) {
                           return Center(
-                            child: Text( isHeight ? 'CM' : 'mg', style: AppText.textBlack),
+                            child: Text(isHeight ? 'CM' : 'mg',
+                                style: AppText.textBlack),
                           );
                         },
                       ),
@@ -134,7 +127,10 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
               ),
             ),
             const SizedBox(height: 20),
-            SizedBox(height: 50, child: ElevatedButton(onPressed: _onClose, child: const Text('Submit'))),
+            SizedBox(
+                height: 50,
+                child: ElevatedButton(
+                    onPressed: _onClose, child: const Text('Submit'))),
           ],
         ),
       ),
@@ -152,10 +148,11 @@ class MyData extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Center(
-        child: Text(currentData,
-            style: dataActive == currentData ? AppText.textBlack : AppText.textLight,
-        )
-      ),
+          child: Text(
+        currentData,
+        style:
+            dataActive == currentData ? AppText.textBlack : AppText.textLight,
+      )),
     );
   }
 }

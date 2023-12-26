@@ -20,7 +20,6 @@ class AuthorizeApi {
     final response = await CoreApi.instance.get('/user/checkToken');
     try {
       final User user = User.fromJson(response.data["user"]);
-      print('aaaaa');
       return CheckResponse(
         user: user
       );

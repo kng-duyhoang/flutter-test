@@ -22,7 +22,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     EasyLoading.show(status: 'loading...');
     _onCheck();
@@ -41,7 +40,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
               }
             }
           },
-          child: Scaffold(body: Container(child: Text("nothing")),)
+          child: const Scaffold(body:  Text("nothing"),)
     );
   }
 }
