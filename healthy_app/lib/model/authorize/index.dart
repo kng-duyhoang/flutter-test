@@ -60,3 +60,11 @@ class LoginRequest {
     return LoginRequest(gmail: json['gmail'], password: json['password']);
   }
 }
+
+class CheckResponse {
+  User user;
+  
+  CheckResponse({
+    required this.user,
+  });
+}

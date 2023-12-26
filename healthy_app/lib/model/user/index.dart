@@ -30,3 +30,13 @@ class User {
     );
   }
 }
+
+class UserUpdateResponse {
+  String message;
+  User user;
+
+  UserUpdateResponse({
+    required this.message,
+    required this.user
+  });
+}

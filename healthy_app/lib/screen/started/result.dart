@@ -1,8 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/authorize/index.dart';
+import 'package:healthy_app/model/user/index.dart';
 
 class ResultStatusScreen extends StatefulWidget {
   final UserInforModel data;
@@ -13,6 +15,27 @@ class ResultStatusScreen extends StatefulWidget {
 }
 
 class _ResultStatusScreenState extends State<ResultStatusScreen> {
+  bool isLoading = false;
+
+  // void _updateUser() async {
+  //   final data = ;
+  //   EasyLoading.show(status: 'loading...');
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+
+  //   final loginResponse = await AuthorizeApi().login(data);
+  //   if (loginResponse.token != null) {
+  //     AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
+  //     UserBloc.instance.add(UserEventSuccess(loginResponse.user));
+  //     Navigator.pushNamed(context, Routes.homeScreen);
+  //   } 
+  //   setState(() {
+  //     isLoading = false;
+  //   });
+  //   EasyLoading.dismiss();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +48,7 @@ class _ResultStatusScreenState extends State<ResultStatusScreen> {
         FormValue('Weight', widget.data.weight),
         FormValue('Gender', widget.data.gender),
         FormValue('Birthday', widget.data.birthday),
+        // ElevatedButton(onPressed: onPressed, child: child)
       ]),),
     );
   }

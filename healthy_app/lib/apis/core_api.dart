@@ -30,7 +30,7 @@ class CoreApi {
     String token = tokenData[0];
     String baseUrl = dotenv.env['BASE_API_URL']!;
     _dio.options.baseUrl = baseUrl;
-    _dio.options.headers = {'Content-Type': 'application/json', 'token': token};
+    _dio.options.headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'};
   }
 
   Future setToken(String token) async {

@@ -41,9 +41,8 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
       });
   }
 
-
   void _onchangeUserName(String userName) {
-    widget.data.changeUserName = userName;
+    
   }
 
   @override
@@ -132,8 +131,8 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                   onPressed: () {
                     _selectDate(context);
                   },
-                  child: const Text(
-                    "Input Your BirthDay",
+                  child: Text(
+                    widget.data.birthday != "" ? widget.data.birthday : "Input Your BirthDay",
                     style: AppText.textBlack,
                   )),
             ),
@@ -157,8 +156,8 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                         builder: (BuildContext context) =>
                             ScrollWeightDialog(context, widget.data, 'height'));
                   },
-                  child: const Text(
-                    "Input Your Height",
+                  child: Text(
+                    widget.data.height != "" ? widget.data.height : "Input Your Height",
                     style: AppText.textBlack,
                   )),
             ),
@@ -182,8 +181,8 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                         builder: (BuildContext context) =>
                             ScrollWeightDialog(context, widget.data, 'weight'));
                   },
-                  child: const Text(
-                    "Input Your Weight",
+                  child: Text(
+                    widget.data.weight != "" ? widget.data.weight : "Input Your Weight",
                     style: AppText.textBlack,
                   )),
             ),

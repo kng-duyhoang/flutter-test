@@ -21,14 +21,13 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
     Navigator.pop(context);
   }
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     if (widget.keyName == "height") {
       if (widget.data.height == "") {
-        widget.data.height = (20 + 140).toString();
+        widget.data.changeHeight = (20 + 140).toString();
       } else {
         setState(() {
           initialItem = int.parse(widget.data.height) - 140;
@@ -36,7 +35,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
       }
     } else {
       if (widget.data.weight == "") {
-        widget.data.weight = (20 + 40).toString();
+        widget.data.changeWeight = (20 + 40).toString();
       } else {
         setState(() {
           initialItem = int.parse(widget.data.height) - 40;
