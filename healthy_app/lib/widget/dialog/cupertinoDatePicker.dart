@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
+import 'package:intl/intl.dart';
 
 class CupertinoDatePickerDialog extends StatefulWidget {
   const CupertinoDatePickerDialog(BuildContext context, {super.key});
@@ -63,8 +64,10 @@ class _CupertinoDatePickerDialogState extends State<CupertinoDatePickerDialog> {
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.date,
                   initialDateTime: DateTime(1969, 1, 1),
+                  dateOrder: DatePickerDateOrder.dmy,
                   onDateTimeChanged: (DateTime newDateTime) {
-                    UserInforBloc.instance.add(UserEventUpdateBirthday(newDateTime.toString()));
+                    String formatter = DateFormat('yMd').format(newDateTime);
+                    UserInforBloc.instance.add(UserEventUpdateBirthday(formatter.toString()));
                   },
                 ),
               ),

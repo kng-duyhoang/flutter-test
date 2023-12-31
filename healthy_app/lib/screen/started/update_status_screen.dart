@@ -29,7 +29,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
     super.initState();
     _usernameController.text = UserInforBloc.instance.state.userName;
     setState(() {
-      genderData = UserInforBloc.instance.state.gender == "Male" ? 1 : 0;
+      genderData = UserInforBloc.instance.state.gender == "Male" ? 0 : 1;
     });
   }
 
@@ -202,20 +202,21 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
           ),
         );
       }),
-      floatingActionButton: Container(
-        height: 70,
-        padding: const EdgeInsets.all(10),
-        child: SizedBox(
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),
+      floatingActionButton:  //or an empty container
+          Container(
+              height: 70,
+              padding: const EdgeInsets.all(10),
+              child: SizedBox(
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {
+                      widget.goPage(2);
+                    },
+                    child: const Text("Next", style: AppText.titleMedium)),
               ),
-              onPressed: () {
-                widget.goPage(2);
-              },
-              child: const Text("Next", style: AppText.titleMedium)),
-        ),
-      ),
+            ),
     );
   }
 }

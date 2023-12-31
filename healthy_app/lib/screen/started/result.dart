@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, must_be_immutable
+// ignore_for_file: non_constant_identifier_names, must_be_immutable, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +8,7 @@ import 'package:healthy_app/apis/user/index.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/user/index.dart';
+import 'package:healthy_app/router/index.dart';
 
 class ResultStatusScreen extends StatefulWidget {
   late Function(int) goPage;
@@ -36,7 +37,9 @@ class _ResultStatusScreenState extends State<ResultStatusScreen> {
     });
 
     final loginResponse = await UserApi().updateUser(data);
-    print(loginResponse.user.username);
+    if (loginResponse.user.username != "") {
+      Navigator.pushNamed(context, Routes.homeScreen);
+    }
     
     setState(() {
       isLoading = false;

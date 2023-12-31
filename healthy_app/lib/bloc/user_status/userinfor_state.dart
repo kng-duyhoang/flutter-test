@@ -12,7 +12,7 @@ class UserInforState extends Equatable {
     this.weight = "",
     this.height = "",
     this.birthday = "",
-    this.gender = "",
+    this.gender = "Male",
   });
 
   UserInforState copyWith({

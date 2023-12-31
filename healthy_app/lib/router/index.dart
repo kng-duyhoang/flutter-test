@@ -5,6 +5,8 @@ import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/screen/home_screen.dart';
 import 'package:healthy_app/screen/loading_screen.dart';
 import 'package:healthy_app/screen/login_screen.dart';
+import 'package:healthy_app/screen/schedule/create_schedule.dart';
+import 'package:healthy_app/screen/schedule/index.dart';
 import 'package:healthy_app/screen/setting_screen.dart';
 import 'package:healthy_app/screen/started/index.dart';
 class RouteArg {
@@ -18,6 +20,8 @@ class Routes {
   static String startScreen = '/start';
   static String settingScreen = '/setting';
   static String loadingScreen = '/loading';
+  static String scheduleScreen = '/schedule';
+  static String createSchedule = '/create-schedule';
 
   static var routesConfig = {
     homeScreen: (context) => const HomeScreen(),
@@ -25,12 +29,14 @@ class Routes {
     startScreen: (context) => BlocProvider(create: (context) => UserInforBloc.instance, child: const StartNavigation()),
     settingScreen: (context) => const SettingScreen(),
     loadingScreen: (context) => const LoadingScreen(),
+    scheduleScreen: (context) => const ScheduleScreen(),
+    createSchedule: (context) => const CreateScheduleScreen(),
   };
 
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";
     // var  routeName = (settings.name == rootRoute) ? Store.instance.containsKey(StoreKeys.token) ? Routes.loadingScreen : Routes.loginScreen : settings.name;
-    var  routeName = (settings.name == rootRoute) ? Routes.startScreen : settings.name;
+    var  routeName = (settings.name == rootRoute) ? Routes.createSchedule : settings.name;
     if (Routes.routesConfig.containsKey(routeName)) {
       return PageRouteBuilder(
         settings: RouteSettings(name: routeName, arguments: settings.arguments),

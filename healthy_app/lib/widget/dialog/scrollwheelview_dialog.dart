@@ -24,12 +24,22 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
   void initState() {
     super.initState();
     final bool isHeight = widget.keyName == "height";
-
     final int valueChange = isHeight ? 140 : 40;
+    var value = initialItem + valueChange;
     if (isHeight) {
-      UserInforBloc.instance.add(UserEventUpdateHeight(valueChange.toString()));
+      var height = UserInforBloc.instance.state.height;
+      if (height == "") {
+        UserInforBloc.instance.add(UserEventUpdateHeight(value.toString()));
+      } else {
+        initialItem = int.parse(height) - valueChange;
+      }
     } else {
-      UserInforBloc.instance.add(UserEventUpdateWeight(valueChange.toString()));
+      var weight = UserInforBloc.instance.state.weight;
+      if (weight == "") {
+        UserInforBloc.instance.add(UserEventUpdateWeight(value.toString()));
+      } else {
+        initialItem = int.parse(weight) - valueChange;
+      }
     }
   }
 
@@ -98,8 +108,8 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                         childCount: valueChange,
                         builder: (context, index) {
                           return MyData(
-                              currentData: (index + valueChange).toString(),
-                              dataActive: index.toString());
+                              currentData: (index + valueChange).toString(), isHeight: isHeight)
+                              ;
                         },
                       ),
                     ),
@@ -116,7 +126,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                         childCount: 1,
                         builder: (context, index) {
                           return Center(
-                            child: Text(isHeight ? 'CM' : 'mg',
+                            child: Text(isHeight ? 'CM' : 'Gram',
                                 style: AppText.textBlack),
                           );
                         },
@@ -140,19 +150,20 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
 
 class MyData extends StatelessWidget {
   String currentData;
-  String dataActive;
-  MyData({super.key, required this.currentData, required this.dataActive});
+  bool  isHeight;
+  MyData({super.key, required this.currentData, required this.isHeight});
 
   @override
   Widget build(BuildContext context) {
+    final data = isHeight ? UserInforBloc.instance.state.height : UserInforBloc.instance.state.weight;
+    final style = data == currentData ? AppText.textBlack : AppText.textLight;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Center(
           child: Text(
-        currentData,
-        style:
-            dataActive == currentData ? AppText.textBlack : AppText.textLight,
-      )),
+            currentData,
+            style: style,
+          ),),
     );
   }
 }

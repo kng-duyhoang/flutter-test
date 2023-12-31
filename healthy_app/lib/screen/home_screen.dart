@@ -23,9 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          const Text("say SOme Thing ?"),
-          ElevatedButton(onPressed: removeToken, child: const Text("remove Token")),
-          
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.scheduleScreen);
+            },
+            child: const Text("Schedule")
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, Routes.settingScreen);
