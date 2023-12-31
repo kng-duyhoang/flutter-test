@@ -1,45 +1,23 @@
 class Schedule {
-  final String name;
-  final String type;
-  final List<DayTask> listTask;
+  String name;
+  String type;
+  List<ActivitySchedule> items;
 
   Schedule({
     required this.name,
     required this.type,
-    required this.listTask,
+    required this.items,
   });
 }
 
-class DayTask {
-  final int index;
-  final Activity activity;
-  DayTask({
-    required this.index,
-    required this.activity
-  });
-}
 
-class Activity {
-  final int activityID;
-  final bool isParent;
-  final String startAt;
-  final String endAt;
-  final SubActivity subActivity;
-
-  Activity({
-    required this.activityID,
-    required this.isParent,
-    required this.startAt,
-    required this.endAt,
-    required this.subActivity,
-  });
-}
-
-class SubActivity {
-  final int subID;
-  final String duration;
-  SubActivity({
-    required this.subID,
-    required this.duration,
+class ActivitySchedule {
+  String startTime;
+  String endTime;
+  String sheduleId;
+  ActivitySchedule({
+    required this.endTime,
+    required this.sheduleId,
+    required this.startTime
   });
 }

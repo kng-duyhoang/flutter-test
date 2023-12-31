@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 
 import 'package:healthy_app/screen/home_screen.dart';
@@ -9,6 +10,7 @@ import 'package:healthy_app/screen/schedule/create_schedule.dart';
 import 'package:healthy_app/screen/schedule/index.dart';
 import 'package:healthy_app/screen/setting_screen.dart';
 import 'package:healthy_app/screen/started/index.dart';
+import 'package:healthy_app/store/index.dart';
 class RouteArg {
   final Map<String, dynamic>? values;
   RouteArg(this.values);
@@ -30,7 +32,7 @@ class Routes {
     settingScreen: (context) => const SettingScreen(),
     loadingScreen: (context) => const LoadingScreen(),
     scheduleScreen: (context) => const ScheduleScreen(),
-    createSchedule: (context) => const CreateScheduleScreen(),
+    createSchedule: (context) => BlocProvider(create: (context) => ActivityBloc.instance, child: const CreateScheduleScreen()),
   };
 
   static Route<dynamic>? onGenerateRoute(settings) {

@@ -1,8 +1,11 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:healthy_app/apis/activity/index.dart';
+import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
+import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/widget/dialog/addActivity.dart';
 
@@ -16,13 +19,13 @@ class CreateScheduleScreen extends StatefulWidget {
 const List<String> list = <String>['Day', 'Week'];
 
 class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
-  Schedule listSchedule = Schedule(name: "", type: "", listTask: []);
+  Schedule listSchedule = Schedule(name: "", type: "", items: []);
   int initialItem = 20;
   String dropdownValue = list.first;
   final TextEditingController _nameController = TextEditingController();
   List<Schedule> listShedule = [];
   int lengthList = 1;
-  int onActive = 1;
+  int onActive = 0;
 
   void changeActive(int index) {
     setState(() {
@@ -32,12 +35,35 @@ class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
 
   void _onSubmit() {}
 
-  void _addItem (context) {
+  void _addItem(context) {
     showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (BuildContext context) =>
-                              AddActivityDialog(context));
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AddActivityDialog(context, addActivity)
+    );
+  }
+
+  void addActivity(String id) {
+    final ActivitySchedule data = ActivitySchedule(endTime: "", sheduleId: "", startTime: "");
+    setState(() {
+      data.sheduleId = id;
+      listSchedule.items.add(data);
+    });
+  }
+
+  void getAcitivies() async {
+    List<Activity> dataCheck = ActivityBloc.instance.state.list;
+    if (dataCheck.isEmpty) {
+      final response = await ScheduleApi().getListShedule();
+      ActivityBloc.instance.add(ActivityEventUpdateSchedule(list: response.items));
+    }
+  } 
+
+
+  @override
+  void initState() {
+    super.initState();
+    getAcitivies();
   }
 
   @override
@@ -154,13 +180,36 @@ class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
               width: double.infinity,
               child: SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                  IconButton(onPressed: () {
-                    _addItem(context);
-                  }, icon: Icon(Icons.add), style: ButtonStyle(iconSize: MaterialStateProperty.all(34)),color: AppColor.darkPrimaryColor,)
-                ]),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          _addItem(context);
+                        },
+                        icon: Icon(Icons.add),
+                        style: ButtonStyle(
+                            iconSize: MaterialStateProperty.all(34)),
+                        color: AppColor.darkPrimaryColor,
+                      ),
+                      SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        itemCount: listSchedule.items.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            height: 50,
+                            child: ElevatedButton(
+                              child: Text(listSchedule.items[index].sheduleId),
+                              onPressed: () {
+                              },
+                            )
+                          );
+                        }
+                                            ),
+                      ),
+                    ]),
               ),
             )
           ],
