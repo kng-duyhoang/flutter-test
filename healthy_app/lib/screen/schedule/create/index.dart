@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
+import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
+import 'package:healthy_app/model/timer/index.dart';
 import 'package:healthy_app/screen/schedule/create/create_detail.dart';
 import 'package:healthy_app/screen/schedule/create/create_infor.dart';
 
@@ -55,6 +57,14 @@ class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
       ActivityBloc.instance.add(ActivityEventUpdateSchedule(list: response.items));
     }
   } 
+
+  void getTimer() async {
+    List<Time> dataCheck = TimerBloc.instance.state.list;
+    if (dataCheck.isEmpty) {
+      final response = await ScheduleApi().getTimer();
+      TimerBloc.instance.add(TimerEventUpdateSchedule(list: response.timers));
+    }
+  } 
   
   Widget body() {
     switch(_indexKey) {
@@ -70,6 +80,7 @@ class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
   void initState() {
     super.initState();
     getAcitivies();
+    getTimer();
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
+import 'package:healthy_app/model/timer/index.dart';
 
 class ScheduleApi {
   Future<ActivityListResponse> getListActivity() async {
@@ -21,15 +22,15 @@ class ScheduleApi {
     }
   }
 
-  Future<ActivityListResponse> getTimer() async {
+  Future<TimerResponse> getTimer() async {
     final response = await CoreApi.instance.get('/time/getTime');
     try {
-      var resultObject = response.data['items'] as List;
-      List<Activity> items = resultObject.map((dynamic tagJson) => Activity.fromJson(tagJson)).toList();
+      var resultObject = response.data['time'] as List;
+      List<Time> items = resultObject.map((dynamic tagJson) => Time.fromJson(tagJson)).toList();
       
-      return ActivityListResponse(
+      return TimerResponse(
         message: response.data["message"],
-        items: items
+        timers: items
       );
     } catch (error) {
       throw Exception('GET request failed: $error');

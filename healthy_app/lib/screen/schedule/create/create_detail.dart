@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/authorize/index.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
+import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
+import 'package:healthy_app/model/timer/index.dart';
 import 'package:healthy_app/widget/dialog/addActivity.dart';
+import 'package:healthy_app/widget/dialog/timerClock.dart';
 
 class CreateDetailSchedule extends StatefulWidget {
   late Schedule listSchedule;
@@ -28,23 +30,53 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
     setState(() {
       onActive = index;
       for (var i = 0; i < widget.listSchedule.timeLine.length; i++) {
-      if (onActive == i) {
-        currentDaySchedule = widget.listSchedule.timeLine[i];
+        if (onActive == i) {
+          currentDaySchedule = widget.listSchedule.timeLine[i];
+        }
       }
-    }
     });
   }
 
   void _addItem(context) {
     showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) => AddActivityDialog(context, addActivity)
-    );
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) =>
+            AddActivityDialog(context, addActivity));
+  }
+
+  void addHourToActivity(String type, int timeID, int index) {
+    ActivitySchedule activityTemp =
+        widget.listSchedule.timeLine[onActive].itemsActivity[index];
+    final ActivitySchedule data;
+    if (type == "startTime") {
+      data = ActivitySchedule(
+          endTime: activityTemp.endTime,
+          activity: activityTemp.activity,
+          startTime: timeID,
+          name: activityTemp.name,
+          itemsSubActivity: []);
+    } else {
+      data = ActivitySchedule(
+          endTime: timeID,
+          activity: activityTemp.activity,
+          startTime: activityTemp.startTime,
+          name: activityTemp.name,
+          itemsSubActivity: []);
+    }
+
+    setState(() {
+      widget.listSchedule.timeLine[onActive].itemsActivity[index] = data;
+    });
   }
 
   void addActivity(ActivitySchedule dataResponse) {
-    final ActivitySchedule data = ActivitySchedule(endTime: 2, activity: dataResponse.activity, startTime: 1, name: dataResponse.name, itemsSubActivity: []);
+    final ActivitySchedule data = ActivitySchedule(
+        endTime: -1,
+        activity: dataResponse.activity,
+        startTime: -1,
+        name: dataResponse.name,
+        itemsSubActivity: []);
     setState(() {
       widget.listSchedule.timeLine[onActive].itemsActivity.add(data);
     });
@@ -53,8 +85,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
 
   void createSchedule() async {
     final response = await ScheduleApi().createSchedule(widget.listSchedule);
-
-    print(response);
+    //
   }
 
   @override
@@ -81,7 +112,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
               height: 50,
               width: double.infinity,
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.listSchedule.timeLine.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -109,12 +140,14 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                       SizedBox(
                         height: 200,
                         child: ListView.builder(
-                        padding: const EdgeInsets.all(8),
-                        itemCount: currentDaySchedule.itemsActivity.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListAcitivyRender(currentDaySchedule.itemsActivity[index].name);
-                        }
-                                            ),
+                            padding: const EdgeInsets.all(8),
+                            itemCount: currentDaySchedule.itemsActivity.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ListAcitivyRender(
+                                  currentDaySchedule.itemsActivity[index],
+                                  index,
+                                  addHourToActivity);
+                            }),
                       ),
                     ]),
               ),
@@ -140,21 +173,79 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   }
 }
 
-class ListAcitivyRender extends StatelessWidget {
-  ListAcitivyRender(this.name, {
+class ListAcitivyRender extends StatefulWidget {
+  ListAcitivyRender(
+    this.data,
+    this.index,
+    this.addHourToActivity, {
     super.key,
   });
-  late String name;
+  late ActivitySchedule data;
+  late int index;
+  late Function addHourToActivity;
+
+  @override
+  State<ListAcitivyRender> createState() => _ListAcitivyRenderState();
+}
+
+class _ListAcitivyRenderState extends State<ListAcitivyRender> {
+  String type = 'startTime';
+
+  void addTimer(int hour, int minutes) {
+    List<Time> items = TimerBloc.instance.state.list;
+    int id = 0;
+    for (var element in items) {
+      if (hour == element.hour && minutes == element.minutes) {
+        id = int.parse(element.id);
+        break;
+      }
+    }
+    widget.addHourToActivity(type, id, widget.index);
+  }
+
+  void openDialog(context) {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => TimerDialog(context, addTimer));
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      child: ElevatedButton(
-        child: Text(name),
-        onPressed: () {
-        },
-      )
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Text(widget.data.name),
+          SizedBox(
+            width: 10,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                openDialog(context);
+                setState(() {
+                  type = 'startTime';
+                });
+              },
+              child: Text(widget.data.startTime >= 0
+                  ? 'Thời gian bắt đầu: ${widget.data.startTime.toString()}'
+                  : 'change ST', style: TextStyle(fontSize: 10),),
+              ),
+          SizedBox(
+            width: 10,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                openDialog(context);
+                setState(() {
+                  type = 'ednTime';
+                });
+              },
+              child: Text(widget.data.endTime >= 0
+                  ? 'Thời gian kết thúc: ${widget.data.endTime.toString()}'
+                  : 'change ET', style: TextStyle(fontSize: 10)))
+        ],
+      ),
     );
   }
 }

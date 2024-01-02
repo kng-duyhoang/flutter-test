@@ -8,18 +8,18 @@ class TimerResponse {
 }
 
 class Time {
-  int idTimes;
+  String id;
   int hour;
   int minutes;
   Time({
-    required this.idTimes,
+    required this.id,
     required this.hour,
     required this.minutes,
   });
   
   factory Time.fromJson(Map<String, dynamic> json) {
     return Time(
-      idTimes: json['idTimes'],
+      id: json['id'],
       hour: json['hour'],
       minutes: json['minutes'],
     );

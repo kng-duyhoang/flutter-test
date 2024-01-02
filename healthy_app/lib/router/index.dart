@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
+import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 
 import 'package:healthy_app/screen/home_screen.dart';
@@ -32,7 +33,18 @@ class Routes {
     settingScreen: (context) => const SettingScreen(),
     loadingScreen: (context) => const LoadingScreen(),
     scheduleScreen: (context) => const ScheduleScreen(),
-    createSchedule: (context) => BlocProvider(create: (context) => ActivityBloc.instance, child: const CreateScheduleScreen()),
+    createSchedule: (context) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ActivityBloc.instance,
+        ),
+        BlocProvider(
+          create: (context) => TimerBloc.instance,
+        ),
+      ],
+      child: const CreateScheduleScreen(),
+    ),
+    
   };
 
   static Route<dynamic>? onGenerateRoute(settings) {
