@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:healthy_app/apis/authorize/index.dart';
+import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/activity/index.dart';
+import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/widget/dialog/addActivity.dart';
 
@@ -17,14 +22,14 @@ class CreateDetailSchedule extends StatefulWidget {
 
 class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   int onActive = 0;
-  DaySchedule currentDaySchedule = DaySchedule(items: []);
+  DaySchedule currentDaySchedule = DaySchedule(itemsActivity: []);
 
   void changeActive(int index) {
     setState(() {
       onActive = index;
-      for (var i = 0; i < widget.listSchedule.items.length; i++) {
+      for (var i = 0; i < widget.listSchedule.timeLine.length; i++) {
       if (onActive == i) {
-        currentDaySchedule = widget.listSchedule.items[i];
+        currentDaySchedule = widget.listSchedule.timeLine[i];
       }
     }
     });
@@ -39,20 +44,21 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   }
 
   void addActivity(ActivitySchedule dataResponse) {
-    final ActivitySchedule data = ActivitySchedule(endTime: "", sheduleId: dataResponse.sheduleId, startTime: "", name: dataResponse.name);
-    currentDaySchedule.items.add(data);
-    for (var i = 0; i < widget.listSchedule.items.length; i++) {
-      if (onActive == i) {
-        setState(() {
-          widget.listSchedule.items[i].items.add(data);
-        });
-      }
-    }
+    final ActivitySchedule data = ActivitySchedule(endTime: 2, activity: dataResponse.activity, startTime: 1, name: dataResponse.name, itemsSubActivity: []);
+    setState(() {
+      widget.listSchedule.timeLine[onActive].itemsActivity.add(data);
+    });
+    changeActive(onActive);
+  }
+
+  void createSchedule() async {
+    final response = await ScheduleApi().createSchedule(widget.listSchedule);
+
+    print(response);
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -77,7 +83,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(vertical: 16.0),
                 scrollDirection: Axis.horizontal,
-                itemCount: widget.listSchedule.items.length,
+                itemCount: widget.listSchedule.timeLine.length,
                 itemBuilder: (BuildContext context, int index) {
                   return BuildCarousel(context, index, changeActive, onActive);
                 },
@@ -104,9 +110,9 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                         height: 200,
                         child: ListView.builder(
                         padding: const EdgeInsets.all(8),
-                        itemCount: currentDaySchedule.items.length,
+                        itemCount: currentDaySchedule.itemsActivity.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return ListAcitivyRender(currentDaySchedule.items[index].name);
+                          return ListAcitivyRender(currentDaySchedule.itemsActivity[index].name);
                         }
                                             ),
                       ),
@@ -124,7 +130,9 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),
-              onPressed: () {},
+              onPressed: () {
+                createSchedule();
+              },
               child: const Text("Create", style: AppText.textBlack)),
         ),
       ),

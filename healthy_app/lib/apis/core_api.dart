@@ -42,9 +42,8 @@ class CoreApi {
     return response;
   }
 
-  Future<Response> post(String path,
-      {data, Map<String, dynamic>? params}) async {
-    final response = await _dio.post(path, data: data, queryParameters: params);
+  Future<Response> post(String path, {data, Map<String, dynamic>? params}) async {
+    final response = await _dio.post(path, data: data);
     return response;
   }
 

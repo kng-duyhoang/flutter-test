@@ -26,7 +26,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
     super.initState();
     setState(() {
       dropdownValue = widget.listSchedule.type;
-      _nameController.text = widget.listSchedule.name;
+      _nameController.text = widget.listSchedule.nameSchedule;
     });
   }
 
@@ -144,7 +144,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
               onPressed: () {
                 widget.goPage(1);
               },
-              child: const Text("Create", style: AppText.textBlack)),
+              child: const Text("Next", style: AppText.textBlack)),
         ),
       ),
     );

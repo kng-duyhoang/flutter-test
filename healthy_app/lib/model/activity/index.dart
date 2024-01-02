@@ -13,20 +13,23 @@ class Activity {
   String name;
   String desciption;
   bool isParent;
+  String iconCode;
 
   Activity({
     required this.id,
     required this.name,
     required this.desciption,
-    required this.isParent
+    required this.isParent,
+    required this.iconCode
   });
 
   factory Activity.fromJson(Map<String, dynamic> json) {
     return Activity(
-      id: json["_id"] ?? "0",
+      id: json["id"] ?? "0",
       name: json["name"] ?? "",
       desciption: json['desciption'] ?? "",
       isParent: json['isParent']  ?? false,
+      iconCode: json['iconCode'] ?? ""
     );
   } 
 }

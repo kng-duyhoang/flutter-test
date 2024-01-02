@@ -3,7 +3,7 @@ import 'package:healthy_app/model/user/index.dart';
 
 class UserApi {
   Future<UserUpdateResponse> updateUser(data) async {
-    final response = await CoreApi.instance.put('/user/updateUser', data: data);
+    final response = await CoreApi.instance.put('/user/update-usser', data: data);
     try {
       final User user = User.fromJson(response.data["user"]);
       return UserUpdateResponse(

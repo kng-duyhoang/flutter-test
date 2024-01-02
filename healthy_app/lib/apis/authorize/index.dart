@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/model/user/index.dart';
@@ -17,7 +19,7 @@ class AuthorizeApi {
   }
 
   Future<CheckResponse> check() async {
-    final response = await CoreApi.instance.get('/user/checkToken');
+    final response = await CoreApi.instance.get('/user/check-token');
     try {
       final User user = User.fromJson(response.data["user"]);
       return CheckResponse(

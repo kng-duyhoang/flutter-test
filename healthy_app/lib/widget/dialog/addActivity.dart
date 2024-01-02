@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:healthy_app/apis/activity/index.dart';
+import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/activity/index.dart';
@@ -27,12 +27,9 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
     Navigator.pop(context);
   }
 
-  void _onSubmit() {
-  }
-
   void _onCheck(Activity data) {
-    print('aloalo');
-    widget.addActivity(ActivitySchedule(endTime: "", name: data.name, sheduleId: data.id, startTime: ""));
+    widget.addActivity(ActivitySchedule(endTime: 1, name: data.name, activity: data.id, startTime: 2, itemsSubActivity: []));
+    _onClose();
   }
 
   @override
@@ -48,7 +45,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
       surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: SizedBox(
-        height: 450.0,
+        height: 400.0,
         width: 300.0,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -65,17 +62,16 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                   ),
                 ),
                 Positioned(
-                    top: 5.0,
-                    right: 5.0,
-                    child: SizedBox(
-                      width: 40,
-                      height: 40.0,
-                      child: IconButton(
-                          onPressed: _onClose, icon: const Icon(Icons.close)),
-                    )),
-              ]),
-            ),
-            const SizedBox(height: 20),
+                  top: 5.0,
+                  right: 5.0,
+                  child: SizedBox(
+                    width: 40,
+                    height: 40.0,
+                    child: IconButton(onPressed: _onClose, icon: const Icon(Icons.close)),
+                  )),
+                ]),
+              ),
+              const SizedBox(height: 20),
               SingleChildScrollView(
                 child: SizedBox(
                   height: 300,
@@ -83,7 +79,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                     padding: const EdgeInsets.all(8),
                     itemCount: listRender.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
+                      return SizedBox(
                         height: 50,
                         child: ElevatedButton(
                           child: Text(listRender[index].name),
@@ -96,11 +92,6 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              SizedBox(
-                  height: 40,
-                  child: ElevatedButton(
-                      onPressed: _onSubmit, child: const Text('Submit'))),
             ],
           ),
         ),

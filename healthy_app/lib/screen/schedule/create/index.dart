@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_app/apis/activity/index.dart';
+import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
@@ -15,7 +15,7 @@ class CreateScheduleScreen extends StatefulWidget {
 
 class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
   int _indexKey = 0;
-  Schedule listSchedule = Schedule(name: "", type: "Day", items: [DaySchedule(items: [])]);
+  Schedule listSchedule = Schedule(nameSchedule: "", type: "Day", timeLine: [DaySchedule(itemsActivity: [])]);
   
   List<Schedule> listShedule = [];
   int lengthList = 1;
@@ -28,12 +28,12 @@ class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
   }
 
   void changeType (String type) {
-    Schedule tempListSchedule = Schedule(name: listSchedule.name, type: type, items: []);
+    Schedule tempListSchedule = Schedule(nameSchedule: listSchedule.nameSchedule, type: type, timeLine: []);
     if (type == "Day") {
-      tempListSchedule.items.add(DaySchedule(items: []));
+      tempListSchedule.timeLine.add(DaySchedule(itemsActivity: []));
     } else {
       for (var i = 0; i < 7; i++) {
-        tempListSchedule.items.add(DaySchedule(items: []));
+        tempListSchedule.timeLine.add(DaySchedule(itemsActivity: []));
       }
     }
     setState(() {
@@ -42,7 +42,7 @@ class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
   }
 
   void changeName (String name) {
-    Schedule tempListSchedule = Schedule(name: name, type: listSchedule.type, items: listSchedule.items);
+    Schedule tempListSchedule = Schedule(nameSchedule: name, type: listSchedule.type, timeLine: listSchedule.timeLine);
     setState(() {
       listSchedule = tempListSchedule;
     });
@@ -51,8 +51,7 @@ class _CreateScheduleScreenState extends State<CreateScheduleScreen> {
   void getAcitivies() async {
     List<Activity> dataCheck = ActivityBloc.instance.state.list;
     if (dataCheck.isEmpty) {
-      final response = await ScheduleApi().getListShedule();
-      print(response);
+      final response = await ScheduleApi().getListActivity();
       ActivityBloc.instance.add(ActivityEventUpdateSchedule(list: response.items));
     }
   } 
