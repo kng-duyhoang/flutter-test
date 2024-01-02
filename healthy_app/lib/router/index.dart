@@ -6,7 +6,7 @@ import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/screen/home_screen.dart';
 import 'package:healthy_app/screen/loading_screen.dart';
 import 'package:healthy_app/screen/login_screen.dart';
-import 'package:healthy_app/screen/schedule/create_schedule.dart';
+import 'package:healthy_app/screen/schedule/create/index.dart';
 import 'package:healthy_app/screen/schedule/index.dart';
 import 'package:healthy_app/screen/setting_screen.dart';
 import 'package:healthy_app/screen/started/index.dart';

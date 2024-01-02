@@ -5,9 +5,10 @@ import 'package:healthy_app/apis/activity/index.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/activity/index.dart';
+import 'package:healthy_app/model/schedule/index.dart';
 
 class AddActivityDialog extends StatefulWidget {
-  void Function(String) addActivity;
+  void Function(ActivitySchedule) addActivity;
   
   AddActivityDialog(BuildContext context, this.addActivity, {super.key});
 
@@ -30,7 +31,8 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
   }
 
   void _onCheck(Activity data) {
-    widget.addActivity(data.id);
+    print('aloalo');
+    widget.addActivity(ActivitySchedule(endTime: "", name: data.name, sheduleId: data.id, startTime: ""));
   }
 
   @override
