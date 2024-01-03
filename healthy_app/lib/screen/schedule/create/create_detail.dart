@@ -9,7 +9,6 @@ import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
-import 'package:healthy_app/screen/schedule/create/acordition.dart';
 import 'package:healthy_app/widget/dialog/addActivity.dart';
 import 'package:healthy_app/widget/dialog/timerClock.dart';
 
