@@ -25,7 +25,7 @@ class ScheduleApi {
   Future<TimerResponse> getTimer() async {
     final response = await CoreApi.instance.get('/time/getTime');
     try {
-      var resultObject = response.data['time'] as List;
+      var resultObject = response.data['times'] as List;
       List<Time> items = resultObject.map((dynamic tagJson) => Time.fromJson(tagJson)).toList();
       
       return TimerResponse(

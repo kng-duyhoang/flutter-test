@@ -9,6 +9,7 @@ import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
+import 'package:healthy_app/screen/schedule/create/acordition.dart';
 import 'package:healthy_app/widget/dialog/addActivity.dart';
 import 'package:healthy_app/widget/dialog/timerClock.dart';
 
@@ -95,6 +96,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
@@ -121,37 +123,33 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
               ),
             ),
             SizedBox(
-              height: 300,
+              height: 50,
               width: double.infinity,
-              child: SingleChildScrollView(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          _addItem(context);
-                        },
-                        icon: Icon(Icons.add),
-                        style: ButtonStyle(
-                            iconSize: MaterialStateProperty.all(34)),
-                        color: AppColor.darkPrimaryColor,
-                      ),
-                      SizedBox(
-                        height: 200,
-                        child: ListView.builder(
-                            padding: const EdgeInsets.all(8),
-                            itemCount: currentDaySchedule.itemsActivity.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return ListAcitivyRender(
-                                  currentDaySchedule.itemsActivity[index],
-                                  index,
-                                  addHourToActivity);
-                            }),
-                      ),
-                    ]),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      _addItem(context);
+                    },
+                    icon: Icon(Icons.add),
+                    style:
+                        ButtonStyle(iconSize: MaterialStateProperty.all(34)),
+                    color: AppColor.darkPrimaryColor,
+                  ),
+                ],
+              )),
+              SizedBox(
+                height: height - 300,
+                width: double.infinity,
+                child: ListView.builder(
+                          itemCount: currentDaySchedule.itemsActivity.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Accordion(
+                              title:
+                                  currentDaySchedule.itemsActivity[index].name,
+                            );
+                          }),
               ),
-            )
           ],
         ),
       ),
@@ -175,14 +173,10 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
 
 class ListAcitivyRender extends StatefulWidget {
   ListAcitivyRender(
-    this.data,
-    this.index,
-    this.addHourToActivity, {
+    this.data, {
     super.key,
   });
   late ActivitySchedule data;
-  late int index;
-  late Function addHourToActivity;
 
   @override
   State<ListAcitivyRender> createState() => _ListAcitivyRenderState();
@@ -190,6 +184,7 @@ class ListAcitivyRender extends StatefulWidget {
 
 class _ListAcitivyRenderState extends State<ListAcitivyRender> {
   String type = 'startTime';
+  bool isActive = false;
 
   void addTimer(int hour, int minutes) {
     List<Time> items = TimerBloc.instance.state.list;
@@ -200,7 +195,13 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
         break;
       }
     }
-    widget.addHourToActivity(type, id, widget.index);
+    setState(() {
+      if (type == 'startTime') {
+        widget.data.startTime = id;
+      } else {
+        widget.data.endTime = id;
+      }
+    });
   }
 
   void openDialog(context) {
@@ -212,25 +213,24 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Text(widget.data.name),
-          SizedBox(
-            width: 10,
-          ),
           ElevatedButton(
-              onPressed: () {
-                openDialog(context);
-                setState(() {
-                  type = 'startTime';
-                });
-              },
-              child: Text(widget.data.startTime >= 0
+            onPressed: () {
+              openDialog(context);
+              setState(() {
+                type = 'startTime';
+              });
+            },
+            child: Text(
+              widget.data.startTime >= 0
                   ? 'Thời gian bắt đầu: ${widget.data.startTime.toString()}'
-                  : 'change ST', style: TextStyle(fontSize: 10),),
-              ),
+                  : 'change ST',
+              style: TextStyle(fontSize: 10),
+            ),
+          ),
           SizedBox(
             width: 10,
           ),
@@ -241,9 +241,11 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
                   type = 'ednTime';
                 });
               },
-              child: Text(widget.data.endTime >= 0
-                  ? 'Thời gian kết thúc: ${widget.data.endTime.toString()}'
-                  : 'change ET', style: TextStyle(fontSize: 10)))
+              child: Text(
+                  widget.data.endTime >= 0
+                      ? 'Thời gian kết thúc: ${widget.data.endTime.toString()}'
+                      : 'change ET',
+                  style: TextStyle(fontSize: 10)))
         ],
       ),
     );

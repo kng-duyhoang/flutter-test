@@ -39,12 +39,14 @@ class ActivitySchedule {
   String activity;
   String name;
   List<SubActivitySchedule> itemsSubActivity;
+  bool isExpanded;
   ActivitySchedule({
     required this.endTime,
     required this.activity,
     required this.startTime,
     required this.name,
     required this.itemsSubActivity,
+    this.isExpanded = false
   });
 
   Map<String, dynamic> toJson(){

@@ -76,17 +76,24 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                 child: SizedBox(
                   height: 300,
                   child: ListView.builder(
+                    shrinkWrap: true,
                     padding: const EdgeInsets.all(8),
                     itemCount: listRender.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        height: 50,
-                        child: ElevatedButton(
-                          child: Text(listRender[index].name),
-                          onPressed: () {
-                            _onCheck(listRender[index]);
-                          },
-                        )
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              child: Text(listRender[index].name),
+                              onPressed: () {
+                                _onCheck(listRender[index]);
+                              },
+                            )
+                          ),
+                          SizedBox(height: 10,)
+                        ],
                       );
                     }
                   ),

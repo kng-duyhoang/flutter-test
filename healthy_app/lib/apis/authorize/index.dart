@@ -8,6 +8,7 @@ class AuthorizeApi {
   Future<LoginResponse> login(data) async {
     final response = await CoreApi.instance.post('/user/login', data: data);
     try {
+      print(response.statusCode);
       final User user = User.fromJson(response.data["user"]);
       return LoginResponse(
         token: response.data["token"],
