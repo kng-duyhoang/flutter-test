@@ -144,9 +144,21 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                 child: ListView.builder(
                           itemCount: currentDaySchedule.itemsActivity.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return Accordion(
-                              title:
-                                  currentDaySchedule.itemsActivity[index].name,
+                            return Column(
+                              children: [
+                                SizedBox(height: 10),
+                                Theme(
+                                  data: ThemeData().copyWith(dividerColor: Colors.transparent),
+                                  child: ExpansionTile(
+                                      collapsedBackgroundColor: AppColor.lightColor1,
+                                      title: Text(currentDaySchedule.itemsActivity[index].name),
+                                      backgroundColor: AppColor.lightColor2,
+                                      children: <Widget>[
+                                        ListAcitivyRender(currentDaySchedule.itemsActivity[index])
+                                      ],
+                                    ),
+                                )
+                              ],
                             );
                           }),
               ),
