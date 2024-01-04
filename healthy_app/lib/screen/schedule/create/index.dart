@@ -5,8 +5,8 @@ import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
-import 'package:healthy_app/screen/schedule/create/create_detail.dart';
-import 'package:healthy_app/screen/schedule/create/create_infor.dart';
+import 'package:healthy_app/screen/schedule/create/detail/index.dart';
+import 'package:healthy_app/screen/schedule/create/informataion.dart/index.dart';
 
 class CreateScheduleScreen extends StatefulWidget {
   const CreateScheduleScreen({super.key});

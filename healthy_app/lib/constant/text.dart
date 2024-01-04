@@ -4,18 +4,18 @@ import 'package:healthy_app/constant/color.dart';
 
 class AppText {
   static const titleLarge = TextStyle(
-    fontSize: 22,
-    color: AppColor.lightPrimaryColor,
+    fontSize: 18,
+    color: AppColor.blackColor1,
     fontWeight: FontWeight.bold,
   );
   static const titleMedium = TextStyle(
-    fontSize: 18,
-    color: AppColor.lightSecondColor,
+    fontSize: 16,
+    color: AppColor.blackColor1,
     fontWeight: FontWeight.w500,
   );
   static const titleSmall = TextStyle(
-    fontSize: 14,
-    color: AppColor.lightColor1,
+    fontSize: 13,
+    color: AppColor.blackColor1,
     fontWeight: FontWeight.normal,
   );
   static const bodyLarge = TextStyle(

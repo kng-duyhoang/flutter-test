@@ -11,6 +11,7 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
       colorScheme: const ColorScheme.dark().copyWith(
         primary: AppColor.darkPrimaryColor,
       ),
+      scaffoldBackgroundColor: Colors.white,
       textTheme: Theme.of(context)
           .textTheme
           .apply(
@@ -35,6 +36,7 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
       primary: AppColor.lightPrimaryColor,
       secondary: AppColor.lightSecondColor,
     ),
+    scaffoldBackgroundColor: Colors.white,
     textTheme: Theme.of(context)
         .textTheme
         .apply(

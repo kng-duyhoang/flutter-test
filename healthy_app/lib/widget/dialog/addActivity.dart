@@ -1,7 +1,6 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/activity/index.dart';
@@ -20,7 +19,6 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
   int initialItem = 20;
   String dropdownValue = "";
   List<String> list = <String>['Day', 'Week'];
-  final TextEditingController _nameController = TextEditingController();
   List<Activity> listRender = [];
 
   void _onClose() {
@@ -92,7 +90,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                               },
                             )
                           ),
-                          SizedBox(height: 10,)
+                          const SizedBox(height: 10,)
                         ],
                       );
                     }

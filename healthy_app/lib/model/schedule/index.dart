@@ -63,11 +63,13 @@ class ActivitySchedule {
 }
 
 class SubActivitySchedule {
-  int subActivityId;
+  String subActivityId;
   int duration;
+  String name;
   SubActivitySchedule({
     required this.subActivityId,
     required this.duration,
+    required this.name
   });
 
   Map<String, dynamic> toJson(){
