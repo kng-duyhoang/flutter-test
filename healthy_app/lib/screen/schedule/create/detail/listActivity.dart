@@ -5,6 +5,7 @@ import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/subActivity/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
+import 'package:healthy_app/screen/schedule/create/detail/subActivityBlock.dart';
 import 'package:healthy_app/widget/dialog/addSubActivity.dart';
 import 'package:healthy_app/widget/dialog/timerClock.dart';
 
@@ -33,8 +34,8 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (BuildContext context) =>
-            AddSubActivityDialog(context, addSubActivity, widget.data.activity));
+        builder: (BuildContext context) => AddSubActivityDialog(
+            context, addSubActivity, widget.data.activity));
   }
 
   void addTimer(int hour, int minutes) {
@@ -138,28 +139,27 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
           SizedBox(
             height: 10,
           ),
-          Row(
-            children: [
-              Text('Thêm lịch trình'),
-              IconButton(
-                onPressed: () {
-                  addSubSchedule(context);
-                },
-                icon: Icon(Icons.add),
-              ),
-            ],
-          ),
+          ElevatedButton.icon(
+              onPressed: () {
+                addSubSchedule(context);
+              },
+              icon: Icon(Icons.add),
+              label: Text('Thêm lịch trình con')),
           SizedBox(
             height: 10,
           ),
-          widget.data.itemsSubActivity.length > 0 ? 
-          Wrap(
-            spacing: 8.0, // Khoảng cách giữa các item
-            runSpacing: 8.0,
-            children: List.generate(
-              widget.data.itemsSubActivity.length,
-              (index) => Text(widget.data.itemsSubActivity[index].name))
-          ) : Container()
+          widget.data.itemsSubActivity.length > 0
+              ? Wrap(
+                  spacing: 8.0, // Khoảng cách giữa các item
+                  runSpacing: 8.0,
+                  children: List.generate(
+                      widget.data.itemsSubActivity.length,
+                      (index) => SubActivityBlock(
+                          data: widget.data.itemsSubActivity[index])))
+              : Container(),
+          SizedBox(
+            height: 10,
+          ),
         ],
       ),
     );

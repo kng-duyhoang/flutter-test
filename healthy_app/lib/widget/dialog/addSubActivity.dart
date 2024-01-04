@@ -36,6 +36,7 @@ class _AddSubActivityDialogState extends State<AddSubActivityDialog> {
 
   void _onCheck(SubActivity data) {
     widget.addSubActivity(data);
+    _onClose();
   }
 
   @override
@@ -86,28 +87,11 @@ class _AddSubActivityDialogState extends State<AddSubActivityDialog> {
                       itemCount: listRender.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                                height: 50,
-                                width: double.infinity,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 150,
-                                      child: Text(listRender[index].name, style: AppText.bodyLarge,),
-                                    ),
-                                    SizedBox(width: 30,),
-                                    IconButton(
-                                      onPressed: () {
-                                        _onCheck(listRender[index]);
-                                      },
-                                      icon: Icon(Icons.add),
-                                      style:
-                                          ButtonStyle(iconSize: MaterialStateProperty.all(20)),
-                                      color: AppColor.blackColor1,
-                                    ),
-                                  ],
-                                )),
+                            ElevatedButton.icon(onPressed: () {
+                              _onCheck(listRender[index]);
+                            }, icon: const Icon(Icons.add), label: Text(listRender[index].name, style: AppText.textLight,)),
                             const SizedBox(
                               height: 10,
                             )

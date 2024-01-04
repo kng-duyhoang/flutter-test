@@ -21,6 +21,7 @@ class CreateDetailSchedule extends StatefulWidget {
 
 class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   int onActive = 0;
+  int selected = -1;
   DaySchedule currentDaySchedule = DaySchedule(itemsActivity: []);
 
   void changeActive(int index) {
@@ -155,7 +156,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                           clipBehavior: Clip.antiAlias,
                           margin: EdgeInsets.zero,
                           child: ExpansionTile(
-                            shape: Border(),
+                            shape: const Border(),
                             collapsedBackgroundColor: Colors.transparent,
                             title: Text(
                                 currentDaySchedule.itemsActivity[index].name,

@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final loginResponse = await AuthorizeApi().login(data);
     AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
     UserBloc.instance.add(UserEventSuccess(loginResponse.user));
-    Navigator.pushNamed(context, Routes.homeScreen);
+    Navigator.pushNamed(context, Routes.navigator);
       setState(() {
       isLoading = false;
     });

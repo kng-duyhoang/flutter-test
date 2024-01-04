@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:healthy_app/apis/authorize/index.dart';
 import 'package:healthy_app/apis/user/index.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
@@ -38,7 +37,7 @@ class _ResultStatusScreenState extends State<ResultStatusScreen> {
 
     final loginResponse = await UserApi().updateUser(data);
     if (loginResponse.user.username != "") {
-      Navigator.pushNamed(context, Routes.homeScreen);
+      Navigator.pushNamed(context, Routes.navigator);
     }
     
     setState(() {

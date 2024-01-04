@@ -71,6 +71,7 @@ class _TimerDialogState extends State<TimerDialog> {
                     child: ListWheelScrollView.useDelegate(
                       itemExtent: 40,
                       perspective: 0.0000000001,
+                      overAndUnderCenterOpacity: 0.7,
                       controller: FixedExtentScrollController(initialItem: initialItem),
                       renderChildrenOutsideViewport: false,
                       useMagnifier: true,
@@ -100,6 +101,7 @@ class _TimerDialogState extends State<TimerDialog> {
                     child: ListWheelScrollView.useDelegate(
                       itemExtent: 40,
                       perspective: 0.0000000001,
+                      overAndUnderCenterOpacity: 0.7,
                       controller: FixedExtentScrollController(initialItem: initialItem),
                       renderChildrenOutsideViewport: false,
                       useMagnifier: true,

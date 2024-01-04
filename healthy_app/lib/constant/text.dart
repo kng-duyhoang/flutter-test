@@ -20,12 +20,12 @@ class AppText {
   );
   static const bodyLarge = TextStyle(
     fontSize: 22,
-    color: AppColor.lightColor4,
+    color: AppColor.lightPrimaryColor,
     fontWeight: FontWeight.bold,
   );
   static const bodyMedium = TextStyle(
     fontSize: 18,
-    color: AppColor.lightColor4,
+    color: AppColor.lightPrimaryColor,
     fontWeight: FontWeight.w500,
   );
   static const bodySmall = TextStyle(
@@ -34,13 +34,18 @@ class AppText {
     fontWeight: FontWeight.normal,
   );
   static const textLight = TextStyle(
-    fontSize: 16,
-    color: AppColor.lightColor2,
-    fontWeight: FontWeight.normal,
+    fontSize: 15,
+    color: AppColor.lightPrimaryColor,
+    fontWeight: FontWeight.w500,
   );
   static const textBlack = TextStyle(
-    fontSize: 16,
+    fontSize: 13,
     color: AppColor.blackColor1,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
+  );
+  static const textWhite = TextStyle(
+    fontSize: 13,
+    color: AppColor.white1,
+    fontWeight: FontWeight.w500,
   );
 }

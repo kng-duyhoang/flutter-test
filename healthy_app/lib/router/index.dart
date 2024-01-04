@@ -4,9 +4,9 @@ import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 
-import 'package:healthy_app/screen/home_screen.dart';
 import 'package:healthy_app/screen/loading_screen.dart';
 import 'package:healthy_app/screen/login_screen.dart';
+import 'package:healthy_app/screen/navigator/index.dart';
 import 'package:healthy_app/screen/schedule/create/index.dart';
 import 'package:healthy_app/screen/schedule/index.dart';
 import 'package:healthy_app/screen/setting_screen.dart';
@@ -18,7 +18,7 @@ class RouteArg {
 }
 
 class Routes {
-  static String homeScreen = '/home';
+  static String navigator = '/navigator';
   static String loginScreen = '/login';
   static String startScreen = '/start';
   static String settingScreen = '/setting';
@@ -27,7 +27,7 @@ class Routes {
   static String createSchedule = '/create-schedule';
 
   static var routesConfig = {
-    homeScreen: (context) => const HomeScreen(),
+    navigator: (context) => const NavigatorScreen(),
     loginScreen: (context) => const LoginScreen(),
     startScreen: (context) => BlocProvider(create: (context) => UserInforBloc.instance, child: const StartNavigation()),
     settingScreen: (context) => const SettingScreen(),

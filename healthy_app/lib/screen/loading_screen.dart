@@ -36,7 +36,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
               if (state.user.username == "") {
                 Navigator.pushNamed(context, Routes.startScreen)
               } else {
-                Navigator.pushNamed(context, Routes.homeScreen)
+                Navigator.pushNamed(context, Routes.navigator)
               }
             }
           },
