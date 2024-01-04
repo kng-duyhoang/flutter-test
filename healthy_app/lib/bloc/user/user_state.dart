@@ -1,9 +1,19 @@
 part of "user_bloc.dart";
 
-class UserState { }
-
-class UserInitial extends UserState {}
-class UserData extends UserState {
+class UserState extends Equatable{
   final User user;
-  UserData({required this.user});
-}
+  const UserState({required this.user});
+
+  @override
+    List<Object> get props => [
+      user.username,
+      user.weight,
+      user.height,
+      user.gender,
+      user.birthday,
+      user.id,
+      user.gmail
+    ];
+ }
+
+

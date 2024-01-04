@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_app/model/user/index.dart';
 
@@ -9,13 +10,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     _instance ??= UserBloc();
     return _instance!;
   }
-
-  UserBloc() : super(UserInitial()) {
+  UserBloc() : super(UserState(user: User(birthday: "", gender: "", gmail: "", height: "", id: "",username: "", weight: ""))) {
     on<UserEventSuccess>(userEventSuccess);
   }
   
   void userEventSuccess(UserEventSuccess event, Emitter<UserState> emit) async {
-    emit(UserData(
+    emit(UserState(
       user: event.user
     ));
   } 

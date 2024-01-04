@@ -13,7 +13,6 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  User user = User(id: "", gmail: "", gender: "", height: "", weight: "", birthday: "", username: "");
 
   void removeToken() {
     Store.instance.remove(StoreKeys.token);
@@ -27,20 +26,17 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
       body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
 
-        if (state is UserData) {
-          user = state.user;
-        }
         return SizedBox(
           width: double.infinity,
           child: Column(
             children: [
-              FormControl(label: 'Id', value: user.id,),
-              FormControl(label: 'User Name', value: user.username,),
-              FormControl(label: 'Gender', value: user.gender,),
-              FormControl(label: 'Gmail', value: user.gmail,),
-              FormControl(label: 'Birthday', value: user.birthday,),
-              FormControl(label: 'Weight', value: user.weight,),
-              FormControl(label: 'Height', value: user.height,),
+              FormControl(label: 'Id', value: state.user.id,),
+              FormControl(label: 'User Name', value: state.user.username,),
+              FormControl(label: 'Gender', value: state.user.gender,),
+              FormControl(label: 'Gmail', value: state.user.gmail,),
+              FormControl(label: 'Birthday', value: state.user.birthday,),
+              FormControl(label: 'Weight', value: state.user.weight,),
+              FormControl(label: 'Height', value: state.user.height,),
           ]),
         );
       })

@@ -63,8 +63,10 @@ class LoginRequest {
 
 class CheckResponse {
   User user;
+  String status;
   
   CheckResponse({
+    required this.status,
     required this.user,
   });
 }
