@@ -31,6 +31,12 @@ class DaySchedule {
       'itemsActivity': jsonList,
     };
   }
+
+  factory DaySchedule.fromJson(Map<String, dynamic> json) {
+    return DaySchedule(
+      itemsActivity: json['items'],
+    );
+  }
 }
 
 class ActivitySchedule {

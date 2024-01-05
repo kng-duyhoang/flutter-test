@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/model/user/index.dart';
+import 'package:healthy_app/screen/setting/header-bar.dart';
 import 'package:healthy_app/store/index.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -21,28 +21,38 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-
-        return SizedBox(
-          width: double.infinity,
+        return Padding(
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              FormControl(label: 'Id', value: state.user.id,),
-              FormControl(label: 'User Name', value: state.user.username,),
-              FormControl(label: 'Gender', value: state.user.gender,),
-              FormControl(label: 'Gmail', value: state.user.gmail,),
-              FormControl(label: 'Birthday', value: state.user.birthday,),
-              FormControl(label: 'Weight', value: state.user.weight,),
-              FormControl(label: 'Height', value: state.user.height,),
-          ]),
+              const HeaderBar(),
+            ],
+          ),
         );
-      })
+      }),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SizedBox(
+          height: 40,
+          width: double.infinity,
+          child: OutlinedButton(
+            onPressed: (){},
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(color: Color(0xFFFE970F), width: 1),
+               shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
+            child: Text("Log Out", style: TextStyle(color: Color(0xFFFE970F)),),
+          ),
+        ),
+      ),
     );
   }
 }
+
 
 class FormControl extends StatefulWidget {
   const FormControl({

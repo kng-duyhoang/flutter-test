@@ -30,7 +30,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
       Store.instance.remove(StoreKeys.token);
       Navigator.pushNamed(context, Routes.loginScreen);
     }
-    
     EasyLoading.dismiss();
   }
 

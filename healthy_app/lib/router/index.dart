@@ -9,7 +9,6 @@ import 'package:healthy_app/screen/login_screen.dart';
 import 'package:healthy_app/screen/navigator/index.dart';
 import 'package:healthy_app/screen/schedule/create/index.dart';
 import 'package:healthy_app/screen/schedule/index.dart';
-import 'package:healthy_app/screen/setting_screen.dart';
 import 'package:healthy_app/screen/started/index.dart';
 import 'package:healthy_app/store/index.dart';
 class RouteArg {
@@ -21,7 +20,6 @@ class Routes {
   static String navigator = '/navigator';
   static String loginScreen = '/login';
   static String startScreen = '/start';
-  static String settingScreen = '/setting';
   static String loadingScreen = '/loading';
   static String scheduleScreen = '/schedule';
   static String createSchedule = '/create-schedule';
@@ -30,7 +28,6 @@ class Routes {
     navigator: (context) => const NavigatorScreen(),
     loginScreen: (context) => const LoginScreen(),
     startScreen: (context) => BlocProvider(create: (context) => UserInforBloc.instance, child: const StartNavigation()),
-    settingScreen: (context) => const SettingScreen(),
     loadingScreen: (context) => const LoadingScreen(),
     scheduleScreen: (context) => const ScheduleScreen(),
     createSchedule: (context) => MultiBlocProvider(

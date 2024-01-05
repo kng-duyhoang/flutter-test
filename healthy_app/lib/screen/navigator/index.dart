@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/screen/home/index.dart';
-import 'package:healthy_app/screen/setting_screen.dart';
+import 'package:healthy_app/screen/setting/index.dart';
 
 class NavigatorScreen extends StatefulWidget {
   const NavigatorScreen({super.key});

@@ -1,6 +1,9 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
-import 'package:healthy_app/constant/color.dart';
+import 'package:healthy_app/constant/images.dart';
 import 'package:healthy_app/constant/text.dart';
+import 'package:healthy_app/router/index.dart';
 
 class IntroduceHome extends StatefulWidget {
   const IntroduceHome({super.key});
@@ -12,44 +15,69 @@ class IntroduceHome extends StatefulWidget {
 class _IntroduceHomeState extends State<IntroduceHome> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 56, 24, 0),
-        child: Column(
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 24, 24, 56),
+      child: SizedBox(
+        height: 158,
+        width: double.infinity,
+        child: Stack(
           children: [
-            Container(
-              width: double.infinity,
-              height: 130,
-              decoration: BoxDecoration(
-                color: Color(0xFFECF1F6),
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(19),
-                child: Column(
-                  children: [
-                    Text(
-                      'Healthy life belongs to everyone',
-                      style: AppText.titleLarge,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 130,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFECF1F6),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          width: 170,
+                          child: Text(
+                            'Healthy life belongs to everyone',
+                            style: AppText.titleMedium,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.createSchedule);
+                          },
+                          child: const Text(
+                            'Create your schedule!!!',
+                            style: AppText.textWhite,
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xFF1F4690)),
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Create your schedule!!!'),
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Color(0xFF1F4690)),),
-                    )
-                  ],
+                  ),
                 ),
-              ),
-            )
+              ],
+            ),
+            Positioned(
+              top: 0.0,
+              right: 0.0,
+              child: IgnorePointer(
+                ignoring: true,
+                child: SizedBox(
+                  width: 146.0,
+                  height: 158.0,
+                  child: Image.asset(ImageConstant.introduce),
+                              ),
+              )),
           ],
         ),
       ),
