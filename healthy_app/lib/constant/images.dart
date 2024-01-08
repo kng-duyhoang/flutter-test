@@ -4,8 +4,6 @@ class ImageConstant {
   static String homeCover = 'assets/images/home.jpg';
   static String avt = 'assets/images/avt.jpg';
   static String introduce = 'assets/images/introduce.png';
-  static String demo1 = 'assets/images/demo-01.jpg';
-  static String demo2 = 'assets/images/demo-02.jpg';
   static String catogory01 = 'assets/images/category-01.png';
   static String catogory02 = 'assets/images/category-02.png';
   static String catogory03 = 'assets/images/category-03.png';

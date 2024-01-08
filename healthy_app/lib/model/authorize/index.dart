@@ -45,7 +45,6 @@ class LoginResponse {
     required this.user,
   });
 }
-
 class LoginRequest {
   String gmail;
   String password;

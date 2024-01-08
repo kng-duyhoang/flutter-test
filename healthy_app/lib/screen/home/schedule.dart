@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
+import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/images.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/response.dart';
@@ -23,14 +24,12 @@ class _ScheduleListState extends State<ScheduleList> {
       isLoading = true;
     });
     final response = await ScheduleApi().getSchedule();
-    print(response.items);
-    if(response.items.isNotEmpty) {
+    if (response.items.isNotEmpty) {
       setState(() {
         listRender = response.items;
         isLoading = false;
       });
     }
-    
   }
 
   @override
@@ -53,29 +52,35 @@ class _ScheduleListState extends State<ScheduleList> {
             SizedBox(
               width: double.infinity,
               child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Popular Schedule', style: AppText.titleLarge),
-                TextButton(
-                  onPressed: () {}, 
-                  child: const Text('See more', style: AppText.textSecondary, ), 
-                )
-              ],
-            ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Popular Schedule', style: AppText.titleLarge),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'See more',
+                      style: AppText.textSecondary,
+                    ),
+                  )
+                ],
+              ),
             ),
             SizedBox(
                 height: 170,
                 width: double.infinity,
-                child: isLoading ? LoadingAnimationWidget.twistingDots(
-          leftDotColor: const Color(0xFF1A1A3F),
-          rightDotColor: const Color(0xFFEA3799),
-          size: 200,
-        ) : ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: listRender.length,
-                  itemBuilder: (context, index) => ScheduleDemoCard(index: index, isLast: (index + 1) == listRender.length, data: listRender[index],)
-                )
-            ),
+                child: isLoading
+                    ? LoadingAnimationWidget.newtonCradle(
+                        color: AppColor.lightPrimaryColor,
+                        size: 100,
+                      )
+                    : ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: listRender.length,
+                        itemBuilder: (context, index) => ScheduleDemoCard(
+                              index: index,
+                              isLast: (index + 1) == listRender.length,
+                              data: listRender[index],
+                            ))),
           ],
         ),
       ),
@@ -84,12 +89,11 @@ class _ScheduleListState extends State<ScheduleList> {
 }
 
 class ScheduleDemoCard extends StatelessWidget {
-  const ScheduleDemoCard({
-    super.key,
-    required this.index,
-    required this.data,
-    required this.isLast
-  });
+  const ScheduleDemoCard(
+      {super.key,
+      required this.index,
+      required this.data,
+      required this.isLast});
 
   final int index;
   final bool isLast;
@@ -109,17 +113,21 @@ class ScheduleDemoCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 172,
-              height: 128,
-              clipBehavior: Clip.antiAlias,
-              decoration:  BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.transparent
-              ),
-              child: Image.asset(index % 2 == 0 ? ImageConstant.demo1 : ImageConstant.demo2, fit: BoxFit.cover,)
-            ),
+                width: 172,
+                height: 128,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.transparent),
+                child: Image.asset(
+                  'assets/images/demo-0${index % 3 + 1}.jpg',
+                  fit: BoxFit.cover,
+                )),
             const SizedBox(height: 10),
-            Text(data.nameSchedule, style: AppText.titleLarge,),
+            Text(
+              data.nameSchedule,
+              style: AppText.titleLarge,
+            ),
           ],
         ),
       ),
