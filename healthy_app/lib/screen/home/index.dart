@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/images.dart';
+import 'package:healthy_app/screen/home/category.dart';
 import 'package:healthy_app/screen/home/cover.dart';
 import 'package:healthy_app/screen/home/introduce.dart';
 import 'package:healthy_app/screen/home/schedule.dart';
@@ -44,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(children: [
                   IntroduceHome(),
+                  CategoryHome(),
                   ScheduleList(),
                 ]),
               )

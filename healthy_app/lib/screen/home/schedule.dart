@@ -3,6 +3,8 @@ import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/images.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/response.dart';
+import 'package:healthy_app/screen/schedule/create/informataion.dart/index.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ScheduleList extends StatefulWidget {
   const ScheduleList({super.key});
@@ -14,17 +16,28 @@ class ScheduleList extends StatefulWidget {
 class _ScheduleListState extends State<ScheduleList> {
   List<DayScheduleResponse> listRender = [];
 
+  bool isLoading = false;
+
   void getListSchedule() async {
-    // final response = await ScheduleApi().getSchedule();
-    // setState(() {
-    //   listRender = response.items;
-    // });
+    setState(() {
+      isLoading = true;
+    });
+    final response = await ScheduleApi().getSchedule();
+    print(response.items);
+    if(response.items.isNotEmpty) {
+      setState(() {
+        listRender = response.items;
+        isLoading = false;
+      });
+    }
+    
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    getListSchedule();
   }
 
   @override
@@ -34,15 +47,81 @@ class _ScheduleListState extends State<ScheduleList> {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 24, 24, 56),
-        child: SizedBox(
-            height: 158,
-            width: double.infinity,
-            child: Wrap(
-                spacing: 8.0, // Khoảng cách giữa các item
-                runSpacing: 8.0,
-                children: List.generate(listRender.length,
-                    (index) => Text(listRender[index].nameSchedule)))),
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Popular Schedule', style: AppText.titleLarge),
+                TextButton(
+                  onPressed: () {}, 
+                  child: const Text('See more', style: AppText.textSecondary, ), 
+                )
+              ],
+            ),
+            ),
+            SizedBox(
+                height: 170,
+                width: double.infinity,
+                child: isLoading ? LoadingAnimationWidget.twistingDots(
+          leftDotColor: const Color(0xFF1A1A3F),
+          rightDotColor: const Color(0xFFEA3799),
+          size: 200,
+        ) : ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: listRender.length,
+                  itemBuilder: (context, index) => ScheduleDemoCard(index: index, isLast: (index + 1) == listRender.length, data: listRender[index],)
+                )
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ScheduleDemoCard extends StatelessWidget {
+  const ScheduleDemoCard({
+    super.key,
+    required this.index,
+    required this.data,
+    required this.isLast
+  });
+
+  final int index;
+  final bool isLast;
+  final DayScheduleResponse data;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // print(data.id);
+      },
+      child: Card(
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        margin: EdgeInsets.only(right: isLast ? 0 : 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 172,
+              height: 128,
+              clipBehavior: Clip.antiAlias,
+              decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.transparent
+              ),
+              child: Image.asset(index % 2 == 0 ? ImageConstant.demo1 : ImageConstant.demo2, fit: BoxFit.cover,)
+            ),
+            const SizedBox(height: 10),
+            Text(data.nameSchedule, style: AppText.titleLarge,),
+          ],
+        ),
       ),
     );
   }

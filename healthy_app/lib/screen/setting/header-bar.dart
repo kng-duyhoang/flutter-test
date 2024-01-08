@@ -46,7 +46,7 @@ class _HeaderBarState extends State<HeaderBar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(user.username, style: AppText.titleLarge,),
-                    Text('@${user.gmail}', style: AppText.bodySmall)
+                    Text('${user.gmail}', style: AppText.bodySmall)
                   ],
                 )
               ],

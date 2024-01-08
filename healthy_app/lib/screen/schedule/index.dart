@@ -9,27 +9,23 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
-  void _onPressed () {
-    Navigator.pushNamed(context, Routes.createSchedule);
-  }
+  
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    // double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Schedule'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.pushNamed(context, Routes.createSchedule);
-            },
-            tooltip: 'Add your Schedule',
-          )
-        ],
+        title: const Text('Schedule'),
+        automaticallyImplyLeading: false,
       ),
-      body: Container(
-        child: ElevatedButton(onPressed: _onPressed, child: const Text('Create'),)
+      body: Padding(
+        padding: const EdgeInsets.all(18),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pushNamed(context, Routes.createSchedule);
+          }, 
+          child: const Text('Create')
+        ),
       ),
     );
   }

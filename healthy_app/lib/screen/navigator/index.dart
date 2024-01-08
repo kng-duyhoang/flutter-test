@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/screen/home/index.dart';
+import 'package:healthy_app/screen/schedule/index.dart';
 import 'package:healthy_app/screen/setting/index.dart';
 
 class NavigatorScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       case 0:
         return const HomeScreen();
       case 1:
-        return const SettingScreen();
+        return const ScheduleScreen();
       case 2:
         return const SettingScreen();
     }
