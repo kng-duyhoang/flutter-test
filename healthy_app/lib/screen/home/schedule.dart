@@ -46,7 +46,7 @@ class _ScheduleListState extends State<ScheduleList> {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             SizedBox(

@@ -16,7 +16,7 @@ class _IntroduceHomeState extends State<IntroduceHome> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
+      padding: const EdgeInsets.all(16),
       child: SizedBox(
         height: 158,
         width: double.infinity,

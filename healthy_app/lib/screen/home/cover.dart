@@ -16,67 +16,65 @@ class CoverInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
-          height: 100,
-          width: double.infinity,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 50.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  color: const Color(0xff7c94b6),
-                  image: DecorationImage(
-                    image: AssetImage(ImageConstant.avt),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.all(const Radius.circular(50.0)),
-                ),
-              ),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.message),
-                      color: AppColor.white1),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.notification_add),
-                      color: AppColor.white1),
-                ],
-              )
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      SizedBox(
+        height: 100,
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'hi ${user.username}',
-              style: AppText.textWhite,
+            Container(
+              width: 50.0,
+              height: 50.0,
+              decoration: BoxDecoration(
+                color: const Color(0xff7c94b6),
+                image: DecorationImage(
+                  image: AssetImage(ImageConstant.avt),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.all(const Radius.circular(50.0)),
+              ),
             ),
-            const Text(
-              'Have you',
-              style: TextStyle(fontSize: 30, color: Colors.white),
-            ),
-            const Text(
-              'exercised today?',
-              style: TextStyle(fontSize: 30, color: Colors.white),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.message),
+                    color: AppColor.white1),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.notification_add),
+                    color: AppColor.white1),
+              ],
             )
           ],
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        const InformationPractice(true)
-      ]),
-    );
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'hi ${user.username}',
+            style: AppText.textWhite,
+          ),
+          const Text(
+            'Have you',
+            style: TextStyle(fontSize: 30, color: Colors.white),
+          ),
+          const Text(
+            'exercised today?',
+            style: TextStyle(fontSize: 30, color: Colors.white),
+          )
+        ],
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      const InformationPractice(true)
+    ]);
   }
 }
 

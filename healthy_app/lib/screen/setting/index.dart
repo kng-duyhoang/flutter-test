@@ -26,16 +26,16 @@ class _SettingScreenState extends State<SettingScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 const HeaderBar(),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 SettingBlock(listRender: listRenderSecurity, title: 'Security'),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 SettingBlock(listRender: listRenderGeneral, title: 'General'),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 SettingBlock(listRender: listRenderAbout, title: 'About'),
                 const SizedBox(height: 60),
               ],
@@ -43,14 +43,14 @@ class _SettingScreenState extends State<SettingScreen> {
           ),
         );
       }),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white
-          ),
-          height: 50,
-          width: double.infinity,
+      floatingActionButton: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white
+        ),
+        height: 70,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
           child: OutlinedButton(
             onPressed: (){
               Store.instance.remove(StoreKeys.token);
