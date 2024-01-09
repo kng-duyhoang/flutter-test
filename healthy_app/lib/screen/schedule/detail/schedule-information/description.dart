@@ -23,9 +23,8 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
       width: double.infinity,
-      decoration: const BoxDecoration(color: AppColor.white1),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
         child: Column(

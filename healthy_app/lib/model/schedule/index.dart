@@ -35,8 +35,10 @@ class Schedule {
 
 class DaySchedule {
   List<ActivitySchedule> itemsActivity;
+  String idDaySchedule;
   DaySchedule({
-    required this.itemsActivity
+    required this.itemsActivity,
+    this.idDaySchedule = ""
   });
 
   Map<String, dynamic> toJson() {
@@ -51,6 +53,7 @@ class DaySchedule {
     List<ActivitySchedule> resultsJson = resultObject.map((dynamic tagJson) => ActivitySchedule.fromJson(tagJson)).toList();
     return DaySchedule(
       itemsActivity: resultsJson,
+      idDaySchedule: json['idDaySchedule'] ?? "",
     );
   }
 }
@@ -88,12 +91,12 @@ class ActivitySchedule {
   }
 
   factory ActivitySchedule.fromJson(Map<String, dynamic> json) {
-    // var resultObject = json['itemsSubActivity'] as List;
-    // print(json['itemsActivityId'] == null);
+    
     List<SubActivitySchedule> resultsJson = [];
-    // if (resultObject.isNotEmpty) {
-    //   resultsJson = resultObject.map((dynamic tagJson) => SubActivitySchedule.fromJson(tagJson)).toList();
-    // }
+    if (json['itemsSubActivity'] != null) {
+      var resultObject = json['itemsSubActivity'] as List;
+      resultsJson = resultObject.map((dynamic tagJson) => SubActivitySchedule.fromJson(tagJson)).toList();
+    }
     return ActivitySchedule(
       itemsActivityId: json['itemsActivityId'] ?? "", 
       name: json['activityName'] ?? "", 
