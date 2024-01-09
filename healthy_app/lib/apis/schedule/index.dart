@@ -2,7 +2,7 @@ import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/schedule/response.dart';
-import 'package:healthy_app/model/subActivity/index.dart';
+import 'package:healthy_app/model/sub-activity/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
 
 class ScheduleApi {

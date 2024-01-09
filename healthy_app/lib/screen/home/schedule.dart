@@ -55,7 +55,8 @@ class _ScheduleListState extends State<ScheduleList> {
                 children: [
                   Text(widget.label, style: AppText.titleLarge),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     child: const Text(
                       'See more',
                       style: AppText.textSecondary,

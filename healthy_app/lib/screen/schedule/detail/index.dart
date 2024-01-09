@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
-import 'package:healthy_app/constant/images.dart';
 import 'package:healthy_app/model/schedule/index.dart';
-import 'package:healthy_app/screen/schedule/detail/cover.dart';
-import 'package:healthy_app/screen/schedule/detail/description.dart';
+import 'package:healthy_app/screen/schedule/detail/schedule-information/index.dart';
 
 class DetailSchedule extends StatefulWidget {
   const DetailSchedule({super.key});
@@ -13,6 +11,8 @@ class DetailSchedule extends StatefulWidget {
 }
 
 class _DetailScheduleState extends State<DetailSchedule> {
+  int indexKey = 0;
+
   var scheduleDetail = Schedule(nameSchedule: "", type: "", timeLine: [], id: "");
   String id = "" ;
   void getSchedule(String id) async {
@@ -31,33 +31,22 @@ class _DetailScheduleState extends State<DetailSchedule> {
     });
   }
 
+  void changeIndex (int newIndex) {
+    setState(() {
+      indexKey = newIndex;
+    });
+  }
+
+  Widget body() {
+    switch(indexKey) {
+      case 0:
+        return  ScheduleInformation(schedule: scheduleDetail, changeIndex: changeIndex);
+    }
+    return Container();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(ImageConstant.detailCover),
-              fit: BoxFit.cover,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 10,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              CoverDetail(),
-              DescriptionDetailSchedule(schedule: scheduleDetail),
-            ],
-          ),
-        ),
-      ),
-    );
+    return body();
   }
 }

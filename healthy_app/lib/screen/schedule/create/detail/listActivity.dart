@@ -6,7 +6,7 @@ import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/index.dart';
-import 'package:healthy_app/model/subActivity/index.dart';
+import 'package:healthy_app/model/sub-activity/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
 import 'package:healthy_app/screen/schedule/create/detail/subActivityBlock.dart';
 import 'package:healthy_app/widget/dialog/addSubActivity.dart';

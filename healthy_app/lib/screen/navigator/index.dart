@@ -21,9 +21,9 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       _indexKey = index;
     });
   }
-  
+
   Widget body() {
-    switch(_indexKey) {
+    switch (_indexKey) {
       case 0:
         return const HomeScreen();
       case 1:
@@ -43,26 +43,31 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: body(),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Schedule',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Setting',
-          ),
-        ],
-        currentIndex: _indexKey,
-        selectedItemColor: AppColor.lightPrimaryColor,
-        onTap: _onItemTapped,
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            border: Border(top: BorderSide(color: Colors.white, width: 1.0))),
+        child: BottomNavigationBar(
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: 'Schedule',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: 'Setting',
+            ),
+          ],
+          currentIndex: _indexKey,
+          selectedItemColor: AppColor.lightPrimaryColor,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }

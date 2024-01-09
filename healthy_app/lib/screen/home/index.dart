@@ -22,13 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.lightColor1,
       body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(ImageConstant.homeCover),
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
+              repeat: ImageRepeat.noRepeat
             ),
           ),
           child: Column(
@@ -40,8 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(30.0)),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(94, 214, 194, 194),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
                 ),
                 child: const Column(children: [
                   IntroduceHome(),
