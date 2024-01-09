@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 
@@ -39,7 +40,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
         title: const Text("Create Schedule"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             Column(
@@ -62,7 +63,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
                   child: TextField(
                     controller: _nameController,
                     textAlignVertical: TextAlignVertical.center,
-                    style: AppText.bodyLarge,
+                    style: AppText.titleMedium,
                     onChanged: (value) => {
                       widget.changeName(value)
                     },
@@ -107,12 +108,12 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
                   SizedBox(
                       height: 40,
                       child: DropdownButton<String>(
-                        value: dropdownValue!.isEmpty ? null : dropdownValue!,
+                        value: dropdownValue.isEmpty ? null : dropdownValue,
                         elevation: 16,
                         style: const TextStyle(color: Colors.deepPurple),
                         underline: Container(
-                          height: 2,
-                          color: Colors.deepPurpleAccent,
+                          height: 1,
+                          color: AppColor.lightPrimaryColor,
                         ),
                         onChanged: (String? value) {
                           setState(() {
@@ -122,10 +123,10 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
                         },
                         items:
                             list.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value, style: AppText.titleMedium,),
+                              );
                         }).toList(),
                       )),
                 ],

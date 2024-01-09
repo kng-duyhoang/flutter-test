@@ -1,10 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:intl/intl.dart';
 
 class TimerDialog extends StatefulWidget {
   TimerDialog(BuildContext context, this.addTimer,  {super.key});
@@ -45,7 +43,7 @@ class _TimerDialogState extends State<TimerDialog> {
               height: 50,
               width: 300,
               child: Stack(children: [
-                Center(
+                const Center(
                   child: Text("Select Time",
                       style: AppText.titleLarge, textAlign: TextAlign.center),
                 ),
@@ -133,7 +131,7 @@ class _TimerDialogState extends State<TimerDialog> {
             SizedBox(
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: _onSubmit, child: Text('Submit')),)
+                    onPressed: _onSubmit, child: const Text('Submit')),)
           ],
         ),
       ),

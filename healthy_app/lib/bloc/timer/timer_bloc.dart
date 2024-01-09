@@ -12,7 +12,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     return _instance!;
   }
 
-  TimerBloc() : super(TimerState(list: [])) {
+  TimerBloc() : super(TimerState(list: const [])) {
     on<TimerEventUpdateSchedule>(timerEventUpdateSchedule);
   }
 

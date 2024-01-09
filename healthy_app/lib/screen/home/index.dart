@@ -43,10 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(30.0)),
                 ),
-                child: Column(children: [
+                child: const Column(children: [
                   IntroduceHome(),
                   CategoryHome(),
-                  ScheduleList(),
+                  ScheduleList(label: 'Popular Schedule',),
                 ]),
               )
             ],

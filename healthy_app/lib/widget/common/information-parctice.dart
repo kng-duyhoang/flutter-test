@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
 import 'package:healthy_app/model/user/index.dart';
@@ -82,7 +84,7 @@ class BoxText extends StatelessWidget {
                   data,
                   style: const TextStyle(fontSize: 24, color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(

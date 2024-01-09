@@ -12,7 +12,7 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>  {
     return _instance!;
   }
 
-  ActivityBloc() : super(ActivityState(list: [])) {
+  ActivityBloc() : super(ActivityState(list: const [])) {
     on<ActivityEventUpdateSchedule>(activityEventUpdateSchedule);
   }
 

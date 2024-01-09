@@ -53,4 +53,15 @@ class AppText {
     color: AppColor.lightSecondColor,
     fontWeight: FontWeight.w500,
   );
+  static const textPrimary = TextStyle(
+    fontSize: 15,
+    color: AppColor.lightPrimaryColor,
+    fontWeight: FontWeight.w600,
+  );
+  static const textGrey = TextStyle(
+    fontSize: 15,
+    color: AppColor.grey,
+    fontWeight: FontWeight.w600,
+  );
+  
 }

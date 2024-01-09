@@ -1,3 +1,6 @@
+
+// ignore_for_file: must_be_immutable, file_names
+
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
@@ -35,7 +38,7 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) => AddSubActivityDialog(
-            context, addSubActivity, widget.data.activity));
+            context, addSubActivity, widget.data.activityID));
   }
 
   void addTimer(int hour, int minutes) {
@@ -108,7 +111,7 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
                 onPressed: () {
                   changeType('startTime');
                 },
-                icon: Icon(Icons.edit),
+                icon: const Icon(Icons.edit),
                 style: ButtonStyle(iconSize: MaterialStateProperty.all(20)),
                 color: AppColor.lightColor1,
               ),
@@ -131,24 +134,24 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
               onPressed: () {
                 changeType('endTime');
               },
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
               style: ButtonStyle(iconSize: MaterialStateProperty.all(20)),
               color: AppColor.lightColor1,
             ),
           ]),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           ElevatedButton.icon(
               onPressed: () {
                 addSubSchedule(context);
               },
-              icon: Icon(Icons.add),
-              label: Text('Thêm lịch trình con')),
-          SizedBox(
+              icon: const Icon(Icons.add),
+              label: const Text('Thêm lịch trình con')),
+          const SizedBox(
             height: 10,
           ),
-          widget.data.itemsSubActivity.length > 0
+          widget.data.itemsSubActivity.isNotEmpty
               ? Wrap(
                   spacing: 8.0, // Khoảng cách giữa các item
                   runSpacing: 8.0,
@@ -157,7 +160,7 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
                       (index) => SubActivityBlock(
                           data: widget.data.itemsSubActivity[index])))
               : Container(),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
         ],

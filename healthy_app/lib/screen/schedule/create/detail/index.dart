@@ -1,10 +1,11 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, curly_braces_in_flow_control_structures, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/index.dart';
+import 'package:healthy_app/router/index.dart';
 import 'package:healthy_app/screen/schedule/create/detail/listActivity.dart';
 import 'package:healthy_app/screen/schedule/create/detail/listday.dart';
 import 'package:healthy_app/widget/dialog/addActivity.dart';
@@ -21,7 +22,7 @@ class CreateDetailSchedule extends StatefulWidget {
 
 class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   int onActive = 0;
-  int selected = -1;
+  bool isEditing = false;
   DaySchedule currentDaySchedule = DaySchedule(itemsActivity: []);
 
   void changeActive(int index) {
@@ -50,14 +51,14 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
     if (type == "startTime") {
       data = ActivitySchedule(
           endTime: activityTemp.endTime,
-          activity: activityTemp.activity,
+          activityID: activityTemp.activityID,
           startTime: timeID,
           name: activityTemp.name,
           itemsSubActivity: []);
     } else {
       data = ActivitySchedule(
           endTime: timeID,
-          activity: activityTemp.activity,
+          activityID: activityTemp.activityID,
           startTime: activityTemp.startTime,
           name: activityTemp.name,
           itemsSubActivity: []);
@@ -71,7 +72,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   void addActivity(ActivitySchedule dataResponse) {
     final ActivitySchedule data = ActivitySchedule(
         endTime: -1,
-        activity: dataResponse.activity,
+        activityID: dataResponse.activityID,
         startTime: -1,
         name: dataResponse.name,
         itemsSubActivity: []);
@@ -81,9 +82,17 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
     changeActive(onActive);
   }
 
+  void removeItem (int index) {
+    setState(() {
+      currentDaySchedule.itemsActivity.removeAt(index);
+    });
+  }
+
   void createSchedule() async {
     final response = await ScheduleApi().createSchedule(widget.listSchedule);
-    //
+    if (response == "Request Accepted") {
+      Navigator.pushNamed(context, Routes.scheduleScreen);
+    }
   }
 
   @override
@@ -123,54 +132,34 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                 height: 50,
                 width: double.infinity,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Thêm lịch trình', style: AppText.titleLarge),
+                    ElevatedButton.icon(
+                        onPressed: () {
+                          _addItem(context);
+                        },
+                        icon: const Icon(Icons.add),
+                        label: const Text('Thêm lịch trình',
+                            style: AppText.textPrimary)),
                     IconButton(
-                      onPressed: () {
-                        _addItem(context);
-                      },
-                      icon: const Icon(Icons.add),
-                      style:
-                          ButtonStyle(iconSize: MaterialStateProperty.all(30)),
-                      color: AppColor.blackColor1,
-                    ),
+                        onPressed: () {
+                          setState(() {
+                            isEditing = !isEditing;
+                          });
+                        },
+                        icon: Icon(
+                          isEditing ? Icons.format_list_bulleted_rounded : Icons.playlist_remove_rounded,
+                          color: AppColor.lightPrimaryColor,
+                          size: 30,
+                        ))
                   ],
                 )),
             SizedBox(
               height: height - 300,
               width: double.infinity,
-              child: ListView.builder(
-                  itemCount: currentDaySchedule.itemsActivity.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        Card(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            side: const BorderSide(
-                              color: AppColor.borderColor,
-                            ),
-                          ),
-                          clipBehavior: Clip.antiAlias,
-                          margin: EdgeInsets.zero,
-                          child: ExpansionTile(
-                            shape: const Border(),
-                            collapsedBackgroundColor: Colors.transparent,
-                            title: Text(
-                                currentDaySchedule.itemsActivity[index].name,
-                                style: AppText.textBlack),
-                            backgroundColor: Colors.transparent,
-                            
-                            children: <Widget>[
-                              ListAcitivyRender(currentDaySchedule.itemsActivity[index])
-                            ],
-                          ),
-                        )
-                      ],
-                    );
-                  }),
+              child: isEditing
+                  ? ListViewEdit(currentDaySchedule: currentDaySchedule, removeItem: removeItem,)
+                  : ListViewExpand(currentDaySchedule: currentDaySchedule),
             ),
           ],
         ),
@@ -193,6 +182,86 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   }
 }
 
+class ListViewEdit extends StatelessWidget {
+  ListViewEdit({
+    super.key,
+    required this.currentDaySchedule,
+    required this.removeItem
+  });
 
+  DaySchedule currentDaySchedule;
+  Function removeItem;
 
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: currentDaySchedule.itemsActivity.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+              side: const BorderSide(
+                color: AppColor.borderColor,
+              ),
+            ),
+            clipBehavior: Clip.antiAlias,
+            margin: const EdgeInsets.only(top: 16),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(currentDaySchedule.itemsActivity[index].name,
+                      style: AppText.textBlack),
+                  IconButton(onPressed: () {
+                    removeItem(index);
+                  }, icon: const Icon(Icons.delete_outline, color: AppColor.blackColor1,))
+                ],
+              ),
+            ),
+          );
+        });
+  }
+}
 
+class ListViewExpand extends StatelessWidget {
+  const ListViewExpand({
+    super.key,
+    required this.currentDaySchedule,
+  });
+
+  final DaySchedule currentDaySchedule;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: currentDaySchedule.itemsActivity.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            children: [
+              Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  side: const BorderSide(
+                    color: AppColor.borderColor,
+                  ),
+                ),
+                clipBehavior: Clip.antiAlias,
+                margin: const EdgeInsets.only(top: 16),
+                child: ExpansionTile(
+                  shape: const Border(),
+                  collapsedBackgroundColor: Colors.transparent,
+                  title: Text(currentDaySchedule.itemsActivity[index].name, style: AppText.textBlack),
+                  backgroundColor: Colors.transparent,
+                  children: <Widget>[
+                    ListAcitivyRender(currentDaySchedule.itemsActivity[index])
+                  ],
+                ),
+              )
+            ],
+          );
+        });
+  }
+}

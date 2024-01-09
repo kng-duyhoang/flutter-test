@@ -1,5 +1,6 @@
 import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/model/activity/index.dart';
+import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/schedule/response.dart';
 import 'package:healthy_app/model/subActivity/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
@@ -51,6 +52,19 @@ class ScheduleApi {
       List<DayScheduleResponse> resultsJson = resultObject.map((dynamic tagJson) => DayScheduleResponse.fromJson(tagJson)).toList();
       return ListScheduleResponse(
         items: resultsJson,
+        message: response.data['message']
+      );
+    } catch (error) {
+      throw Exception('Post request failed: $error');
+    }
+  }
+
+  Future<ScheduleResponse> getDetailSchedule(String id) async {
+    final response = await CoreApi.instance.get('/schedule/get-detail-schedule/$id');
+    try {
+      Schedule newSchdule = Schedule.fromJson(response.data['schedule']);
+      return ScheduleResponse(
+        schedule: newSchdule,
         message: response.data['message']
       );
     } catch (error) {

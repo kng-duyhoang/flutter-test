@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
-import 'package:healthy_app/constant/images.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/response.dart';
-import 'package:healthy_app/screen/schedule/create/informataion.dart/index.dart';
+import 'package:healthy_app/router/index.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ScheduleList extends StatefulWidget {
-  const ScheduleList({super.key});
+  const ScheduleList({required this.label ,super.key});
+  final String label;
 
   @override
   State<ScheduleList> createState() => _ScheduleListState();
@@ -34,7 +34,6 @@ class _ScheduleListState extends State<ScheduleList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getListSchedule();
   }
@@ -54,7 +53,7 @@ class _ScheduleListState extends State<ScheduleList> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Popular Schedule', style: AppText.titleLarge),
+                  Text(widget.label, style: AppText.titleLarge),
                   TextButton(
                     onPressed: () {},
                     child: const Text(
@@ -103,7 +102,7 @@ class ScheduleDemoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // print(data.id);
+        Navigator.pushNamed(context, Routes.detailSchedule, arguments: data.id);
       },
       child: Card(
         surfaceTintColor: Colors.transparent,

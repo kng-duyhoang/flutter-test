@@ -26,7 +26,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
   }
 
   void _onCheck(Activity data) {
-    widget.addActivity(ActivitySchedule(endTime: 1, name: data.name, activity: data.id, startTime: 2, itemsSubActivity: []));
+    widget.addActivity(ActivitySchedule(endTime: 1, name: data.name, activityID: data.id, startTime: 2, itemsSubActivity: []));
     _onClose();
   }
 

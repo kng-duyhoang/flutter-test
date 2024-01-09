@@ -58,7 +58,7 @@ class _IntroduceHomeState extends State<IntroduceHome> {
                           ),
                           style: ButtonStyle(
                             backgroundColor:
-                                MaterialStateProperty.all(Color(0xFF1F4690)),
+                                MaterialStateProperty.all(const Color(0xFF1F4690)),
                           ),
                         ),
                       ],

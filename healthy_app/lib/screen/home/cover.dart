@@ -32,7 +32,7 @@ class CoverInformation extends StatelessWidget {
                   image: AssetImage(ImageConstant.avt),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.all(const Radius.circular(50.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(50.0)),
               ),
             ),
             Row(

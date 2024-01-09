@@ -8,6 +8,7 @@ class ImageConstant {
   static String catogory02 = 'assets/images/category-02.png';
   static String catogory03 = 'assets/images/category-03.png';
   static String catogory04 = 'assets/images/category-04.png';
+  static String detailCover = 'assets/images/detail.jpg';
 }
 
 class IconConstants {

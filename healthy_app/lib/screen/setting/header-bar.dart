@@ -1,6 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
-import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/images.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/widget/common/information-parctice.dart';
@@ -37,16 +38,16 @@ class _HeaderBarState extends State<HeaderBar> {
                       image: AssetImage(ImageConstant.avt),
                       fit: BoxFit.cover,
                     ),
-                    borderRadius: BorderRadius.all(const Radius.circular(50.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(50.0)),
                   ),
                 ),
-                SizedBox(width: 20,),
+                const SizedBox(width: 20,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(user.username, style: AppText.titleLarge,),
-                    Text('${user.gmail}', style: AppText.bodySmall)
+                    Text(user.gmail, style: AppText.bodySmall)
                   ],
                 )
               ],

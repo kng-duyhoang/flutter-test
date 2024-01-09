@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
-import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/subActivity/index.dart';
 

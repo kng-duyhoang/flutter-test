@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
@@ -34,7 +36,7 @@ class ListDay extends StatelessWidget {
                 changeActive(carouselIndex);
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             )
           ],

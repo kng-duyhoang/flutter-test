@@ -1,3 +1,5 @@
+import 'package:healthy_app/model/schedule/index.dart';
+
 class ListScheduleResponse {
   String message;
   List<DayScheduleResponse> items;
@@ -22,6 +24,23 @@ class DayScheduleResponse {
       nameSchedule: json['nameSchedule'],
       type: json['type'],
       id: json['id']
+    );
+  }
+}
+
+class ScheduleResponse {
+  Schedule schedule;
+  String message;
+
+   ScheduleResponse({
+    required this.schedule,
+    required this.message,
+  });
+
+  factory ScheduleResponse.fromJson(Map<String, dynamic> json) {
+    return ScheduleResponse(
+      message: json['message'],
+      schedule: Schedule.fromJson(json['schedule']),
     );
   }
 }
