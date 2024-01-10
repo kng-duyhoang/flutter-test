@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
+import 'package:healthy_app/bloc/darkmode/darkmode_bloc.dart';
 import 'package:healthy_app/bloc/locale/locale_bloc.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
 import 'package:healthy_app/router/index.dart';
@@ -41,6 +42,9 @@ void main() async {
         BlocProvider(
           create: (context) => UserBloc.instance,
         ),
+        BlocProvider(
+          create: (context) => DarkModeBloc.instance
+        )
       ],
       child: const App(),
     ),
@@ -51,12 +55,8 @@ class App extends StatelessWidget {
   const App({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocaleBloc, LocaleState>(builder: (context, state) {
-      var locale = (state is LocalInitialState)
-        ? state.locale
-        : (state is LocalChangedState)
-          ? state.locale
-          : const Locale("en");
+    return BlocBuilder<DarkModeBloc, DarkModeState>
+    (builder: (context, state) {
       return MaterialApp(
         title: 'HealthyApp',
         localizationsDelegates: const [
@@ -70,9 +70,9 @@ class App extends StatelessWidget {
         onGenerateRoute: Routes.onGenerateRoute,
         navigatorKey: navigatorKey,
         supportedLocales: Locales.all,
-        locale: locale,
+        locale: const Locale("en"),
         themeMode: ThemeMode.light,
-        theme: defaultTheme(context, type: 'light'),
+        theme: defaultTheme(context, type: state.mode),
         builder: EasyLoading.init(),
       );
     });
