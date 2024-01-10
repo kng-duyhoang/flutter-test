@@ -3,17 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/images.dart';
+import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/screen/schedule/detail/schedule-information/cover.dart';
 import 'package:healthy_app/screen/schedule/detail/schedule-information/description.dart';
-import 'package:healthy_app/screen/schedule/detail/schedule-information/list-dayschedule.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ScheduleInformation extends StatefulWidget {
-  ScheduleInformation({required this.schedule, required this.changeScreen, super.key});
+  ScheduleInformation({required this.schedule, required this.changeIndex, super.key});
 
   Schedule schedule;
-  Function changeScreen;
+  Function changeIndex;
 
   @override
   State<ScheduleInformation> createState() => _ScheduleInformationState();
@@ -25,7 +25,7 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget.schedule.id == ""
-          ? Container(
+          ? SizedBox(
               width: double.infinity,
               height: double.infinity,
               child: Center(
@@ -42,30 +42,27 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
                     image: AssetImage(ImageConstant.detailCover),
                     fit: BoxFit.cover,
                   ),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 10,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  
                 ),
                 child: Column(
                   children: [
                     CoverDetail(),
                     Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white
-                      ),
+                      color: Colors.white,
                       child: Column(children: [
                           DescriptionDetailSchedule(schedule: widget.schedule),
-                          Container(
-                            constraints: BoxConstraints(
-                              minHeight: 200, minWidth: double.infinity
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text("List day", style: AppText.titleLarge),
+                                TextButton(onPressed: () {
+                                  widget.changeIndex(1);
+                                }, child: Text('View Detail', style: AppText.textSecondary))
+                              ],
                             ),
-                            child: ListDaySchedule(schedule: widget.schedule, changeScreen: widget.changeScreen)),
+                          )
                         ]),
                     ),
                   ],

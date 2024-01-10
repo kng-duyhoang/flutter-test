@@ -1,3 +1,5 @@
+import 'package:healthy_app/model/sub-activity/index.dart';
+
 class ActivityListResponse {
   String message;
   List<Activity> items;
@@ -9,28 +11,53 @@ class ActivityListResponse {
 }
 
 class Activity {
-  String id;
+  dynamic startTime;
+  dynamic endTime;
+  String activityID;
   String name;
-  String desciption;
+  List<SubActivity> itemsSubActivity;
   bool isParent;
-  String iconCode;
-
+  bool isExpanded;
+  String itemsActivityId;
   Activity({
-    required this.id,
+    required this.endTime,
+    required this.activityID,
+    required this.startTime,
     required this.name,
-    required this.desciption,
-    required this.isParent,
-    required this.iconCode
+    this.itemsActivityId = "",
+    this.itemsSubActivity = const [],
+    this.isExpanded = false,
+    this.isParent = false,
   });
 
+  Map<String, dynamic> toJson(){
+    List<Map<String, dynamic>> jsonList = itemsSubActivity.map((model) => model.toJson()).toList();
+    return {
+      "name": name,
+      "endTime": endTime ,
+      "startTime": startTime,
+      "activityID": activityID,
+      "isParent": true,
+      "itemsSubActivity": jsonList
+    };
+  }
+
   factory Activity.fromJson(Map<String, dynamic> json) {
+    
+    List<SubActivity> resultsJson = [];
+    if (json['itemsSubActivity'] != null) {
+      var resultObject = json['itemsSubActivity'] as List;
+      resultsJson = resultObject.map((dynamic tagJson) => SubActivity.fromJson(tagJson)).toList();
+    }
     return Activity(
-      id: json["id"] ?? "0",
-      name: json["name"] ?? "",
-      desciption: json['desciption'] ?? "",
-      isParent: json['isParent']  ?? false,
-      iconCode: json['iconCode'] ?? ""
+      itemsActivityId: json['itemsActivityId'] ?? "", 
+      name: json['activityName'] ?? "", 
+      endTime: json['endTime'] ?? "",
+      startTime: json['startTime'] ?? "",
+      activityID: json['activityID'] ?? "",
+      isParent: json['isParent'] ?? false,
+      itemsSubActivity: resultsJson
     );
-  } 
+  }
 }
 

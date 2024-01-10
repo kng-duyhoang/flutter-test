@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
+import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/router/index.dart';
 import 'package:healthy_app/screen/schedule/create/detail/listActivity.dart';
@@ -45,18 +46,18 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   }
 
   void addHourToActivity(String type, int timeID, int index) {
-    ActivitySchedule activityTemp =
+    Activity activityTemp =
         widget.listSchedule.timeLine[onActive].itemsActivity[index];
-    final ActivitySchedule data;
+    final Activity data;
     if (type == "startTime") {
-      data = ActivitySchedule(
+      data = Activity(
           endTime: activityTemp.endTime,
           activityID: activityTemp.activityID,
           startTime: timeID,
           name: activityTemp.name,
           itemsSubActivity: []);
     } else {
-      data = ActivitySchedule(
+      data = Activity(
           endTime: timeID,
           activityID: activityTemp.activityID,
           startTime: activityTemp.startTime,
@@ -69,8 +70,8 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
     });
   }
 
-  void addActivity(ActivitySchedule dataResponse) {
-    final ActivitySchedule data = ActivitySchedule(
+  void addActivity(Activity dataResponse) {
+    final Activity data = Activity(
         endTime: -1,
         activityID: dataResponse.activityID,
         startTime: -1,

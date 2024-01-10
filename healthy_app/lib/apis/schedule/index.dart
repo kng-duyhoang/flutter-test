@@ -11,7 +11,6 @@ class ScheduleApi {
     try {
       var resultObject = response.data['items'] as List;
       List<Activity> items = resultObject.map((dynamic tagJson) => Activity.fromJson(tagJson)).toList();
-      
       return ActivityListResponse(
         message: response.data["message"],
         items: items

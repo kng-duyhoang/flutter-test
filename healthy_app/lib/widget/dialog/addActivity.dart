@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/activity/index.dart';
-import 'package:healthy_app/model/schedule/index.dart';
 
 class AddActivityDialog extends StatefulWidget {
-  void Function(ActivitySchedule) addActivity;
+  void Function(Activity) addActivity;
   
   AddActivityDialog(BuildContext context, this.addActivity, {super.key});
 
@@ -26,14 +25,17 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
   }
 
   void _onCheck(Activity data) {
-    widget.addActivity(ActivitySchedule(endTime: 1, name: data.name, activityID: data.id, startTime: 2, itemsSubActivity: []));
+    widget.addActivity(Activity(endTime: 1, name: data.name, activityID: data.activityID, startTime: 2, itemsSubActivity: []));
     _onClose();
   }
 
   @override
   void initState() {
     super.initState();
-    listRender = ActivityBloc.instance.state.list;
+    setState(() {
+      listRender = ActivityBloc.instance.state.list;
+    });
+    print(listRender[0].activityID);
   }
 
   @override
@@ -84,7 +86,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                             height: 50,
                             width: double.infinity,
                             child: ElevatedButton(
-                              child: Text(listRender[index].name),
+                              child: Text(listRender[index].activityID),
                               onPressed: () {
                                 _onCheck(listRender[index]);
                               },

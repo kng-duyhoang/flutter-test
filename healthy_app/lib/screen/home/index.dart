@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/images.dart';
 import 'package:healthy_app/screen/home/category.dart';
 import 'package:healthy_app/screen/home/cover.dart';

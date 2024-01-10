@@ -1,32 +1,177 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:healthy_app/bloc/timer/timer_bloc.dart';
+import 'package:healthy_app/constant/color.dart';
+import 'package:healthy_app/constant/text.dart';
+import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
+import 'package:healthy_app/model/timer/index.dart';
 
 class ScheduleDayDetail extends StatefulWidget {
-  ScheduleDayDetail({required this.daySchedule, required this.changeIndex, super.key});
-  DaySchedule daySchedule;
+  ScheduleDayDetail({required this.schedule, required this.changeIndex, super.key});
+  Schedule schedule;
   Function changeIndex;
   @override
   State<ScheduleDayDetail> createState() => _ScheduleDayDetailState();
 }
 
 class _ScheduleDayDetailState extends State<ScheduleDayDetail> {
+  int indexSelected = 0;
+  List<Activity> listItems = [];
+
+  void changeIndex (int newIndex) {
+    setState(() {
+      indexSelected = newIndex;
+      listItems = widget.schedule.timeLine[newIndex].itemsActivity;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      listItems = widget.schedule.timeLine[indexSelected].itemsActivity;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               widget.changeIndex(0);
             },
           ),
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: ListView.builder(
-          itemCount: widget.daySchedule.itemsActivity.length,
-          itemBuilder: (context, index) => Text(widget.daySchedule.itemsActivity[index].name),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 69,
+              width: double.infinity,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.schedule.timeLine.length,
+                itemBuilder: (context, index) => TextDayBlock(index: index, changeIndex: changeIndex, isActive: index == indexSelected)
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text("Các hoạt dộng: ", style: AppText.titleLarge),
+            SizedBox(
+              height: 500,
+              width: double.infinity,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: listItems.length,
+                itemBuilder: (context, index) => DetailActivity(data: listItems[index])
+              ),
+            )
+          ],
+        )
+      ),
+    );
+  }
+}
+
+class TextDayBlock extends StatelessWidget {
+  TextDayBlock({
+    super.key,
+    required this.index,
+    required this.changeIndex,
+    required this.isActive
+  });
+
+  bool isActive;
+  final int index;
+  Function changeIndex;
+  String renderTime(int index) {
+    switch (index) {
+      case 0:
+        return 'Mon';   
+      case 1:
+        return 'Tue';
+      case 2:
+        return 'Wed'; 
+      case 3:
+        return 'Thu'; 
+      case 4:
+        return 'Fri'; 
+      case 5:
+        return 'Sat';      
+      default:
+        return 'Sun';        
+    }
+  }
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        changeIndex(index);
+      },
+      child: Row(
+        children: [
+          Container(
+            color: isActive ? AppColor.lightSecondColor: AppColor.lightPrimaryColor,
+            height: double.infinity,
+            width: 44,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text((index + 1).toString(), style: AppText.textWhite,),
+                Text(renderTime(index),  style: AppText.textWhite)
+              ]),
+          ),
+          SizedBox(width: 15)
+        ],
+      ),
+    );
+  }
+}
+
+
+class DetailActivity extends StatelessWidget {
+  const DetailActivity({
+    super.key,
+    required this.data
+  });
+
+  final Activity data;
+
+  String renderTime(String timeID) {
+    List<Time> items = TimerBloc.instance.state.list;
+    String data = "";
+    for (var element in items) {
+      if (element.id == timeID.toString()) {
+        data = '${element.hour} : ${element.minutes}';
+      }
+    }
+    return data;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      surfaceTintColor: Colors.white,
+      borderOnForeground: false,
+      margin: const EdgeInsets.only(top: 12),
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.circular(4.0),
+        side: const BorderSide(width: 1.0, color: AppColor.borderColor),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(data.name, style: AppText.titleMedium),
+            Text('${renderTime(data.startTime)} - ${renderTime(data.endTime)}', style: AppText.titleSmall),
+          ],
         ),
       ),
     );

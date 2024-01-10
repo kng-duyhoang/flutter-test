@@ -17,6 +17,7 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>  {
   }
 
   void activityEventUpdateSchedule(ActivityEventUpdateSchedule event, Emitter<ActivityState> emit) {
+    print(event.list[0].activityID);
     emit(ActivityState(list: event.list));
   }
 }

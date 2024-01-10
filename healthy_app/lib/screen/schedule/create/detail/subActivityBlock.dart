@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/model/schedule/index.dart';
+import 'package:healthy_app/model/sub-activity/index.dart';
 
 class SubActivityBlock extends StatelessWidget {
   const SubActivityBlock({
@@ -11,7 +11,7 @@ class SubActivityBlock extends StatelessWidget {
     required this.data,
   });
 
-  final SubActivitySchedule data;
+  final SubActivity data;
 
   @override
   Widget build(BuildContext context) {

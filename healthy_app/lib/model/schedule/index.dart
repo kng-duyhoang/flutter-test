@@ -1,5 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:healthy_app/model/activity/index.dart';
+
 class Schedule {
   String nameSchedule;
   String type;
@@ -34,7 +36,7 @@ class Schedule {
 }
 
 class DaySchedule {
-  List<ActivitySchedule> itemsActivity;
+  List<Activity> itemsActivity;
   String idDaySchedule;
   DaySchedule({
     required this.itemsActivity,
@@ -50,87 +52,10 @@ class DaySchedule {
 
   factory DaySchedule.fromJson(Map<String, dynamic> json) {
     var resultObject = json['itemsActivity'] as List;
-    List<ActivitySchedule> resultsJson = resultObject.map((dynamic tagJson) => ActivitySchedule.fromJson(tagJson)).toList();
+    List<Activity> resultsJson = resultObject.map((dynamic tagJson) => Activity.fromJson(tagJson)).toList();
     return DaySchedule(
       itemsActivity: resultsJson,
       idDaySchedule: json['idDaySchedule'] ?? "",
-    );
-  }
-}
-
-class ActivitySchedule {
-  dynamic startTime;
-  dynamic endTime;
-  String activityID;
-  String name;
-  List<SubActivitySchedule> itemsSubActivity;
-  bool isParent;
-  bool isExpanded;
-  String itemsActivityId;
-  ActivitySchedule({
-    required this.endTime,
-    required this.activityID,
-    required this.startTime,
-    required this.name,
-    this.itemsActivityId = "",
-    this.itemsSubActivity = const [],
-    this.isExpanded = false,
-    this.isParent = false,
-  });
-
-  Map<String, dynamic> toJson(){
-    List<Map<String, dynamic>> jsonList = itemsSubActivity.map((model) => model.toJson()).toList();
-    return {
-      "name": name,
-      "endTime": endTime ,
-      "startTime": startTime,
-      "activityID": activityID,
-      "isParent": true,
-      "itemsSubActivity": jsonList
-    };
-  }
-
-  factory ActivitySchedule.fromJson(Map<String, dynamic> json) {
-    
-    List<SubActivitySchedule> resultsJson = [];
-    if (json['itemsSubActivity'] != null) {
-      var resultObject = json['itemsSubActivity'] as List;
-      resultsJson = resultObject.map((dynamic tagJson) => SubActivitySchedule.fromJson(tagJson)).toList();
-    }
-    return ActivitySchedule(
-      itemsActivityId: json['itemsActivityId'] ?? "", 
-      name: json['activityName'] ?? "", 
-      endTime: json['endTime'] ?? "",
-      startTime: json['startTime'] ?? "",
-      activityID: json['activityID'] ?? "",
-      isParent: json['isParent'] ?? false,
-      itemsSubActivity: resultsJson
-    );
-  }
-}
-
-class SubActivitySchedule {
-  String subActivityId;
-  dynamic duration;
-  String name;
-  SubActivitySchedule({
-    required this.subActivityId,
-    required this.duration,
-    required this.name
-  });
-
-  Map<String, dynamic> toJson(){
-    return {
-      "subActivityId": subActivityId ,
-      "duration": duration,
-    };
-  }
-
-  factory SubActivitySchedule.fromJson(Map<String, dynamic> json) {
-    return SubActivitySchedule(
-      subActivityId: json['subActivityId'],
-      duration: json['duration'] ?? "",
-      name: json['name'] ?? ""
     );
   }
 }

@@ -32,7 +32,14 @@ class Routes {
     startScreen: (context) => BlocProvider(create: (context) => UserInforBloc.instance, child: const StartNavigation()),
     loadingScreen: (context) => const LoadingScreen(),
     scheduleScreen: (context) => const ScheduleScreen(),
-    detailSchedule: (context) => const DetailSchedule(),
+    detailSchedule: (context) => MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TimerBloc.instance,
+        ),
+      ],
+      child: const DetailSchedule(),
+    ),
     createSchedule: (context) => MultiBlocProvider(
       providers: [
         BlocProvider(

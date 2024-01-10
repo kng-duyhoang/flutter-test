@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
-import 'package:healthy_app/model/schedule/index.dart';
+import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/sub-activity/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
 import 'package:healthy_app/screen/schedule/create/detail/subActivityBlock.dart';
@@ -17,7 +17,7 @@ class ListAcitivyRender extends StatefulWidget {
     this.data, {
     super.key,
   });
-  late ActivitySchedule data;
+  late Activity data;
 
   @override
   State<ListAcitivyRender> createState() => _ListAcitivyRenderState();
@@ -28,8 +28,8 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
   bool isActive = false;
   void addSubActivity(SubActivity data) {
     setState(() {
-      widget.data.itemsSubActivity.add(SubActivitySchedule(
-          duration: 10, name: data.name, subActivityId: data.id));
+      widget.data.itemsSubActivity.add(SubActivity(
+          duration: 10, name: data.name, subActivityId: data.subActivityId));
     });
   }
 
