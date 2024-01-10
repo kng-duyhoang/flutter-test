@@ -24,6 +24,11 @@ class AppText {
     color: AppColor.white1,
     fontWeight: FontWeight.w500,
   );
+  static const textWhiteLarge = TextStyle(
+    fontSize: 24,
+    color: AppColor.white1,
+    fontWeight: FontWeight.w500,
+  );
   static const textSecondary = TextStyle(
     fontSize: 13,
     color: AppColor.lightSecondColor,

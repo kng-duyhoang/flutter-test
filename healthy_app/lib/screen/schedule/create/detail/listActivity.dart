@@ -29,7 +29,7 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
   void addSubActivity(SubActivity data) {
     setState(() {
       widget.data.itemsSubActivity.add(SubActivity(
-          duration: 10, name: data.name, subActivityId: data.subActivityId));
+          duration: 10, subActivityName: data.subActivityName, subActivityId: data.subActivityId));
     });
   }
 
@@ -38,7 +38,7 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) => AddSubActivityDialog(
-            context, addSubActivity, widget.data.activityID));
+            context, addSubActivity, widget.data.activityId));
   }
 
   void addTimer(int hour, int minutes) {
@@ -146,8 +146,8 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
               onPressed: () {
                 addSubSchedule(context);
               },
-              icon: const Icon(Icons.add),
-              label: const Text('Thêm lịch trình con')),
+              icon: const Icon(Icons.add, color: AppColor.white1,),
+              label: const Text('Thêm lịch trình con', style: AppText.textWhite)),
           const SizedBox(
             height: 10,
           ),

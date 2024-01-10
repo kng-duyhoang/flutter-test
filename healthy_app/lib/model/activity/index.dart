@@ -13,7 +13,7 @@ class ActivityListResponse {
 class Activity {
   dynamic startTime;
   dynamic endTime;
-  String activityID;
+  String activityId;
   String name;
   List<SubActivity> itemsSubActivity;
   bool isParent;
@@ -21,7 +21,7 @@ class Activity {
   String itemsActivityId;
   Activity({
     required this.endTime,
-    required this.activityID,
+    required this.activityId,
     required this.startTime,
     required this.name,
     this.itemsActivityId = "",
@@ -36,7 +36,7 @@ class Activity {
       "name": name,
       "endTime": endTime ,
       "startTime": startTime,
-      "activityID": activityID,
+      "activityId": activityId,
       "isParent": true,
       "itemsSubActivity": jsonList
     };
@@ -54,7 +54,7 @@ class Activity {
       name: json['activityName'] ?? "", 
       endTime: json['endTime'] ?? "",
       startTime: json['startTime'] ?? "",
-      activityID: json['activityID'] ?? "",
+      activityId: json['activityId'] ?? "",
       isParent: json['isParent'] ?? false,
       itemsSubActivity: resultsJson
     );

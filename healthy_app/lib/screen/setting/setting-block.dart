@@ -77,7 +77,7 @@ class BlockSettingItem extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleMedium)
                 ]),
             Icon(Icons.arrow_forward_ios,
-                size: 20, color: Theme.of(context).iconTheme.color)
+                size: 20, color: Theme.of(context).listTileTheme.iconColor)
           ],
         ),
       ),
@@ -121,7 +121,7 @@ class BlockSettingItemToogle extends StatelessWidget {
                       ? Icons.toggle_off_outlined
                       : Icons.toggle_on_outlined,
                   size: 24,
-                  color: Theme.of(context).iconTheme.color))
+                  color: Theme.of(context).listTileTheme.iconColor))
         ],
       ),
     );

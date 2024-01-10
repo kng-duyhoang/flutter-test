@@ -1,11 +1,11 @@
 class SubActivity {
   String subActivityId;
   dynamic duration;
-  String name;
+  String subActivityName;
   SubActivity({
     required this.subActivityId,
     required this.duration,
-    required this.name
+    required this.subActivityName
   });
 
   Map<String, dynamic> toJson(){
@@ -19,7 +19,7 @@ class SubActivity {
     return SubActivity(
       subActivityId: json['subActivityId'],
       duration: json['duration'] ?? "",
-      name: json['name'] ?? ""
+      subActivityName: json['subActivityName'] ?? ""
     );
   }
 }

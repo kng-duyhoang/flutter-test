@@ -11,6 +11,12 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
           backgroundColor: MaterialStatePropertyAll<Color>(AppColor.lightSecondColor),
         )
       ),
+      appBarTheme: const AppBarTheme(
+        color: AppColor.darkPrimaryColor,
+      ),
+      listTileTheme: const ListTileThemeData(
+        iconColor: AppColor.white1,
+      ),
       primaryColor: AppColor.darkPrimaryColor,
       primaryColorLight: AppColor.darkPrimaryColor,
       colorScheme: const ColorScheme.dark().copyWith(
@@ -43,8 +49,11 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
   return ThemeData.light().copyWith(
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll<Color>(AppColor.darkPrimaryColor),
+        backgroundColor: MaterialStatePropertyAll<Color>(AppColor.lightPrimaryColor),
       )
+    ),
+    appBarTheme: const AppBarTheme(
+      color: AppColor.white1,
     ),
     primaryColor: AppColor.lightPrimaryColor,
     primaryColorLight: AppColor.lightPrimaryColor,
@@ -54,11 +63,14 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
       background: AppColor.white1,
       onBackground: AppColor.darkPrimaryColor,
     ),
+    listTileTheme: const ListTileThemeData(
+      iconColor: AppColor.defaultColor,
+    ),
     scaffoldBackgroundColor: Colors.white,
      iconTheme: Theme.of(context)
         .iconTheme
         .copyWith(
-          color: AppColor.iconLightColor
+          color: AppColor.lightPrimaryColor
         )
       ,
     textTheme: Theme.of(context)

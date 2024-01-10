@@ -126,7 +126,7 @@ class ScheduleDemoCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               data.nameSchedule,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
         ),

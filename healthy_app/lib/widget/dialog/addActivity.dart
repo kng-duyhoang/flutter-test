@@ -25,7 +25,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
   }
 
   void _onCheck(Activity data) {
-    widget.addActivity(Activity(endTime: 1, name: data.name, activityID: data.activityID, startTime: 2, itemsSubActivity: []));
+    widget.addActivity(Activity(endTime: 1, name: data.name, activityId: data.activityId, startTime: 2, itemsSubActivity: []));
     _onClose();
   }
 
@@ -35,7 +35,6 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
     setState(() {
       listRender = ActivityBloc.instance.state.list;
     });
-    print(listRender[0].activityID);
   }
 
   @override
@@ -86,7 +85,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                             height: 50,
                             width: double.infinity,
                             child: ElevatedButton(
-                              child: Text(listRender[index].activityID),
+                              child: Text(listRender[index].name, style: AppText.textWhite,),
                               onPressed: () {
                                 _onCheck(listRender[index]);
                               },

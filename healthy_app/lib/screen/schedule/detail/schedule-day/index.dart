@@ -7,6 +7,8 @@ import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
+import 'package:healthy_app/screen/schedule/create/informataion.dart/index.dart';
+import 'package:healthy_app/widget/dialog/dialogShowItemsSubActivity.dart';
 
 class ScheduleDayDetail extends StatefulWidget {
   ScheduleDayDetail({required this.schedule, required this.changeIndex, super.key});
@@ -156,22 +158,31 @@ class DetailActivity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      surfaceTintColor: Colors.white,
-      borderOnForeground: false,
-      margin: const EdgeInsets.only(top: 12),
-      shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.circular(4.0),
-        side: const BorderSide(width: 1.0, color: AppColor.borderColor),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(data.name, style: Theme.of(context).textTheme.titleSmall),
-            Text('${renderTime(data.startTime)} - ${renderTime(data.endTime)}', style: Theme.of(context).textTheme.titleSmall),
-          ],
+    return GestureDetector(
+      onTap: () {
+        showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) =>
+            ShowItemsSubActivity(context, data.itemsSubActivity));
+      },
+      child: Card(
+        surfaceTintColor: Colors.white,
+        borderOnForeground: false,
+        margin: const EdgeInsets.only(top: 12),
+        shape: BeveledRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+          side: const BorderSide(width: 1.0, color: AppColor.borderColor),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(data.name, style: Theme.of(context).textTheme.titleSmall),
+              Text('${renderTime(data.startTime)} - ${renderTime(data.endTime)}', style: Theme.of(context).textTheme.titleSmall),
+            ],
+          ),
         ),
       ),
     );

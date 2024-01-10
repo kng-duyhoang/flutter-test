@@ -90,7 +90,7 @@ class _AddSubActivityDialogState extends State<AddSubActivityDialog> {
                           children: [
                             ElevatedButton.icon(onPressed: () {
                               _onCheck(listRender[index]);
-                            }, icon: const Icon(Icons.add), label: Text(listRender[index].name, style: Theme.of(context).textTheme.titleSmall,)),
+                            }, icon: const Icon(Icons.add), label: Text(listRender[index].subActivityName, style: Theme.of(context).textTheme.titleSmall,)),
                             const SizedBox(
                               height: 10,
                             )

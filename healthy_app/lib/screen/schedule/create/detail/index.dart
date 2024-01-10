@@ -52,14 +52,14 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
     if (type == "startTime") {
       data = Activity(
           endTime: activityTemp.endTime,
-          activityID: activityTemp.activityID,
+          activityId: activityTemp.activityId,
           startTime: timeID,
           name: activityTemp.name,
           itemsSubActivity: []);
     } else {
       data = Activity(
           endTime: timeID,
-          activityID: activityTemp.activityID,
+          activityId: activityTemp.activityId,
           startTime: activityTemp.startTime,
           name: activityTemp.name,
           itemsSubActivity: []);
@@ -73,7 +73,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
   void addActivity(Activity dataResponse) {
     final Activity data = Activity(
         endTime: -1,
-        activityID: dataResponse.activityID,
+        activityId: dataResponse.activityId,
         startTime: -1,
         name: dataResponse.name,
         itemsSubActivity: []);
@@ -109,7 +109,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
       appBar: AppBar(
         title: const Text("Create Schedule"),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground),
           onPressed: () => widget.goPage(0),
         ),
       ),
@@ -139,9 +139,9 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                         onPressed: () {
                           _addItem(context);
                         },
-                        icon: const Icon(Icons.add),
+                        icon: Icon(Icons.add, color: AppColor.white1,),
                         label: Text('Thêm lịch trình',
-                            style: Theme.of(context).textTheme.titleSmall)),
+                            style: AppText.textWhite)),
                     IconButton(
                         onPressed: () {
                           setState(() {
@@ -150,7 +150,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                         },
                         icon: Icon(
                           isEditing ? Icons.format_list_bulleted_rounded : Icons.playlist_remove_rounded,
-                          color: AppColor.lightPrimaryColor,
+                          color: Theme.of(context).colorScheme.onBackground,
                           size: 30,
                         ))
                   ],
@@ -176,7 +176,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
               onPressed: () {
                 createSchedule();
               },
-              child: Text("Create", style: Theme.of(context).textTheme.titleLarge)),
+              child: Text("Create", style: AppText.textWhiteLarge)),
         ),
       ),
     );

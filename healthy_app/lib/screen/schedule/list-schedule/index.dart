@@ -95,8 +95,8 @@ class _ScheduleListState extends State<ScheduleList> {
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.createSchedule);
                     }, 
-                    icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onBackground), 
-                    label: Text('Add', style: Theme.of(context).textTheme.titleMedium,),
+                    icon: const Icon(Icons.add, color: AppColor.white1), 
+                    label: Text('Add', style: AppText.textWhite,),
                   ),
                 ),
               ],
