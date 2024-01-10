@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
-import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/widget/dialog/cupertinoDatePicker.dart';
 import 'package:healthy_app/widget/dialog/scrollwheelview_dialog.dart';

@@ -30,7 +30,7 @@ class _ListDayScheduleState extends State<ListDaySchedule> {
           const Text("List day", style: AppText.titleLargeLight),
           TextButton(onPressed: () {
 
-          }, child: Text('View Detail'))
+          }, child: const Text('View Detail'))
         ],
       ),
     );

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
-import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 
 class DescriptionDetailSchedule extends StatefulWidget {
@@ -80,7 +79,7 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

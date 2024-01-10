@@ -127,7 +127,7 @@ class TextDayBlock extends StatelessWidget {
                 Text(renderTime(index),  style: AppText.textWhite)
               ]),
           ),
-          SizedBox(width: 15)
+          const SizedBox(width: 15)
         ],
       ),
     );

@@ -58,7 +58,7 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
                                 const Text("List day", style: AppText.titleLargeLight),
                                 TextButton(onPressed: () {
                                   widget.changeIndex(1);
-                                }, child: Text('View Detail', style: AppText.textSecondary))
+                                }, child: const Text('View Detail', style: AppText.textSecondary))
                               ],
                             ),
                           )

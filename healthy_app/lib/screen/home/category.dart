@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/images.dart';
-import 'package:healthy_app/constant/text.dart';
 
 class CategoryHome extends StatefulWidget {
   const CategoryHome({super.key});
