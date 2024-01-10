@@ -9,8 +9,8 @@ import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/sub-activity/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
 import 'package:healthy_app/screen/schedule/create/detail/subActivityBlock.dart';
-import 'package:healthy_app/widget/dialog/addSubActivity.dart';
-import 'package:healthy_app/widget/dialog/timerClock.dart';
+import 'package:healthy_app/widget/dialog/add-sub-activity.dart';
+import 'package:healthy_app/widget/dialog/timer-clock.dart';
 
 class ListAcitivyRender extends StatefulWidget {
   ListAcitivyRender(

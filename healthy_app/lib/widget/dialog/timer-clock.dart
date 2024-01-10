@@ -88,6 +88,7 @@ class _TimerDialogState extends State<TimerDialog> {
                           child: Center(
                               child: Text(
                                 index.toString(),
+                                style: AppText.titleMediumLight,
                               ),),
                         );
                         },
@@ -118,6 +119,7 @@ class _TimerDialogState extends State<TimerDialog> {
                           child: Center(
                               child: Text(
                                 (index * 15).toString(),
+                                style: AppText.titleMediumLight,
                               ),),
                         );
                         },

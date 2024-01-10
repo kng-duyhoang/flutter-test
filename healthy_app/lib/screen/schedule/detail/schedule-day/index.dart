@@ -8,7 +8,7 @@ import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
 import 'package:healthy_app/screen/schedule/create/informataion.dart/index.dart';
-import 'package:healthy_app/widget/dialog/dialogShowItemsSubActivity.dart';
+import 'package:healthy_app/widget/dialog/dialog-show-itemssubactivity.dart';
 
 class ScheduleDayDetail extends StatefulWidget {
   ScheduleDayDetail({required this.schedule, required this.changeIndex, super.key});

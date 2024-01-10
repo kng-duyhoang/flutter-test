@@ -9,7 +9,7 @@ import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/router/index.dart';
 import 'package:healthy_app/screen/schedule/create/detail/listActivity.dart';
 import 'package:healthy_app/screen/schedule/create/detail/listday.dart';
-import 'package:healthy_app/widget/dialog/addActivity.dart';
+import 'package:healthy_app/widget/dialog/add-activity.dart';
 
 class CreateDetailSchedule extends StatefulWidget {
   late Schedule listSchedule;
@@ -217,7 +217,7 @@ class ListViewEdit extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleSmall),
                   IconButton(onPressed: () {
                     removeItem(index);
-                  }, icon: const Icon(Icons.delete_outline, color: AppColor.defaultColor,))
+                  }, icon: Icon(Icons.delete_outline, color: Theme.of(context).listTileTheme.iconColor,))
                 ],
               ),
             ),
@@ -253,8 +253,8 @@ class ListViewExpand extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 16),
                 child: ExpansionTile(
                   shape: const Border(),
-                  collapsedBackgroundColor: Colors.transparent,
-                  title: Text(currentDaySchedule.itemsActivity[index].name, style: Theme.of(context).textTheme.titleSmall),
+                  collapsedBackgroundColor: Theme.of(context).colorScheme.background,
+                  title: Text(currentDaySchedule.itemsActivity[index].name, style: Theme.of(context).textTheme.titleMedium),
                   backgroundColor: Colors.transparent,
                   children: <Widget>[
                     ListAcitivyRender(currentDaySchedule.itemsActivity[index])
