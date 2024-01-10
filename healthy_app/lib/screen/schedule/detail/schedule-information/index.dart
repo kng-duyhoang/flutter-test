@@ -36,36 +36,28 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
               ),
             )
           : SingleChildScrollView(
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(ImageConstant.detailCover),
-                    fit: BoxFit.cover,
+              child: Column(
+                children: [
+                  CoverDetail(),
+                  Container(
+                    color: Theme.of(context).colorScheme.background,
+                    child: Column(children: [
+                        DescriptionDetailSchedule(schedule: widget.schedule),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("List day", style: Theme.of(context).textTheme.titleLarge),
+                              TextButton(onPressed: () {
+                                widget.changeIndex(1);
+                              }, child: const Text('View Detail', style: AppText.textSecondary))
+                            ],
+                          ),
+                        )
+                      ]),
                   ),
-                ),
-                child: Column(
-                  children: [
-                    CoverDetail(),
-                    Container(
-                      color: Colors.white,
-                      child: Column(children: [
-                          DescriptionDetailSchedule(schedule: widget.schedule),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text("List day", style: AppText.titleLargeLight),
-                                TextButton(onPressed: () {
-                                  widget.changeIndex(1);
-                                }, child: const Text('View Detail', style: AppText.textSecondary))
-                              ],
-                            ),
-                          )
-                        ]),
-                    ),
-                  ],
-                ),
+                ],
               ),
             ),
     );

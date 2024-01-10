@@ -106,8 +106,8 @@ class ScheduleDemoCard extends StatelessWidget {
         Navigator.pushNamed(context, Routes.detailSchedule, arguments: data.id);
       },
       child: Card(
-        surfaceTintColor: Theme.of(context).colorScheme.background,
-        elevation: 0,
+         elevation: 0,
+        color: Colors.transparent,
         margin: EdgeInsets.only(right: isLast ? 0 : 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

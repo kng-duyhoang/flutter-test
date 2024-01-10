@@ -23,7 +23,7 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: BoxDecoration(color: Theme.of(context).colorScheme.background),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 26),
         child: Column(
@@ -31,10 +31,7 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
           children: [
             Text(
               widget.schedule.nameSchedule,
-              style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
-                  color: AppColor.defaultColor),
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 20),
             Row(

@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/screen/home/index.dart';
-import 'package:healthy_app/screen/schedule/index.dart';
+import 'package:healthy_app/screen/schedule/list-schedule/index.dart';
 import 'package:healthy_app/screen/setting/index.dart';
 
 class NavigatorScreen extends StatefulWidget {

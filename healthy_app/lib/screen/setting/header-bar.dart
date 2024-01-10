@@ -55,8 +55,10 @@ class _HeaderBarState extends State<HeaderBar> {
               children: [
                 IconButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.edit_document),
-                    color: const Color.fromARGB(255, 114, 109, 109)),
+                    icon: const Icon(Icons.edit_note),
+                    color: Theme.of(context).colorScheme.onBackground,
+                    iconSize: 34,
+                )
               ],
             )
           ],

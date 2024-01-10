@@ -5,12 +5,17 @@ import 'package:healthy_app/constant/color.dart';
 class AppText {
   // Light
   static const titleLargeLight = TextStyle(
-    fontSize: 18,
+    fontSize: 24,
     color: AppColor.defaultColor,
     fontWeight: FontWeight.bold,
   );
   static const titleMediumLight = TextStyle(
-    fontSize: 15,
+    fontSize: 16,
+    color: AppColor.defaultColor,
+    fontWeight: FontWeight.bold,
+  );
+  static const titleSmallLight = TextStyle(
+    fontSize: 13,
     color: AppColor.defaultColor,
     fontWeight: FontWeight.bold,
   );
@@ -26,12 +31,17 @@ class AppText {
   );
   // Dark
   static const titleLargeDark = TextStyle(
-    fontSize: 18,
+    fontSize: 24,
     color: AppColor.white1,
     fontWeight: FontWeight.bold,
   );
   static const titleMediumDark = TextStyle(
-    fontSize: 15,
+    fontSize: 16,
+    color: AppColor.white1,
+    fontWeight: FontWeight.bold,
+  );
+  static const titleSmallDark = TextStyle(
+    fontSize: 13,
     color: AppColor.white1,
     fontWeight: FontWeight.bold,
   );

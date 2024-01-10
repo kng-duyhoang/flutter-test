@@ -74,7 +74,7 @@ class BlockSettingItem extends StatelessWidget {
                       cacheHeight: 24, cacheWidth: 24),
                   const SizedBox(width: 5),
                   Text(data.label,
-                      style: Theme.of(context).textTheme.titleLarge)
+                      style: Theme.of(context).textTheme.titleMedium)
                 ]),
             Icon(Icons.arrow_forward_ios,
                 size: 20, color: Theme.of(context).iconTheme.color)
@@ -106,7 +106,7 @@ class BlockSettingItemToogle extends StatelessWidget {
             const SizedBox(width: 5),
             Text(
               data.label,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             )
           ]),
           GestureDetector(

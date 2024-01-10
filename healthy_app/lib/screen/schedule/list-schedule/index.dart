@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -7,7 +5,30 @@ import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/response.dart';
+import 'package:healthy_app/router/index.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+class ScheduleScreen extends StatefulWidget {
+  const ScheduleScreen({super.key});
+
+  @override
+  State<ScheduleScreen> createState() => _ScheduleScreenState();
+}
+
+class _ScheduleScreenState extends State<ScheduleScreen> {
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body:const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ScheduleList(label: 'Your Schedule')
+        ],
+      ),
+    );
+  }
+}
 
 class ScheduleList extends StatefulWidget {
   const ScheduleList({required this.label, super.key});
@@ -57,23 +78,41 @@ class _ScheduleListState extends State<ScheduleList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.background,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
         child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.createSchedule);
+                    }, 
+                    icon: Icon(Icons.add, color: Theme.of(context).colorScheme.onBackground), 
+                    label: Text('Add', style: Theme.of(context).textTheme.titleMedium,),
+                  ),
+                ),
+              ],
+            ),
+          ),
           SizedBox(
             width: double.infinity,
-            child: Text(widget.label, style: AppText.titleLargeLight),
+            child: Text(widget.label, style: Theme.of(context).textTheme.titleLarge),
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 170,
+            height: 500,
             width: double.infinity,
             child: isLoading
                 ? LoadingAnimationWidget.newtonCradle(
-                    color: AppColor.lightPrimaryColor,
+                    color: Theme.of(context).colorScheme.background,
                     size: 100,
                   )
                 : Wrap(
@@ -134,7 +173,7 @@ class ScheduleDemoCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 data.nameSchedule,
-                style: AppText.titleLargeLight,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
           ),

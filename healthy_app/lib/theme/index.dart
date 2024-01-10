@@ -6,12 +6,18 @@ import 'package:healthy_app/constant/text.dart';
 ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
   if (type != 'light') {
     return ThemeData.dark().copyWith(
+      elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(AppColor.lightSecondColor),
+        )
+      ),
       primaryColor: AppColor.darkPrimaryColor,
       primaryColorLight: AppColor.darkPrimaryColor,
       colorScheme: const ColorScheme.dark().copyWith(
         primary: AppColor.darkPrimaryColor,
         secondary: AppColor.lightSecondColor,
-        background: AppColor.darkPrimaryColor
+        background: AppColor.darkPrimaryColor,
+        onBackground: AppColor.white1,
       ),
       scaffoldBackgroundColor: AppColor.darkPrimaryColor,
       iconTheme: Theme.of(context)
@@ -29,17 +35,24 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
           .copyWith(
             titleLarge: AppText.titleLargeDark,
             titleMedium: AppText.titleMediumDark,
+            titleSmall: AppText.titleSmallDark
           ),
     );
   }
 
   return ThemeData.light().copyWith(
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll<Color>(AppColor.darkPrimaryColor),
+      )
+    ),
     primaryColor: AppColor.lightPrimaryColor,
     primaryColorLight: AppColor.lightPrimaryColor,
     colorScheme: const ColorScheme.light().copyWith(
       primary: AppColor.lightPrimaryColor,
       secondary: AppColor.lightSecondColor,
       background: AppColor.white1,
+      onBackground: AppColor.darkPrimaryColor,
     ),
     scaffoldBackgroundColor: Colors.white,
      iconTheme: Theme.of(context)
@@ -57,6 +70,7 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
         .copyWith(
           titleLarge: AppText.titleLargeLight,
           titleMedium: AppText.titleMediumLight,
+          titleSmall: AppText.titleSmallLight
         ),
     outlinedButtonTheme: _buildOutlinedButtonTheme(),
   );

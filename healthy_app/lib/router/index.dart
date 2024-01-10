@@ -9,7 +9,7 @@ import 'package:healthy_app/screen/login_screen.dart';
 import 'package:healthy_app/screen/navigator/index.dart';
 import 'package:healthy_app/screen/schedule/create/index.dart';
 import 'package:healthy_app/screen/schedule/detail/index.dart';
-import 'package:healthy_app/screen/schedule/index.dart';
+import 'package:healthy_app/screen/schedule/list-schedule/index.dart';
 import 'package:healthy_app/screen/started/index.dart';
 import 'package:healthy_app/store/index.dart';
 class RouteArg {
