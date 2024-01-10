@@ -19,7 +19,7 @@ class _CategoryHomeState extends State<CategoryHome> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Category', style: AppText.titleLarge),
+          Text('Category', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 10),
           SizedBox(
             height: 100,

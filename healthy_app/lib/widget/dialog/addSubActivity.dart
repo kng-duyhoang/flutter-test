@@ -63,7 +63,7 @@ class _AddSubActivityDialogState extends State<AddSubActivityDialog> {
                 child: Stack(children: [
                   const Center(
                     child: Text("Select SubActivity",
-                        style: AppText.titleLarge, textAlign: TextAlign.center),
+                        style: AppText.titleLargeLight, textAlign: TextAlign.center),
                   ),
                   Positioned(
                       top: 5.0,

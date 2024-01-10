@@ -10,16 +10,24 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
       primaryColorLight: AppColor.darkPrimaryColor,
       colorScheme: const ColorScheme.dark().copyWith(
         primary: AppColor.darkPrimaryColor,
+        secondary: AppColor.lightSecondColor,
+        background: AppColor.darkPrimaryColor
       ),
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: AppColor.darkPrimaryColor,
+      iconTheme: Theme.of(context)
+        .iconTheme
+        .copyWith(
+          color: AppColor.iconDarkColor,
+        )
+      ,
       textTheme: Theme.of(context)
           .textTheme
           .apply(
             fontFamily: 'HiraginoSans',
-            bodyColor: Colors.black.withOpacity(0.7),
+            bodyColor: AppColor.lightColor1,
           )
           .copyWith(
-            titleLarge: AppText.titleLarge,
+            titleLarge: AppText.titleLargeDark,
             titleMedium: AppText.titleMedium,
             titleSmall: AppText.titleSmall,
             bodyLarge: AppText.bodyLarge,
@@ -35,16 +43,23 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
     colorScheme: const ColorScheme.light().copyWith(
       primary: AppColor.lightPrimaryColor,
       secondary: AppColor.lightSecondColor,
+      background: AppColor.white1,
     ),
     scaffoldBackgroundColor: Colors.white,
+     iconTheme: Theme.of(context)
+        .iconTheme
+        .copyWith(
+          color: AppColor.iconLightColor
+        )
+      ,
     textTheme: Theme.of(context)
         .textTheme
         .apply(
           fontFamily: 'HiraginoSans',
-          bodyColor: Colors.black.withOpacity(0.7),
+          bodyColor: AppColor.darkPrimaryColor,
         )
         .copyWith(
-          titleLarge: AppText.titleLarge,
+          titleLarge: AppText.titleLargeLight,
           titleMedium: AppText.titleMedium,
           titleSmall: AppText.titleSmall,
           bodyLarge: AppText.bodyLarge,

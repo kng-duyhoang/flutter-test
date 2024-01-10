@@ -41,8 +41,8 @@ class _ScheduleListState extends State<ScheduleList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.background,
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -53,7 +53,7 @@ class _ScheduleListState extends State<ScheduleList> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(widget.label, style: AppText.titleLarge),
+                  Text(widget.label, style: Theme.of(context).textTheme.titleLarge),
                   TextButton(
                     onPressed: () {
                     },
@@ -106,7 +106,7 @@ class ScheduleDemoCard extends StatelessWidget {
         Navigator.pushNamed(context, Routes.detailSchedule, arguments: data.id);
       },
       child: Card(
-        surfaceTintColor: Colors.transparent,
+        surfaceTintColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         margin: EdgeInsets.only(right: isLast ? 0 : 20),
         child: Column(
@@ -126,7 +126,7 @@ class ScheduleDemoCard extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               data.nameSchedule,
-              style: AppText.titleLarge,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ],
         ),

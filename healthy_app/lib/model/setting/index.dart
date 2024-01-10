@@ -1,11 +1,13 @@
 class SettingBlockItemModel {
-  String icons;
+  String iconLight;
+  String iconDark;
   String label;
   String router;
   bool toogle;
   SettingBlockItemModel({
     this.toogle = false,
-    required this.icons,
+    required this.iconLight,
+    required this.iconDark,
     required this.label,
     required this.router,
   });

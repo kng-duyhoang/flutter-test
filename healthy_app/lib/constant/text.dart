@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 
 class AppText {
-  static const titleLarge = TextStyle(
+  // Light
+  static const titleLargeLight = TextStyle(
     fontSize: 18,
-    color: AppColor.blackColor1,
+    color: AppColor.defaultColor,
     fontWeight: FontWeight.bold,
   );
   static const titleMedium = TextStyle(
     fontSize: 16,
-    color: AppColor.blackColor1,
+    color: AppColor.defaultColor,
     fontWeight: FontWeight.w500,
   );
   static const titleSmall = TextStyle(
     fontSize: 13,
-    color: AppColor.blackColor1,
+    color: AppColor.defaultColor,
     fontWeight: FontWeight.normal,
   );
   static const bodyLarge = TextStyle(
@@ -30,7 +31,7 @@ class AppText {
   );
   static const bodySmall = TextStyle(
     fontSize: 14,
-    color: AppColor.blackColor1,
+    color: AppColor.defaultColor,
     fontWeight: FontWeight.normal,
   );
   static const textLight = TextStyle(
@@ -40,7 +41,7 @@ class AppText {
   );
   static const textBlack = TextStyle(
     fontSize: 13,
-    color: AppColor.blackColor1,
+    color: AppColor.defaultColor,
     fontWeight: FontWeight.w500,
   );
   static const textWhite = TextStyle(
@@ -63,5 +64,10 @@ class AppText {
     color: AppColor.grey,
     fontWeight: FontWeight.w600,
   );
-  
+  static const titleLargeDark = TextStyle(
+    fontSize: 18,
+    color: AppColor.white1,
+    fontWeight: FontWeight.bold,
+  );
+  // Dark
 }

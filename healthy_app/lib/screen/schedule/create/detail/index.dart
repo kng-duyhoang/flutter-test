@@ -217,7 +217,7 @@ class ListViewEdit extends StatelessWidget {
                       style: AppText.textBlack),
                   IconButton(onPressed: () {
                     removeItem(index);
-                  }, icon: const Icon(Icons.delete_outline, color: AppColor.blackColor1,))
+                  }, icon: const Icon(Icons.delete_outline, color: AppColor.defaultColor,))
                 ],
               ),
             ),

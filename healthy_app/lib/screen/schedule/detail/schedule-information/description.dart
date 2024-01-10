@@ -35,7 +35,7 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
               style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
-                  color: AppColor.blackColor1),
+                  color: AppColor.defaultColor),
             ),
             const SizedBox(height: 20),
             Row(
@@ -84,7 +84,7 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Description', style: AppText.titleLarge),
+                  Text('Description', style: AppText.titleLargeLight),
                   SizedBox(height: 10),
                   Text(
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type."

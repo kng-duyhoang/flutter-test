@@ -45,7 +45,7 @@ class _TimerDialogState extends State<TimerDialog> {
               child: Stack(children: [
                 const Center(
                   child: Text("Select Time",
-                      style: AppText.titleLarge, textAlign: TextAlign.center),
+                      style: AppText.titleLargeLight, textAlign: TextAlign.center),
                 ),
                 Positioned(
                     top: 5.0,

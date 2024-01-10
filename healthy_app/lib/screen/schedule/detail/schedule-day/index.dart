@@ -61,7 +61,7 @@ class _ScheduleDayDetailState extends State<ScheduleDayDetail> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text("Các hoạt dộng: ", style: AppText.titleLarge),
+            const Text("Các hoạt dộng: ", style: AppText.titleLargeLight),
             SizedBox(
               height: 500,
               width: double.infinity,

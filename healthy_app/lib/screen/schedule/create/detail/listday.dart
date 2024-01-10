@@ -29,7 +29,7 @@ class ListDay extends StatelessWidget {
                   side: BorderSide(
                 width: 1.0,
                 color: carouselIndex == onActive
-                    ? AppColor.blackColor1
+                    ? AppColor.defaultColor
                     : AppColor.borderColor,
               )),
               onPressed: () {

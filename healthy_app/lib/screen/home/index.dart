@@ -37,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CoverInformation(),
               ),
               Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.background,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
                   boxShadow: [
                     BoxShadow(

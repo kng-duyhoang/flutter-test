@@ -56,7 +56,7 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text("List day", style: AppText.titleLarge),
+                                const Text("List day", style: AppText.titleLargeLight),
                                 TextButton(onPressed: () {
                                   widget.changeIndex(1);
                                 }, child: Text('View Detail', style: AppText.textSecondary))

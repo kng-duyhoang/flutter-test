@@ -63,7 +63,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
               child: Stack(children: [
                 Center(
                   child: Text("Select ${isHeight ? 'Height' : 'Weight'}",
-                      style: AppText.titleLarge, textAlign: TextAlign.center),
+                      style: AppText.titleLargeLight, textAlign: TextAlign.center),
                 ),
                 Positioned(
                     top: 5.0,

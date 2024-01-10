@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class StoreKeys {
   static const String localeKey = "locale";
   static const String token = "";
+  static const String darkmode = "light";
 }
 
 class Store {

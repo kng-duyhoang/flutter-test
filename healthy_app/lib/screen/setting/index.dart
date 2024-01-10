@@ -44,8 +44,8 @@ class _SettingScreenState extends State<SettingScreen> {
         );
       }),
       floatingActionButton: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background
         ),
         height: 70,
         width: double.infinity,
@@ -95,7 +95,7 @@ class _FormControlState extends State<FormControl> {
         children: [
           SizedBox(
             width: 150,
-            child: Text('${widget.label}: ', style: AppText.titleLarge,)
+            child: Text('${widget.label}: ', style: AppText.titleLargeLight,)
           ),
           SizedBox(
             width: 200,

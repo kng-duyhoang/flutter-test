@@ -58,7 +58,7 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
                 const Center(
                   child: Text(
                     "Select Activity",
-                    style: AppText.titleLarge, textAlign: TextAlign.center
+                    style: AppText.titleLargeLight, textAlign: TextAlign.center
                   ),
                 ),
                 Positioned(

@@ -44,12 +44,11 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
     return Scaffold(
       body: body(),
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            border: Border(top: BorderSide(color: Colors.white, width: 1.0))),
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: Theme.of(context).colorScheme.background, width: 1.0)),
+        ),
         child: BottomNavigationBar(
           elevation: 0.0,
-          backgroundColor: Colors.white,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -65,7 +64,8 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
             ),
           ],
           currentIndex: _indexKey,
-          selectedItemColor: AppColor.lightPrimaryColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          selectedItemColor: Theme.of(context).iconTheme.color,
           onTap: _onItemTapped,
         ),
       ),

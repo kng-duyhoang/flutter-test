@@ -32,7 +32,7 @@ class _HelloScreenState extends State<HelloScreen> {
             children: [
               const Text(
                 "Welcome, let's exercise together",
-                style: AppText.titleLarge,
+                style: AppText.titleLargeLight,
               ),
               const SizedBox(height: 10),
               const Text(

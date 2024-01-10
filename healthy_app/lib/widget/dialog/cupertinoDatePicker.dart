@@ -44,7 +44,7 @@ class _CupertinoDatePickerDialogState extends State<CupertinoDatePickerDialog> {
                 const Center(
                   child: Text(
                     "Select Birthday",
-                    style: AppText.titleLarge, textAlign: TextAlign.center
+                    style: AppText.titleLargeLight, textAlign: TextAlign.center
                   ),
                 ),
                 Positioned(

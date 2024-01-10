@@ -50,7 +50,7 @@ class _ScheduleListState extends State<ScheduleList> {
         child: Column(children: [
           SizedBox(
             width: double.infinity,
-            child: Text(widget.label, style: AppText.titleLarge),
+            child: Text(widget.label, style: AppText.titleLargeLight),
           ),
           const SizedBox(height: 16),
           SizedBox(
@@ -119,7 +119,7 @@ class ScheduleDemoCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 data.nameSchedule,
-                style: AppText.titleLarge,
+                style: AppText.titleLargeLight,
               ),
             ],
           ),

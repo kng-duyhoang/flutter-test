@@ -11,7 +11,7 @@ class ImageConstant {
   static String detailCover = 'assets/images/detail.jpg';
 }
 
-class IconConstants {
+class IconConstantsLight {
   static String mode = 'assets/icons/mode.png';
   static String question = 'assets/icons/question.png';
   static String policies = 'assets/icons/policies.png';
@@ -20,4 +20,15 @@ class IconConstants {
   static String security = 'assets/icons/security.png';
   static String resetPassword = 'assets/icons/reset-password.png';
   static String password = 'assets/icons/password.png';
+}
+
+class IconConstantsDark {
+  static String mode = 'assets/icons/mode-dark.png';
+  static String question = 'assets/icons/question-dark.png';
+  static String policies = 'assets/icons/policies-dark.png';
+  static String trash = 'assets/icons/trash-dark.png';
+  static String language = 'assets/icons/language-dark.png';
+  static String security = 'assets/icons/security-dark.png';
+  static String resetPassword = 'assets/icons/reset-password-dark.png';
+  static String password = 'assets/icons/password-dark.png';
 }

@@ -50,7 +50,7 @@ class _ResultStatusScreenState extends State<ResultStatusScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Result', style: AppText.titleLarge),
+          title: const Text('Result', style: AppText.titleLargeLight),
           leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => widget.goPage(1),

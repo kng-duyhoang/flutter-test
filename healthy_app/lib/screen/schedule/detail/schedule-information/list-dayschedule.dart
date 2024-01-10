@@ -28,7 +28,7 @@ class _ListDayScheduleState extends State<ListDaySchedule> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("List day", style: AppText.titleLarge),
+          const Text("List day", style: AppText.titleLargeLight),
           TextButton(onPressed: () {
 
           }, child: Text('View Detail'))

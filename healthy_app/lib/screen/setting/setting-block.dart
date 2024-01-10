@@ -1,12 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:healthy_app/bloc/darkmode/darkmode_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/setting/index.dart';
 
 class SettingBlock extends StatefulWidget {
-  const SettingBlock({super.key, required this.listRender, required this.title});
+  const SettingBlock(
+      {super.key, required this.listRender, required this.title});
   final List<SettingBlockItemModel> listRender;
   final String title;
 
@@ -21,7 +23,10 @@ class _SettingBlockState extends State<SettingBlock> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(widget.title, style: AppText.titleSmall,),
+        Text(
+          widget.title,
+          style: Theme.of(context).textTheme.labelSmall,
+        ),
         SizedBox(
           width: double.infinity,
           height: widget.listRender.length * 50,
@@ -30,7 +35,9 @@ class _SettingBlockState extends State<SettingBlock> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.listRender.length,
             itemBuilder: (BuildContext context, int index) {
-              return BlockSettingItem(data: widget.listRender[index]);
+              return widget.listRender[index].toogle
+                  ? BlockSettingItemToogle(data: widget.listRender[index])
+                  : BlockSettingItem(data: widget.listRender[index]);
             },
           ),
         )
@@ -40,39 +47,80 @@ class _SettingBlockState extends State<SettingBlock> {
 }
 
 class BlockSettingItem extends StatelessWidget {
-  const BlockSettingItem({
-    super.key,
-    required this.data
-  });
+  const BlockSettingItem({super.key, required this.data});
   final SettingBlockItemModel data;
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = DarkModeBloc.instance.state.mode == 'dark';
     return SizedBox(
       width: double.infinity,
+      height: 40,
       child: OutlinedButton(
         onPressed: () {
           // Navigator.pushNamed(context, data.router);
         },
         style: OutlinedButton.styleFrom(
-          side: BorderSide.none,
-          padding: const EdgeInsets.all(0)
-        ),
+            side: BorderSide.none, padding: const EdgeInsets.all(0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-              Row(
+            Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(data.icons, cacheHeight: 24, cacheWidth: 24),
+                  Image.asset(isDark ? data.iconDark : data.iconLight,
+                      cacheHeight: 24, cacheWidth: 24),
                   const SizedBox(width: 5),
-                  Text(data.label, style: AppText.titleMedium,)
-                ]
-              ),
-              const Icon(Icons.arrow_forward_ios, size: 20, color: AppColor.blackColor1)
+                  Text(data.label,
+                      style: Theme.of(context).textTheme.titleLarge)
+                ]),
+            Icon(Icons.arrow_forward_ios,
+                size: 20, color: Theme.of(context).iconTheme.color)
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BlockSettingItemToogle extends StatelessWidget {
+  const BlockSettingItemToogle({super.key, required this.data});
+  final SettingBlockItemModel data;
+
+  @override
+  Widget build(BuildContext context) {
+    bool isDark = DarkModeBloc.instance.state.mode == 'dark';
+
+    return SizedBox(
+      width: double.infinity,
+      height: 40,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+            Image.asset(isDark ? data.iconDark : data.iconLight,
+                cacheHeight: 24, cacheWidth: 24),
+            const SizedBox(width: 5),
+            Text(
+              data.label,
+              style: Theme.of(context).textTheme.titleLarge,
+            )
+          ]),
+          GestureDetector(
+              onTap: () {
+                var mode = DarkModeBloc.instance.state.mode;
+                DarkModeBloc.instance.add(
+                    DarkModeEventUpdate(mode == 'light' ? 'dark' : 'light'));
+              },
+              child: Icon(
+                  DarkModeBloc.instance.state.mode == 'light'
+                      ? Icons.toggle_off_outlined
+                      : Icons.toggle_on_outlined,
+                  size: 24,
+                  color: Theme.of(context).iconTheme.color))
+        ],
       ),
     );
   }
