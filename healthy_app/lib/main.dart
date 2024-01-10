@@ -51,12 +51,24 @@ void main() async {
   );
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+
+  @override
+  void initState() {
+    super.initState();
+    String? mode = Store.instance.getString(StoreKeys.darkmode) ?? 'light';
+    DarkModeBloc.instance.add(DarkModeEventUpdate(mode));
+  }
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DarkModeBloc, DarkModeState>
-    (builder: (context, state) {
+    return BlocBuilder<DarkModeBloc, DarkModeState> (builder: (context, state) {
       return MaterialApp(
         title: 'HealthyApp',
         localizationsDelegates: const [
@@ -71,7 +83,7 @@ class App extends StatelessWidget {
         navigatorKey: navigatorKey,
         supportedLocales: Locales.all,
         locale: const Locale("en"),
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.dark,
         theme: defaultTheme(context, type: state.mode),
         builder: EasyLoading.init(),
       );

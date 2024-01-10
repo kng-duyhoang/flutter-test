@@ -38,11 +38,11 @@ class _IntroduceHomeState extends State<IntroduceHome> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(
+                        SizedBox(
                           width: 170,
                           child: Text(
                             'Healthy life belongs to everyone',
-                            style: AppText.titleMedium,
+                            style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ),
                         const SizedBox(

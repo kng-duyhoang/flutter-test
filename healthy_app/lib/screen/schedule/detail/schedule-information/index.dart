@@ -42,7 +42,6 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
                     image: AssetImage(ImageConstant.detailCover),
                     fit: BoxFit.cover,
                   ),
-                  
                 ),
                 child: Column(
                   children: [

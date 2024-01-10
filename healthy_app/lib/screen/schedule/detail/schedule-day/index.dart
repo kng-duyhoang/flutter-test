@@ -169,8 +169,8 @@ class DetailActivity extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(data.name, style: AppText.titleMedium),
-            Text('${renderTime(data.startTime)} - ${renderTime(data.endTime)}', style: AppText.titleSmall),
+            Text(data.name, style: Theme.of(context).textTheme.titleSmall),
+            Text('${renderTime(data.startTime)} - ${renderTime(data.endTime)}', style: Theme.of(context).textTheme.titleSmall),
           ],
         ),
       ),

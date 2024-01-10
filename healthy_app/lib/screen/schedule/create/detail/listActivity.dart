@@ -94,17 +94,17 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
         children: [
           Row(
             children: [
-              const SizedBox(
+              SizedBox(
                   width: 150,
                   child: Text(
                     'Thời gian bắt đầu :',
-                    style: AppText.titleSmall,
+                    style: Theme.of(context).textTheme.titleSmall,
                   )),
               Text(
                 widget.data.startTime < 0
                     ? "Chưa chọn"
                     : renderTime(widget.data.startTime),
-                style: AppText.titleSmall,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(width: 10),
               IconButton(
@@ -121,14 +121,14 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
             height: 10,
           ),
           Row(children: [
-            const SizedBox(
+            SizedBox(
                 width: 150,
-                child: Text('Thời gian kết thúc :', style: AppText.titleSmall)),
+                child: Text('Thời gian kết thúc :', style: Theme.of(context).textTheme.titleSmall)),
             Text(
                 widget.data.endTime < 0
                     ? "Chưa chọn"
                     : renderTime(widget.data.endTime),
-                style: AppText.titleSmall),
+                style: Theme.of(context).textTheme.titleSmall),
             const SizedBox(width: 10),
             IconButton(
               onPressed: () {

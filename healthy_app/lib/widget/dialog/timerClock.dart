@@ -147,7 +147,7 @@ class MyData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = isHeight ? UserInforBloc.instance.state.height : UserInforBloc.instance.state.weight;
-    final style = data == currentData ? AppText.textBlack : AppText.textLight;
+    final style = data == currentData ? AppText.textWhite : AppText.textSecondary;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Center(

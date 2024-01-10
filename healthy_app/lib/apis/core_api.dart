@@ -22,6 +22,7 @@ class CoreApi {
     _instance ??= CoreApi();
     return _instance!;
   }
+  CancelToken cancelToken = CancelToken();
 
   final Dio _dio = Dio();
 
@@ -38,18 +39,18 @@ class CoreApi {
   }
 
   Future<Response> get(String path, {Map<String, dynamic>? params}) async {
-    final response = await _dio.get(path, queryParameters: params);
+    final response = await _dio.get(path, queryParameters: params, cancelToken: cancelToken);
     return response;
   }
 
   Future<Response> post(String path, {data, Map<String, dynamic>? params}) async {
-    final response = await _dio.post(path, data: data);
+    final response = await _dio.post(path, data: data, cancelToken: cancelToken);
     return response;
   }
 
   Future<Response> put(String path,
       {data, Map<String, dynamic>? params}) async {
-    final response = await _dio.put(path, data: data, queryParameters: params);
+    final response = await _dio.put(path, data: data, queryParameters: params, cancelToken: cancelToken);
     return response;
   }
 

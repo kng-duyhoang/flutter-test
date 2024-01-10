@@ -45,12 +45,12 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
           children: [
             Column(
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 20,
                   width: double.infinity,
                   child: Text(
                     'Tên lịch trình: ',
-                    style: AppText.textBlack,
+                    style: Theme.of(context).textTheme.titleSmall,
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -63,7 +63,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
                   child: TextField(
                     controller: _nameController,
                     textAlignVertical: TextAlignVertical.center,
-                    style: AppText.titleMedium,
+                    style: Theme.of(context).textTheme.titleSmall,
                     onChanged: (value) => {
                       widget.changeName(value)
                     },
@@ -95,11 +95,11 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
               width: double.infinity,
               child: Row(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 20,
                     child: Text(
                       'Chọn loại: ',
-                      style: AppText.textBlack,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                   const SizedBox(
@@ -125,7 +125,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
                             list.map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
-                                child: Text(value, style: AppText.titleMedium,),
+                                child: Text(value, style: Theme.of(context).textTheme.titleSmall),
                               );
                         }).toList(),
                       )),
@@ -146,7 +146,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
               onPressed: () {
                 widget.goPage(1);
               },
-              child: const Text("Next", style: AppText.textBlack)),
+              child: Text("Next", style: Theme.of(context).textTheme.titleSmall)),
         ),
       ),
     );

@@ -1,7 +1,7 @@
 part of "darkmode_bloc.dart";
 
 class DarkModeState extends Equatable {
-  DarkModeState({ this.mode = ""});
+  DarkModeState({ required this.mode});
 
   late String mode;
 

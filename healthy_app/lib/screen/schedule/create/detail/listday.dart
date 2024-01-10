@@ -23,7 +23,7 @@ class ListDay extends StatelessWidget {
             ElevatedButton(
               child: Text(
                 "Ngày  ${carouselIndex + 1}",
-                style: AppText.titleMedium,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               style: ElevatedButton.styleFrom(
                   side: BorderSide(

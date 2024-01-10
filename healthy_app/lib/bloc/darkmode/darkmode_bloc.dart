@@ -11,7 +11,7 @@ static DarkModeBloc? _instance;
     return _instance!;
   }
   
-  DarkModeBloc() : super(DarkModeState()) {
+  DarkModeBloc() : super(DarkModeState(mode: "")) {
     on<DarkModeEventUpdate>(darkModeEventUpdate);
   }
 

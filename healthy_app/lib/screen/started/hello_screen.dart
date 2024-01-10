@@ -35,10 +35,10 @@ class _HelloScreenState extends State<HelloScreen> {
                 style: AppText.titleLargeLight,
               ),
               const SizedBox(height: 10),
-              const Text(
+              Text(
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy ",
                 textAlign: TextAlign.center,
-                style: AppText.titleSmall,
+                style: Theme.of(context).textTheme.titleSmall,
               ),
               const SizedBox(height: 13),
               ElevatedButton(

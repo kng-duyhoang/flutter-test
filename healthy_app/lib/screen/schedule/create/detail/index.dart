@@ -140,8 +140,8 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
                           _addItem(context);
                         },
                         icon: const Icon(Icons.add),
-                        label: const Text('Thêm lịch trình',
-                            style: AppText.textPrimary)),
+                        label: Text('Thêm lịch trình',
+                            style: Theme.of(context).textTheme.titleSmall)),
                     IconButton(
                         onPressed: () {
                           setState(() {
@@ -176,7 +176,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
               onPressed: () {
                 createSchedule();
               },
-              child: const Text("Create", style: AppText.textBlack)),
+              child: Text("Create", style: Theme.of(context).textTheme.titleLarge)),
         ),
       ),
     );
@@ -214,7 +214,7 @@ class ListViewEdit extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(currentDaySchedule.itemsActivity[index].name,
-                      style: AppText.textBlack),
+                      style: Theme.of(context).textTheme.titleSmall),
                   IconButton(onPressed: () {
                     removeItem(index);
                   }, icon: const Icon(Icons.delete_outline, color: AppColor.defaultColor,))
@@ -254,7 +254,7 @@ class ListViewExpand extends StatelessWidget {
                 child: ExpansionTile(
                   shape: const Border(),
                   collapsedBackgroundColor: Colors.transparent,
-                  title: Text(currentDaySchedule.itemsActivity[index].name, style: AppText.textBlack),
+                  title: Text(currentDaySchedule.itemsActivity[index].name, style: Theme.of(context).textTheme.titleSmall),
                   backgroundColor: Colors.transparent,
                   children: <Widget>[
                     ListAcitivyRender(currentDaySchedule.itemsActivity[index])

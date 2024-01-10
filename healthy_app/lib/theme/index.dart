@@ -28,11 +28,7 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
           )
           .copyWith(
             titleLarge: AppText.titleLargeDark,
-            titleMedium: AppText.titleMedium,
-            titleSmall: AppText.titleSmall,
-            bodyLarge: AppText.bodyLarge,
-            bodyMedium: AppText.bodyMedium,
-            bodySmall: AppText.bodySmall,
+            titleMedium: AppText.titleMediumDark,
           ),
     );
   }
@@ -60,11 +56,7 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
         )
         .copyWith(
           titleLarge: AppText.titleLargeLight,
-          titleMedium: AppText.titleMedium,
-          titleSmall: AppText.titleSmall,
-          bodyLarge: AppText.bodyLarge,
-          bodyMedium: AppText.bodyMedium,
-          bodySmall: AppText.bodySmall,
+          titleMedium: AppText.titleMediumLight,
         ),
     outlinedButtonTheme: _buildOutlinedButtonTheme(),
   );

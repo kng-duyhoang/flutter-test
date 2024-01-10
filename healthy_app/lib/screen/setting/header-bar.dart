@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
 import 'package:healthy_app/constant/images.dart';
-import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/widget/common/information-parctice.dart';
 
 class HeaderBar extends StatefulWidget {
@@ -46,8 +45,8 @@ class _HeaderBarState extends State<HeaderBar> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(user.username, style: AppText.titleLargeLight,),
-                    Text(user.gmail, style: AppText.bodySmall)
+                    Text(user.username, style: Theme.of(context).textTheme.titleSmall),
+                    Text(user.gmail, style: Theme.of(context).textTheme.titleSmall)
                   ],
                 )
               ],

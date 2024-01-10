@@ -53,7 +53,7 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
                     const SizedBox(width: 10),
                     Text(
                       widget.schedule.type,
-                      style: AppText.textGrey,
+                      style: Theme.of(context).textTheme.titleSmall,
                     )
                   ],
                 ),
@@ -73,23 +73,23 @@ class _DescriptionDetailScheduleState extends State<DescriptionDetailSchedule> {
                     const SizedBox(width: 10),
                     Text(
                       length.toString(),
-                      style: AppText.textGrey,
+                      style: Theme.of(context).textTheme.titleSmall,
                     )
                   ],
                 ),
               ],
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Description', style: AppText.titleLargeLight),
-                  SizedBox(height: 10),
+                  Text('Description', style: Theme.of(context).textTheme.titleSmall),
+                  const SizedBox(height: 10),
                   Text(
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type."
                     ,
-                    style: AppText.textGrey,
+                    style: Theme.of(context).textTheme.titleSmall
                   )
                 ],
               ),

@@ -5,6 +5,7 @@ import 'package:healthy_app/bloc/darkmode/darkmode_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/setting/index.dart';
+import 'package:healthy_app/store/index.dart';
 
 class SettingBlock extends StatefulWidget {
   const SettingBlock(
@@ -111,8 +112,9 @@ class BlockSettingItemToogle extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 var mode = DarkModeBloc.instance.state.mode;
-                DarkModeBloc.instance.add(
-                    DarkModeEventUpdate(mode == 'light' ? 'dark' : 'light'));
+                String modePush = mode == 'light' ? 'dark' : 'light';
+                DarkModeBloc.instance.add(DarkModeEventUpdate(modePush));
+                Store.instance.setString(StoreKeys.darkmode, modePush);
               },
               child: Icon(
                   DarkModeBloc.instance.state.mode == 'light'

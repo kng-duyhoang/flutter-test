@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
@@ -17,26 +19,39 @@ class ScheduleList extends StatefulWidget {
 
 class _ScheduleListState extends State<ScheduleList> {
   List<DayScheduleResponse> listRender = [];
-
-  bool isLoading = false;
+  late Completer<void> _getListScheduleCompleter;
+  bool isLoading = true;
 
   void getListSchedule() async {
-    setState(() {
-      isLoading = true;
-    });
-    final response = await ScheduleApi().getSchedule();
-    if (response.items.isNotEmpty) {
-      setState(() {
-        listRender = response.items;
-        isLoading = false;
-      });
+    try {
+      final response = await ScheduleApi().getSchedule();
+      if (!_getListScheduleCompleter.isCompleted) {
+        if (response.items.isNotEmpty) {
+          setState(() {
+            listRender = response.items;
+            isLoading = false;
+          });
+        }
+        _getListScheduleCompleter.complete();
+      }
+    } catch (error) {
+      // 
     }
   }
 
   @override
   void initState() {
     super.initState();
+    _getListScheduleCompleter = Completer<void>();
     getListSchedule();
+  }
+
+  @override
+  void dispose() {
+    if (!_getListScheduleCompleter.isCompleted) {
+      _getListScheduleCompleter.completeError("Operation canceled");
+    }
+    super.dispose();
   }
 
   @override

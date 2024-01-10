@@ -127,7 +127,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                         builder: (context, index) {
                           return Center(
                             child: Text(isHeight ? 'CM' : 'Gram',
-                                style: AppText.textBlack),
+                                style: Theme.of(context).textTheme.titleSmall),
                           );
                         },
                       ),
@@ -156,7 +156,7 @@ class MyData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = isHeight ? UserInforBloc.instance.state.height : UserInforBloc.instance.state.weight;
-    final style = data == currentData ? AppText.textBlack : AppText.textLight;
+    final style = data == currentData ? AppText.textSecondary : AppText.textWhite;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Center(

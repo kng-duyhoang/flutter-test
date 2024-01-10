@@ -61,7 +61,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 25),
-                  const Text("Your name:", style: AppText.textBlack),
+                  Text("Your name:", style: Theme.of(context).textTheme.titleSmall),
                   const SizedBox(height: 5),
                   TextField(
                     controller: _usernameController,
@@ -80,7 +80,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                             BorderSide(color: AppColor.borderColor, width: 1.0),
                       ),
                     ),
-                    style: AppText.bodyMedium,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],
               ),
@@ -89,7 +89,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const Text('Male', style: AppText.textBlack),
+                    title: Text('Male', style: Theme.of(context).textTheme.titleSmall),
                     value: 0,
                     groupValue: genderData,
                     onChanged: (int? value) {
@@ -103,7 +103,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: const Text('Female', style: AppText.textBlack),
+                    title: Text('Female', style: Theme.of(context).textTheme.titleSmall),
                     value: 1,
                     groupValue: genderData,
                     onChanged: (int? value) {
@@ -141,7 +141,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                       state.birthday != ""
                           ? state.birthday
                           : "Input Your BirthDay",
-                      style: AppText.textBlack,
+                      style: Theme.of(context).textTheme.titleSmall,
                     )),
               ),
               const SizedBox(height: 15),
@@ -168,7 +168,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     },
                     child: Text(
                       state.height != "" ? state.height : "Input Your Height",
-                      style: AppText.textBlack,
+                      style: Theme.of(context).textTheme.titleSmall,
                     )),
               ),
               const SizedBox(height: 20),
@@ -195,7 +195,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     },
                     child: Text(
                       state.weight != "" ? state.weight : "Input Your Weight",
-                      style: AppText.textBlack,
+                      style: Theme.of(context).textTheme.titleSmall,
                     )),
               ),
             ],
@@ -214,7 +214,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     onPressed: () {
                       widget.goPage(2);
                     },
-                    child: const Text("Next", style: AppText.titleMedium)),
+                    child: Text("Next", style: Theme.of(context).textTheme.titleSmall)),
               ),
             ),
     );

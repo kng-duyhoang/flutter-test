@@ -10,7 +10,7 @@ class DarkModeEvent extends Equatable {
 
 
 class DarkModeEventUpdate extends DarkModeEvent {
-  const DarkModeEventUpdate({required this.mode});
+  const DarkModeEventUpdate(this.mode);
 
   final String mode;
 

@@ -9,40 +9,10 @@ class AppText {
     color: AppColor.defaultColor,
     fontWeight: FontWeight.bold,
   );
-  static const titleMedium = TextStyle(
-    fontSize: 16,
-    color: AppColor.defaultColor,
-    fontWeight: FontWeight.w500,
-  );
-  static const titleSmall = TextStyle(
-    fontSize: 13,
-    color: AppColor.defaultColor,
-    fontWeight: FontWeight.normal,
-  );
-  static const bodyLarge = TextStyle(
-    fontSize: 22,
-    color: AppColor.lightPrimaryColor,
-    fontWeight: FontWeight.bold,
-  );
-  static const bodyMedium = TextStyle(
-    fontSize: 18,
-    color: AppColor.lightPrimaryColor,
-    fontWeight: FontWeight.w500,
-  );
-  static const bodySmall = TextStyle(
-    fontSize: 14,
-    color: AppColor.defaultColor,
-    fontWeight: FontWeight.normal,
-  );
-  static const textLight = TextStyle(
+  static const titleMediumLight = TextStyle(
     fontSize: 15,
-    color: AppColor.lightPrimaryColor,
-    fontWeight: FontWeight.w500,
-  );
-  static const textBlack = TextStyle(
-    fontSize: 13,
     color: AppColor.defaultColor,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.bold,
   );
   static const textWhite = TextStyle(
     fontSize: 13,
@@ -54,20 +24,15 @@ class AppText {
     color: AppColor.lightSecondColor,
     fontWeight: FontWeight.w500,
   );
-  static const textPrimary = TextStyle(
-    fontSize: 15,
-    color: AppColor.lightPrimaryColor,
-    fontWeight: FontWeight.w600,
-  );
-  static const textGrey = TextStyle(
-    fontSize: 15,
-    color: AppColor.grey,
-    fontWeight: FontWeight.w600,
-  );
+  // Dark
   static const titleLargeDark = TextStyle(
     fontSize: 18,
     color: AppColor.white1,
     fontWeight: FontWeight.bold,
   );
-  // Dark
+  static const titleMediumDark = TextStyle(
+    fontSize: 15,
+    color: AppColor.white1,
+    fontWeight: FontWeight.bold,
+  );
 }
