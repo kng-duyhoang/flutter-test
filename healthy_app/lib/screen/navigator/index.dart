@@ -48,8 +48,8 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
           elevation: 0.0,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -57,11 +57,11 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
+              icon: Icon(Icons.schedule),
               label: 'Schedule',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.school),
+              icon: Icon(Icons.settings),
               label: 'Setting',
             ),
           ],

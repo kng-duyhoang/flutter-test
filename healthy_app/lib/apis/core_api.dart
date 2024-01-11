@@ -27,15 +27,13 @@ class CoreApi {
   final Dio _dio = Dio();
 
   CoreApi() {
-    List<String> tokenData = AuthorizeBloc.instance.state.props.toList() as List<String>;
-    String token = tokenData[0];
     String baseUrl = dotenv.env['BASE_API_URL']!;
     _dio.options.baseUrl = baseUrl;
-    _dio.options.headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'};
+    _dio.options.headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer '};
   }
 
   Future setToken(String token) async {
-    _dio.options.headers = {'Content-Type': 'application/json', 'token': token};
+    _dio.options.headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'};
   }
 
   Future<Response> get(String path, {Map<String, dynamic>? params}) async {

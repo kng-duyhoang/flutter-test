@@ -70,6 +70,12 @@ class _AppState extends State<App> {
     super.initState();
     String? mode = Store.instance.getString(StoreKeys.darkmode) ?? 'light';
     DarkModeBloc.instance.add(DarkModeEventUpdate(mode));
+    if(Store.instance.containsKey(StoreKeys.token)) {
+      String token = Store.instance.getString(StoreKeys.token) ?? "";
+      print(token);
+      CoreApi.instance.setToken(token);
+      AuthorizeBloc.instance.add(AuthorizeEventSuccess(token));
+    }
   }
   @override
   Widget build(BuildContext context) {

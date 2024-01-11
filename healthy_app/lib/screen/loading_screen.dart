@@ -23,13 +23,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
     if (loginResponse.status == "200") {
       UserBloc.instance.add(UserEventSuccess(loginResponse.user));
       if (loginResponse.user.username == "") {
-        Navigator.pushNamed(context, Routes.startScreen);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          Routes.startScreen,
+          (Route<dynamic> route) => false,
+        );
       } else {
-        Navigator.pushNamed(context, Routes.navigator);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          Routes.navigator,
+          (Route<dynamic> route) => false,
+        );
       }
     } else {
       Store.instance.remove(StoreKeys.token);
-      Navigator.pushNamed(context, Routes.loginScreen);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          Routes.loginScreen,
+          (Route<dynamic> route) => false,
+        );
     }
   }
 
@@ -49,7 +58,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: Center(
           child: LoadingAnimationWidget.staggeredDotsWave(
                 color: AppColor.lightSecondColor,
-                size: 200,
+                size: 150,
               ),
         ),
       ),

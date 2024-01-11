@@ -13,9 +13,8 @@ class AuthorizeBloc extends Bloc<AuthorizeEvent, AuthorizeState> {
     return _instance!;
   }
 
-  AuthorizeBloc() : super(AuthorizeStateInitial()) {
+  AuthorizeBloc() : super(AuthorizeState()) {
     on<AuthorizeEventSuccess>(authorizeEventSuccess);
-    on<AuthorizeEventFail>(authorizeEventFail);
   }
 
   void authorizeEventSuccess(AuthorizeEventSuccess event, Emitter<AuthorizeState> emit) async {
@@ -23,8 +22,5 @@ class AuthorizeBloc extends Bloc<AuthorizeEvent, AuthorizeState> {
     await Store.instance.setString(StoreKeys.token, event.token);
   }
 
-  void authorizeEventFail(AuthorizeEventFail event, Emitter<AuthorizeState> emit) async {
-    emit(AuthorizeStateFail());
-  }
 }
 
