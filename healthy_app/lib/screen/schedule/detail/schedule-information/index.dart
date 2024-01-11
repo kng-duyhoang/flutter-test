@@ -30,7 +30,7 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
               height: double.infinity,
               child: Center(
                 child: LoadingAnimationWidget.newtonCradle(
-                  color: AppColor.lightPrimaryColor,
+                  color: AppColor.lightSecondColor,
                   size: 100,
                 ),
               ),

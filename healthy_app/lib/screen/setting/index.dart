@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
@@ -56,7 +57,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      child: const Text("Log Out", style: TextStyle(color: Color(0xFFFE970F)),),
+                      child: const Text("logout", style: TextStyle(color: Color(0xFFFE970F)),).tr() ,
                     ),
                   ),
                 ),

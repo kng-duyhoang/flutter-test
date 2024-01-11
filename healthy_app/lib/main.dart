@@ -4,6 +4,7 @@
 
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
 import 'package:healthy_app/bloc/darkmode/darkmode_bloc.dart';
@@ -25,29 +25,34 @@ import 'package:healthy_app/theme/index.dart';
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Store.init();
   await dotenv.load();
   if(!kReleaseMode && !kProfileMode) {
     HttpOverrides.global = MyHttpOverrides();
   }
+  
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => LocaleBloc.instance,
-        ),
-        BlocProvider(
-          create: (context) => AuthorizeBloc.instance,
-        ),
-        BlocProvider(
-          create: (context) => UserBloc.instance,
-        ),
-        BlocProvider(
-          create: (context) => DarkModeBloc.instance
-        )
-      ],
-      child: const App(),
+    EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('vi', 'VN')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('vi', 'VN'),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AuthorizeBloc.instance,
+          ),
+          BlocProvider(
+            create: (context) => UserBloc.instance,
+          ),
+          BlocProvider(
+            create: (context) => DarkModeBloc.instance
+          )
+        ],
+        child: const App(),
+      ),
     ),
+    
   );
 }
 
@@ -71,18 +76,13 @@ class _AppState extends State<App> {
     return BlocBuilder<DarkModeBloc, DarkModeState> (builder: (context, state) {
       return MaterialApp(
         title: 'HealthyApp',
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         debugShowCheckedModeBanner: false,
         routes: Routes.routesConfig,
         onGenerateRoute: Routes.onGenerateRoute,
         navigatorKey: navigatorKey,
-        supportedLocales: Locales.all,
-        locale: const Locale("en"),
         themeMode: ThemeMode.dark,
         theme: defaultTheme(context, type: state.mode),
         builder: EasyLoading.init(),

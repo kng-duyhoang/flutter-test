@@ -47,6 +47,9 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
           border: Border(top: BorderSide(color: Theme.of(context).colorScheme.background, width: 1.0)),
         ),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           elevation: 0.0,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -64,7 +67,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
           ],
           currentIndex: _indexKey,
           backgroundColor: Theme.of(context).colorScheme.background,
-          selectedItemColor: Theme.of(context).iconTheme.color,
+          selectedItemColor: Theme.of(context).primaryColorLight,
           onTap: _onItemTapped,
         ),
       ),

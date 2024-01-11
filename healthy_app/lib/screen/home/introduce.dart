@@ -39,9 +39,9 @@ class _IntroduceHomeState extends State<IntroduceHome> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(
-                          width: 170,
+                          width: 200,
                           child:  Text(
-                            'Healthy life belongs to everyone',
+                            'Mọi người xứng đáng với một cuộc sống khỏe mạnh',
                             style: AppText.titleMediumLight,
                           ),
                         ),
@@ -53,7 +53,7 @@ class _IntroduceHomeState extends State<IntroduceHome> {
                             Navigator.pushNamed(context, Routes.createSchedule);
                           },
                           child: const Text(
-                            'Create your schedule!!!',
+                            'Tạo lịch trình cho bạn!!!',
                             style: AppText.textWhite,
                           ),
                           style: ButtonStyle(

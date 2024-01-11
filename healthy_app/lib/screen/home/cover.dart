@@ -57,15 +57,15 @@ class CoverInformation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'hi ${user.username}',
+            'Chào ${user.username}',
             style: AppText.textWhite,
           ),
           const Text(
-            'Have you',
+            'Bạn có',
             style: TextStyle(fontSize: 30, color: Colors.white),
           ),
           const Text(
-            'exercised today?',
+            'sẵn sàng?',
             style: TextStyle(fontSize: 30, color: Colors.white),
           )
         ],

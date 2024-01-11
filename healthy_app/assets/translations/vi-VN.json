@@ -1,0 +1,14 @@
+{
+  "login": "Đăng nhập",
+  "logout": "Đăng xuất",
+  "changepassword": "Đổi mật khẩu",
+  "forgotpassword": "Quên mật khẩu",
+  "security": "Bảo mật",
+  "language": "Ngôn ngữ",
+  "clearcache": "Xóa cache",
+  "legalandpolicies": "Pháp lý và chính sách",
+  "helpsupport": "Trợ giúp",
+  "darkmode": "Chế độ tối",
+  "en": "Tiếng Anh",
+  "vi": "Tiếng Việt"
+}

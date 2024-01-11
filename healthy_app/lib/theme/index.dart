@@ -11,6 +11,10 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
           backgroundColor: MaterialStatePropertyAll<Color>(AppColor.lightSecondColor),
         )
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        unselectedItemColor: AppColor.white1,
+        selectedItemColor: AppColor.lightSecondColor
+      ),
       appBarTheme: const AppBarTheme(
         color: AppColor.darkPrimaryColor,
       ),
@@ -18,7 +22,7 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
         iconColor: AppColor.white1,
       ),
       primaryColor: AppColor.darkPrimaryColor,
-      primaryColorLight: AppColor.darkPrimaryColor,
+      primaryColorLight: AppColor.lightSecondColor,
       colorScheme: const ColorScheme.dark().copyWith(
         primary: AppColor.darkPrimaryColor,
         secondary: AppColor.lightSecondColor,
@@ -67,12 +71,6 @@ ThemeData defaultTheme(BuildContext context, {String? type = 'light'}) {
       iconColor: AppColor.defaultColor,
     ),
     scaffoldBackgroundColor: Colors.white,
-     iconTheme: Theme.of(context)
-        .iconTheme
-        .copyWith(
-          color: AppColor.lightPrimaryColor
-        )
-      ,
     textTheme: Theme.of(context)
         .textTheme
         .apply(

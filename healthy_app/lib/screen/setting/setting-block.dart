@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/darkmode/darkmode_bloc.dart';
-import 'package:healthy_app/constant/color.dart';
-import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/setting/index.dart';
 import 'package:healthy_app/store/index.dart';
+import 'package:healthy_app/widget/dialog/change-langua.dart';
 
 class SettingBlock extends StatefulWidget {
   const SettingBlock(
@@ -59,7 +59,13 @@ class BlockSettingItem extends StatelessWidget {
       height: 40,
       child: OutlinedButton(
         onPressed: () {
-          // Navigator.pushNamed(context, data.router);
+          if (data.isPopup) {
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) => ChangeLanguageDialog(context)
+            );
+          }
         },
         style: OutlinedButton.styleFrom(
             side: BorderSide.none, padding: const EdgeInsets.all(0)),
@@ -73,7 +79,7 @@ class BlockSettingItem extends StatelessWidget {
                   Image.asset(isDark ? data.iconDark : data.iconLight,
                       cacheHeight: 24, cacheWidth: 24),
                   const SizedBox(width: 5),
-                  Text(data.label,
+                  Text(data.label.tr(),
                       style: Theme.of(context).textTheme.titleMedium)
                 ]),
             Icon(Icons.arrow_forward_ios,
@@ -107,7 +113,7 @@ class BlockSettingItemToogle extends StatelessWidget {
             Text(
               data.label,
               style: Theme.of(context).textTheme.titleMedium,
-            )
+            ).tr()
           ]),
           GestureDetector(
               onTap: () {

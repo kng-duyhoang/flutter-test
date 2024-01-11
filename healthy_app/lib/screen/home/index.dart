@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Column(children: [
                   IntroduceHome(),
                   CategoryHome(),
-                  ScheduleList(label: 'Popular Schedule',),
+                  ScheduleList(label: 'Lịch trình nổi tiếng',),
                 ]),
               )
             ],

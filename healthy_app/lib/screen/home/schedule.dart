@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
@@ -16,26 +18,39 @@ class ScheduleList extends StatefulWidget {
 
 class _ScheduleListState extends State<ScheduleList> {
   List<DayScheduleResponse> listRender = [];
-
+  late Completer<void> _getListScheduleCompleter;
   bool isLoading = false;
 
   void getListSchedule() async {
-    setState(() {
-      isLoading = true;
-    });
-    final response = await ScheduleApi().getSchedule();
-    if (response.items.isNotEmpty) {
-      setState(() {
-        listRender = response.items;
-        isLoading = false;
-      });
+    try {
+      final response = await ScheduleApi().getSchedule();
+      if (!_getListScheduleCompleter.isCompleted) {
+        if (response.items.isNotEmpty) {
+          setState(() {
+            listRender = response.items;
+            isLoading = false;
+          });
+        }
+        _getListScheduleCompleter.complete();
+      }
+    } catch (error) {
+      // 
     }
   }
 
   @override
   void initState() {
     super.initState();
+     _getListScheduleCompleter = Completer<void>();
     getListSchedule();
+  }
+
+  @override
+  void dispose() {
+    if (!_getListScheduleCompleter.isCompleted) {
+      _getListScheduleCompleter.completeError("Operation canceled");
+    }
+    super.dispose();
   }
 
   @override
@@ -58,7 +73,7 @@ class _ScheduleListState extends State<ScheduleList> {
                     onPressed: () {
                     },
                     child: const Text(
-                      'See more',
+                      'Xem thêm',
                       style: AppText.textSecondary,
                     ),
                   )
@@ -70,7 +85,7 @@ class _ScheduleListState extends State<ScheduleList> {
                 width: double.infinity,
                 child: isLoading
                     ? LoadingAnimationWidget.newtonCradle(
-                        color: AppColor.lightPrimaryColor,
+                        color: AppColor.lightSecondColor,
                         size: 100,
                       )
                     : ListView.builder(
@@ -106,10 +121,10 @@ class ScheduleDemoCard extends StatelessWidget {
         Navigator.pushNamed(context, Routes.detailSchedule, arguments: data.id);
       },
       child: Card(
-         elevation: 0,
-        color: Colors.transparent,
-        margin: EdgeInsets.only(right: isLast ? 0 : 20),
-        child: Column(
+          elevation: 0,
+          color: Colors.transparent,
+          margin: EdgeInsets.only(right: isLast ? 0 : 20),
+          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
@@ -124,9 +139,13 @@ class ScheduleDemoCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 )),
             const SizedBox(height: 10),
-            Text(
-              data.nameSchedule,
-              style: Theme.of(context).textTheme.titleMedium,
+            Container(
+              width: 172,
+              child: Text(
+                data.nameSchedule,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
           ],
         ),

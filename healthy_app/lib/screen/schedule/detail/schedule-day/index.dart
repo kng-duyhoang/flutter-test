@@ -7,7 +7,6 @@ import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
 import 'package:healthy_app/model/timer/index.dart';
-import 'package:healthy_app/screen/schedule/create/informataion.dart/index.dart';
 import 'package:healthy_app/widget/dialog/dialog-show-itemssubactivity.dart';
 
 class ScheduleDayDetail extends StatefulWidget {
@@ -150,7 +149,7 @@ class DetailActivity extends StatelessWidget {
     String data = "";
     for (var element in items) {
       if (element.id == timeID.toString()) {
-        data = '${element.hour} : ${element.minutes}';
+        data = '${element.hour == 0 ? "00" : element.hour} : ${element.minutes == 0 ? "00" : element.minutes}';
       }
     }
     return data;
@@ -160,11 +159,22 @@ class DetailActivity extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) =>
-            ShowItemsSubActivity(context, data.itemsSubActivity));
+        showGeneralDialog(
+          barrierLabel: "Label",
+          barrierDismissible: true,
+          barrierColor: Colors.black.withOpacity(0.5),
+          transitionDuration: Duration(milliseconds: 300),
+          context: context,
+          pageBuilder: (context, anim1, anim2) {
+            return ShowItemsSubActivity(context, data.itemsSubActivity);
+          },
+          transitionBuilder: (context, anim1, anim2, child) {
+            return SlideTransition(
+              position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
+              child: child,
+            );
+          },
+          );
       },
       child: Card(
         surfaceTintColor: Colors.white,

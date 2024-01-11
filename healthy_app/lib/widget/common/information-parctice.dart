@@ -27,7 +27,7 @@ class _InformationPracticeState extends State<InformationPractice> {
             ),
             child: Row(
               children: [
-                BoxText(data: user.weight, label: 'Weight', unit: 'Kg'),
+                BoxText(data: user.weight, label: 'Cân nặng', unit: 'Kg'),
                 SizedBox(
                   width: 2,
                   height: 30,
@@ -36,7 +36,7 @@ class _InformationPracticeState extends State<InformationPractice> {
                         BoxDecoration(border: Border.all(color: Colors.white)),
                   ),
                 ),
-                BoxText(data: user.height, label: 'Height', unit: 'Cm'),
+                BoxText(data: user.height, label: 'Chiều cao', unit: 'Cm'),
                 SizedBox(
                   width: 2,
                   height: 30,
@@ -45,7 +45,7 @@ class _InformationPracticeState extends State<InformationPractice> {
                         BoxDecoration(border: Border.all(color: Colors.white)),
                   ),
                 ),
-                const BoxText(data: '45', label: 'Percent', unit: '%'),
+                const BoxText(data: '45', label: 'Phần trăm', unit: '%'),
               ],
             ),
           ),

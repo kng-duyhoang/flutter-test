@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/apis/authorize/index.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
+import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/router/index.dart';
 
@@ -63,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: const Text(
                     'Login',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 20, color: AppColor.white1),
                   ),
                 ),
               ),

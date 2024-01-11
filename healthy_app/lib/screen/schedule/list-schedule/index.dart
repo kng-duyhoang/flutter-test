@@ -19,11 +19,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:const Column(
+    return const Scaffold(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ScheduleList(label: 'Your Schedule')
+          ScheduleList(label: 'Lịch trình của bạn')
         ],
       ),
     );
@@ -40,38 +40,29 @@ class ScheduleList extends StatefulWidget {
 
 class _ScheduleListState extends State<ScheduleList> {
   List<DayScheduleResponse> listRender = [];
-  late Completer<void> _getListScheduleCompleter;
   bool isLoading = true;
 
   void getListSchedule() async {
-    try {
-      final response = await ScheduleApi().getSchedule();
-      if (!_getListScheduleCompleter.isCompleted) {
-        if (response.items.isNotEmpty) {
-          setState(() {
-            listRender = response.items;
-            isLoading = false;
-          });
+    final response = await ScheduleApi().getSchedule();
+    if (response.items.isNotEmpty) {
+          if (mounted) {
+            setState(() {
+              listRender = response.items;
+              isLoading = false;
+            });
+          }
         }
-        _getListScheduleCompleter.complete();
-      }
-    } catch (error) {
-      // 
-    }
+   
   }
 
   @override
   void initState() {
     super.initState();
-    _getListScheduleCompleter = Completer<void>();
     getListSchedule();
   }
 
   @override
   void dispose() {
-    if (!_getListScheduleCompleter.isCompleted) {
-      _getListScheduleCompleter.completeError("Operation canceled");
-    }
     super.dispose();
   }
 
@@ -96,7 +87,7 @@ class _ScheduleListState extends State<ScheduleList> {
                       Navigator.pushNamed(context, Routes.createSchedule);
                     }, 
                     icon: const Icon(Icons.add, color: AppColor.white1), 
-                    label: Text('Add', style: AppText.textWhite,),
+                    label: const Text('Thêm', style: AppText.textWhite,),
                   ),
                 ),
               ],
@@ -112,7 +103,7 @@ class _ScheduleListState extends State<ScheduleList> {
             width: double.infinity,
             child: isLoading
                 ? LoadingAnimationWidget.newtonCradle(
-                    color: Theme.of(context).colorScheme.background,
+                    color: AppColor.lightSecondColor,
                     size: 100,
                   )
                 : Wrap(
@@ -150,7 +141,6 @@ class ScheduleDemoCard extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
-        // print(data.id);
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 16),

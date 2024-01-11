@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/apis/authorize/index.dart';
 import 'package:healthy_app/bloc/user/user_bloc.dart';
+import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/router/index.dart';
 import 'package:healthy_app/store/index.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -29,13 +31,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
       Store.instance.remove(StoreKeys.token);
       Navigator.pushNamed(context, Routes.loginScreen);
     }
-    EasyLoading.dismiss();
   }
 
   @override
   void initState() {
     super.initState();
-    EasyLoading.show(status: 'loading...');
     _onCheck();
   }
 
@@ -43,7 +43,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Center(
+          child: LoadingAnimationWidget.staggeredDotsWave(
+                color: AppColor.lightSecondColor,
+                size: 200,
+              ),
+        ),
+      ),
     );
   }
 }

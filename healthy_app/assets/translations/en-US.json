@@ -1,0 +1,14 @@
+{
+  "login": "Login",
+  "logout": "Logout",
+  "changepassword": "Change Password",
+  "forgotpassword": "Forgot Password",
+  "security": "Security",
+  "language": "Language",
+  "clearcache": "Clear Cache",
+  "legalandpolicies": "Legal and Policies",
+  "helpsupport": "Help & Support",
+  "darkmode": "Dark Mode",
+  "en": "EngLish",
+  "vi": "Vietnamese"
+}
