@@ -1,8 +1,12 @@
 // ignore_for_file: use_build_context_synchronously, unused_local_variable
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:healthy_app/apis/authorize/index.dart';
+import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
+import 'package:healthy_app/bloc/user/user_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/authorize/index.dart';
+import 'package:healthy_app/router/index.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({super.key});
@@ -35,14 +39,14 @@ class _CreateScreenState extends State<CreateScreen> {
       isLoading = true;
     });
 
-    // final registerResponse = await AuthorizeApi().register(data);
-    // AuthorizeBloc.instance.add(AuthorizeEventSuccess(registerResponse.token));
-    // UserBloc.instance.add(UserEventSuccess(registerResponse.user));
-    // Navigator.pushNamed(context, Routes.navigator);
-    // setState(() {
-    //   isLoading = false;
-    // });
-    // EasyLoading.dismiss();
+    final registerResponse = await AuthorizeApi().register(data);
+    AuthorizeBloc.instance.add(AuthorizeEventSuccess(registerResponse.token));
+    UserBloc.instance.add(UserEventSuccess(registerResponse.user));
+    Navigator.pushNamed(context, Routes.navigator);
+    setState(() {
+      isLoading = false;
+    });
+    EasyLoading.dismiss();
   }
 
   @override

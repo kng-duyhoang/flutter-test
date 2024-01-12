@@ -34,5 +34,6 @@
   "createschedule": "Create Schedule",
   "scheduleinformation": "Schedule Information",
   "next": "next",
-  "create": "create"
+  "create": "create",
+  "registerContent": "Don't have an account"
 }

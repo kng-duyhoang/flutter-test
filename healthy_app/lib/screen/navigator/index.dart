@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_final_fields
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/screen/home/index.dart';
 import 'package:healthy_app/screen/schedule/list-schedule/index.dart';
@@ -30,7 +31,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
         return const ScheduleScreen();
       case 2:
         return StatScreen();
-      case 3: 
+      case 3:
         return const SettingScreen();
     }
     return Container();
@@ -47,7 +48,9 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       body: body(),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: Theme.of(context).colorScheme.background, width: 1.0)),
+          border: Border(
+              top: BorderSide(
+                  color: Theme.of(context).colorScheme.background, width: 1.0)),
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

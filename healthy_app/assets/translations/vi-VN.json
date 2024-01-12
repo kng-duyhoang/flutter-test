@@ -20,6 +20,10 @@
   "fri": "T.Sáu",
   "sat": "T.Bảy",
   "sun": "C.Nhật",
+  "home": "trang chủ",
+  "schedule": "lịch trình",
+  "statistics": "thống kê",
+  "setting": "cài đặt",
   "scheduleDetail": "Chi tiết lịch trình",
   "listday": "Lịch trình theo ngày",
   "viewmore": "Xem thêm",
@@ -30,5 +34,6 @@
   "createschedule": "Tạo lịch trình",
   "scheduleinformation": "Thông tin lịch trình",
   "next": "Tiếp tục",
-  "create": "Tạo mới"
+  "create": "Tạo mới",
+  "registerContent": "Bạn có tài khoản chưa?"
 }

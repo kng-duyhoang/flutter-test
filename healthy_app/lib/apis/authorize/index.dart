@@ -7,10 +7,17 @@ class AuthorizeApi {
     final response = await CoreApi.instance.post('/user/login', data: data);
     try {
       final User user = User.fromJson(response.data["user"]);
-      return LoginResponse(
-        token: response.data["token"],
-        user: user
-      );
+      return LoginResponse(token: response.data["token"], user: user);
+    } catch (error) {
+      throw Exception('GET request failed: $error');
+    }
+  }
+
+  Future<RegisterResponse> register(data) async {
+    final response = await CoreApi.instance.post('/user/register', data: data);
+    try {
+      final User user = User.fromJson(response.data["user"]);
+      return RegisterResponse(token: response.data["token"], user: user);
     } catch (error) {
       throw Exception('GET request failed: $error');
     }
@@ -20,10 +27,7 @@ class AuthorizeApi {
     final response = await CoreApi.instance.get('/user/checktoken');
     try {
       final User user = User.fromJson(response.data["user"]);
-      return CheckResponse(
-        status: response.statusCode.toString(),
-        user: user
-      );
+      return CheckResponse(status: response.statusCode.toString(), user: user);
     } catch (error) {
       throw Exception('GET request failed: $error');
     }

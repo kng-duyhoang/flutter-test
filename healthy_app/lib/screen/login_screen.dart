@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/apis/authorize/index.dart';
 import 'package:healthy_app/bloc/authorize/authorize_bloc.dart';
@@ -32,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
     AuthorizeBloc.instance.add(AuthorizeEventSuccess(loginResponse.token));
     UserBloc.instance.add(UserEventSuccess(loginResponse.user));
     Navigator.pushNamed(context, Routes.navigator);
-      setState(() {
+    setState(() {
       isLoading = false;
     });
     EasyLoading.dismiss();
@@ -43,7 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Center(child: const Text('login', textAlign: TextAlign.center).tr()),
+          title: Center(
+              child: const Text('login', textAlign: TextAlign.center).tr()),
           automaticallyImplyLeading: false,
         ),
         body: Padding(
@@ -63,8 +65,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     _onLoginHandler(userName, password);
                   },
                   child: const Text(
-                    'Đăng nhập',
+                    'login',
                     style: TextStyle(fontSize: 20, color: AppColor.white1),
+                  ).tr(),
+                ),
+              ),
+              const SizedBox(height: 30),
+              Center(
+                child: RichText(
+                  text: TextSpan(
+                    text: "registerContent".tr(),
+                    style: TextStyle(fontSize: 16, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'register'.tr(),
+                        style: TextStyle(fontSize: 16, color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, Routes.createScreen);
+                          },
+                      ),
+                    ],
                   ),
                 ),
               ),
