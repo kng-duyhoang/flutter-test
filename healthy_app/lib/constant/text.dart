@@ -34,6 +34,16 @@ class AppText {
     color: AppColor.lightSecondColor,
     fontWeight: FontWeight.w500,
   );
+  static const textSuccess = TextStyle(
+    fontSize: 15,
+    color: AppColor.success,
+    fontWeight: FontWeight.w500,
+  );
+  static const textError = TextStyle(
+    fontSize: 15,
+    color: AppColor.error,
+    fontWeight: FontWeight.w500,
+  );
   // Dark
   static const titleLargeDark = TextStyle(
     fontSize: 24,

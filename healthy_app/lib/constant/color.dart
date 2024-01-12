@@ -21,5 +21,7 @@ class AppColor {
   static const defaultColor = Color(0xFF111111);
   static const borderColor = Color(0xFFE3E7EC);
   static const grey = Color(0xFF6C6C6C);
+  static const success = Color(0xFF00C566);
+  static const error = Color(0xFFFF4747);
   
 }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
+import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 import 'package:healthy_app/widget/dialog/cupertino-date-picker.dart';
 import 'package:healthy_app/widget/dialog/scrollwheelview_dialog.dart';
@@ -50,17 +51,14 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
             children: [
               const SizedBox(height: 50),
               const Text('Tell us about yourself',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: AppColor.darkPrimaryColor,
-                      fontWeight: FontWeight.w500)),
+                  style: AppText.titleLargeLight),
               const SizedBox(height: 25),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 25),
-                  Text("Your name:", style: Theme.of(context).textTheme.titleSmall),
+                  Text("Your name:", style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 5),
                   TextField(
                     controller: _usernameController,
@@ -79,7 +77,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                             BorderSide(color: AppColor.borderColor, width: 1.0),
                       ),
                     ),
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
@@ -88,7 +86,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: Text('Male', style: Theme.of(context).textTheme.titleSmall),
+                    title: Text('Male', style: Theme.of(context).textTheme.titleMedium),
                     value: 0,
                     groupValue: genderData,
                     onChanged: (int? value) {
@@ -102,7 +100,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                 Flexible(
                   flex: 1,
                   child: RadioListTile(
-                    title: Text('Female', style: Theme.of(context).textTheme.titleSmall),
+                    title: Text('Female', style: Theme.of(context).textTheme.titleMedium),
                     value: 1,
                     groupValue: genderData,
                     onChanged: (int? value) {
@@ -140,7 +138,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                       state.birthday != ""
                           ? state.birthday
                           : "Input Your BirthDay",
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.titleMedium,
                     )),
               ),
               const SizedBox(height: 15),
@@ -167,7 +165,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     },
                     child: Text(
                       state.height != "" ? state.height : "Input Your Height",
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.titleMedium,
                     )),
               ),
               const SizedBox(height: 20),
@@ -194,7 +192,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     },
                     child: Text(
                       state.weight != "" ? state.weight : "Input Your Weight",
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.titleMedium,
                     )),
               ),
             ],
@@ -213,7 +211,7 @@ class _UpdateStatusScreenState extends State<UpdateStatusScreen> {
                     onPressed: () {
                       widget.goPage(2);
                     },
-                    child: Text("Next", style: Theme.of(context).textTheme.titleSmall)),
+                    child: Text("Next", style: AppText.textWhite)),
               ),
             ),
     );

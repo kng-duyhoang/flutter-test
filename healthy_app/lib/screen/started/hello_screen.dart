@@ -32,20 +32,19 @@ class _HelloScreenState extends State<HelloScreen> {
             children: [
               const Text(
                 "Welcome, let's exercise together",
-                style: AppText.titleLargeLight,
+                style: AppText.textWhiteLarge,
               ),
               const SizedBox(height: 10),
               Text(
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy ",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleSmall,
+                style: AppText.textWhite,
               ),
               const SizedBox(height: 13),
               ElevatedButton(
                   onPressed: () {
                     widget.goPage(1);
                   },
-                  child: const Text('Start Introduction')),
+                  child: const Text('Start Introduction', style: AppText.textWhite))
             ],
           ),
         ),

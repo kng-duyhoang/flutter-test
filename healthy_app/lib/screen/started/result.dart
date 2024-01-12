@@ -49,36 +49,46 @@ class _ResultStatusScreenState extends State<ResultStatusScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         appBar: AppBar(
           title: const Text('Result', style: AppText.titleLargeLight),
           leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => widget.goPage(1),
-        ),
-
-        ),
+        )),
         body: BlocBuilder<UserInforBloc, UserInforState>(
             builder: (context, state) {
           return Container(
             alignment: Alignment.center,
-            child: Column(children: [
-              FormValue('User Name', state.userName),
-              FormValue('Height', state.height),
-              FormValue('Weight', state.weight),
-              FormValue('Gender', state.gender),
-              FormValue('Birthday', state.birthday),
-              ElevatedButton(onPressed: _updateUser, child: const Text('Update'))
-            ]),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(children: [
+                FormValue('User Name', state.userName),
+                FormValue('Height', state.height),
+                FormValue('Weight', state.weight),
+                FormValue('Gender', state.gender),
+                FormValue('Birthday', state.birthday),
+              ]),
+            ),
           );
-        }));
+        }),
+        floatingActionButton: Container(
+              height: 70,
+              padding: const EdgeInsets.all(10),
+              child: SizedBox(
+                width: double.infinity,
+                child:  ElevatedButton(onPressed: _updateUser, child: const Text('Update', style: AppText.textWhite)),
+              ),
+            ),
+        );
   }
 
   SizedBox FormValue(String label, String value) {
     return SizedBox(
       width: double.infinity,
-      height: 100,
+      height: 60,
       child: Row(
-        children: [Text('$label: '), const SizedBox(width: 10), Text(value)],
+        children: [Text('$label: ', style: AppText.titleMediumLight,), const SizedBox(width: 10), Text(value, style: AppText.titleMediumLight,)],
       ),
     );
   }

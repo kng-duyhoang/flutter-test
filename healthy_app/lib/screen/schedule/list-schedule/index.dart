@@ -126,11 +126,12 @@ class _ScheduleListState extends State<ScheduleList> {
 }
 
 class ScheduleDemoCard extends StatelessWidget {
-  const ScheduleDemoCard(
-      {super.key,
-      required this.index,
-      required this.data,
-      required this.isLast});
+  const ScheduleDemoCard({
+    super.key,
+    required this.index,
+    required this.data,
+    required this.isLast
+  });
 
   final int index;
   final bool isLast;
@@ -141,6 +142,7 @@ class ScheduleDemoCard extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
+        Navigator.pushNamed(context, Routes.detailSchedule, arguments: data.id);
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 16),

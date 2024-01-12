@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unused_local_variable
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/authorize/index.dart';
 
 class CreateScreen extends StatefulWidget {
@@ -50,7 +51,7 @@ class _CreateScreenState extends State<CreateScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title:
-            const Center(child: Text('Register', textAlign: TextAlign.center)),
+            const Center(child: Text('Đăng ký', textAlign: TextAlign.center)),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -59,9 +60,9 @@ class _CreateScreenState extends State<CreateScreen> {
           children: [
             renderInput(_emailController, "Email"),
             const SizedBox(height: 20),
-            renderInput(_passwordController, "Password"),
+            renderInput(_passwordController, "Mật khẩu"),
             const SizedBox(height: 20),
-            renderInput(_confirmPasswordController, "ConfirmPassword"),
+            renderInput(_confirmPasswordController, "Nhập lại mật khẩu"),
             const SizedBox(height: 20),
             IgnorePointer(
               ignoring: isLoading,
@@ -73,8 +74,8 @@ class _CreateScreenState extends State<CreateScreen> {
                   _onRegisterHandler(email, password, confirmPassword);
                 },
                 child: const Text(
-                  'Register',
-                  style: TextStyle(fontSize: 20),
+                  'Đăng ký',
+                  style: AppText.textWhiteLarge,
                 ),
               ),
             )

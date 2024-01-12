@@ -75,7 +75,7 @@ class _CupertinoDatePickerDialogState extends State<CupertinoDatePickerDialog> {
             SizedBox(
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: _onClose, child: const Text('Submit'))),
+                    onPressed: _onClose, child: const Text('Submit', style: AppText.textWhite))),
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
+import 'package:healthy_app/screen/create_screen.dart';
 
 import 'package:healthy_app/screen/loading_screen.dart';
 import 'package:healthy_app/screen/login_screen.dart';
@@ -22,6 +23,7 @@ class Routes {
   static String loginScreen = '/login';
   static String startScreen = '/start';
   static String loadingScreen = '/loading';
+  static String registerScreen = '/register';
   static String scheduleScreen = '/schedule';
   static String createSchedule = '/create-schedule';
   static String detailSchedule = '/detail-schedule';
@@ -32,6 +34,7 @@ class Routes {
     startScreen: (context) => BlocProvider(create: (context) => UserInforBloc.instance, child: const StartNavigation()),
     loadingScreen: (context) => const LoadingScreen(),
     scheduleScreen: (context) => const ScheduleScreen(),
+    registerScreen: (context) => const CreateScreen(),
     detailSchedule: (context) => MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -56,8 +59,8 @@ class Routes {
 
   static Route<dynamic>? onGenerateRoute(settings) {
     const String rootRoute = "/";
-    var  routeName = (settings.name == rootRoute) ? Store.instance.containsKey(StoreKeys.token) ? Routes.loadingScreen : Routes.loginScreen : settings.name;
-    // var  routeName = (settings.name == rootRoute) ? Routes.createSchedule : settings.name;
+    // var  routeName = (settings.name == rootRoute) ? Store.instance.containsKey(StoreKeys.token) ? Routes.loadingScreen : Routes.loginScreen : settings.name;
+    var  routeName = (settings.name == rootRoute) ? Routes.registerScreen : settings.name;
     if (Routes.routesConfig.containsKey(routeName)) {
       return PageRouteBuilder(
         settings: RouteSettings(name: routeName, arguments: settings.arguments),

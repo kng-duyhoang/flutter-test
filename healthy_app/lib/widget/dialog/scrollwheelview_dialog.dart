@@ -127,7 +127,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
                         builder: (context, index) {
                           return Center(
                             child: Text(isHeight ? 'CM' : 'Gram',
-                                style: Theme.of(context).textTheme.titleSmall),
+                                style: AppText.titleMediumLight),
                           );
                         },
                       ),
@@ -140,7 +140,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
             SizedBox(
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: _onClose, child: const Text('Submit'))),
+                    onPressed: _onClose, child: const Text('Submit', style: AppText.titleMediumDark,))),
           ],
         ),
       ),
@@ -156,7 +156,7 @@ class MyData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = isHeight ? UserInforBloc.instance.state.height : UserInforBloc.instance.state.weight;
-    final style = data == currentData ? AppText.textSecondary : AppText.textWhite;
+    final style = data == currentData ? AppText.titleLargeLight : AppText.titleMediumLight;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Center(

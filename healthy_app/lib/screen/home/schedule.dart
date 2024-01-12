@@ -18,39 +18,24 @@ class ScheduleList extends StatefulWidget {
 
 class _ScheduleListState extends State<ScheduleList> {
   List<DayScheduleResponse> listRender = [];
-  late Completer<void> _getListScheduleCompleter;
   bool isLoading = false;
 
   void getListSchedule() async {
-    try {
-      final response = await ScheduleApi().getSchedule();
-      if (!_getListScheduleCompleter.isCompleted) {
-        if (response.items.isNotEmpty) {
+    final response = await ScheduleApi().getSchedule();
+      if (response.items.isNotEmpty) {
+        if(mounted) {
           setState(() {
             listRender = response.items;
             isLoading = false;
           });
         }
-        _getListScheduleCompleter.complete();
       }
-    } catch (error) {
-      // 
-    }
   }
 
   @override
   void initState() {
     super.initState();
-     _getListScheduleCompleter = Completer<void>();
     getListSchedule();
-  }
-
-  @override
-  void dispose() {
-    if (!_getListScheduleCompleter.isCompleted) {
-      _getListScheduleCompleter.completeError("Operation canceled");
-    }
-    super.dispose();
   }
 
   @override
@@ -139,7 +124,7 @@ class ScheduleDemoCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 )),
             const SizedBox(height: 10),
-            Container(
+            SizedBox(
               width: 172,
               child: Text(
                 data.nameSchedule,

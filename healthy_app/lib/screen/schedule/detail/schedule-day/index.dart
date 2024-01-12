@@ -52,7 +52,7 @@ class _ScheduleDayDetailState extends State<ScheduleDayDetail> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            widget.schedule.type == "Week" ? SizedBox(
               height: 69,
               width: double.infinity,
               child: ListView.builder(
@@ -60,7 +60,7 @@ class _ScheduleDayDetailState extends State<ScheduleDayDetail> {
                 itemCount: widget.schedule.timeLine.length,
                 itemBuilder: (context, index) => TextDayBlock(index: index, changeIndex: changeIndex, isActive: index == indexSelected)
               ),
-            ),
+            ) : const SizedBox(height: 0),
             const SizedBox(height: 16),
             const Text("Các hoạt dộng: ", style: AppText.titleLargeLight),
             SizedBox(

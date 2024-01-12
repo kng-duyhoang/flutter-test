@@ -38,38 +38,39 @@ class _SettingScreenState extends State<SettingScreen> {
                 SettingBlock(listRender: listRenderGeneral, title: 'General'),
                 const SizedBox(height: 16),
                 SettingBlock(listRender: listRenderAbout, title: 'About'),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background
-                  ),
-                  height: 70,
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
-                    child: OutlinedButton(
-                      onPressed: (){
-                        Store.instance.remove(StoreKeys.token);
-                        Navigator.pushNamed(context, Routes.loginScreen);
-                      },
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFFFE970F), width: 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                      ),
-                      child: const Text("logout", style: TextStyle(color: Color(0xFFFE970F)),).tr() ,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
         );
       }),
+      floatingActionButton: Container(
+        decoration:
+            BoxDecoration(color: Theme.of(context).colorScheme.background),
+        height: 70,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
+          child: OutlinedButton(
+            onPressed: () {
+              Store.instance.remove(StoreKeys.token);
+              Navigator.pushNamed(context, Routes.loginScreen);
+            },
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(color: Color(0xFFFE970F), width: 1),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
+            child: const Text(
+              "logout",
+              style: TextStyle(color: Color(0xFFFE970F)),
+            ).tr(),
+          ),
+        ),
+      ),
     );
   }
 }
-
 
 class FormControl extends StatefulWidget {
   const FormControl({
@@ -94,13 +95,17 @@ class _FormControlState extends State<FormControl> {
       child: Row(
         children: [
           SizedBox(
-            width: 150,
-            child: Text('${widget.label}: ', style: AppText.titleLargeLight,)
-          ),
+              width: 150,
+              child: Text(
+                '${widget.label}: ',
+                style: AppText.titleLargeLight,
+              )),
           SizedBox(
-            width: 200,
-            child: Text(widget.value, style: Theme.of(context).textTheme.titleSmall,)
-          )
+              width: 200,
+              child: Text(
+                widget.value,
+                style: Theme.of(context).textTheme.titleSmall,
+              ))
         ],
       ),
     );

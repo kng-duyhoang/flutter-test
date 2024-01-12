@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:healthy_app/apis/authorize/index.dart';
@@ -42,8 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title:
-              const Center(child: Text('Login', textAlign: TextAlign.center)),
+          title: Center(child: const Text('login', textAlign: TextAlign.center).tr()),
           automaticallyImplyLeading: false,
         ),
         body: Padding(
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               renderInput(_usernameController, 'Email'),
               const SizedBox(height: 20),
-              renderInput(_passwordController, 'Password'),
+              renderInput(_passwordController, 'password'),
               const SizedBox(height: 30),
               IgnorePointer(
                 ignoring: isLoading,
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     _onLoginHandler(userName, password);
                   },
                   child: const Text(
-                    'Login',
+                    'Đăng nhập',
                     style: TextStyle(fontSize: 20, color: AppColor.white1),
                   ),
                 ),
@@ -81,14 +81,14 @@ class _LoginScreenState extends State<LoginScreen> {
         Text(
           fieldName,
           style: const TextStyle(fontSize: 18),
-        ),
+        ).tr(),
         const SizedBox(height: 5),
         SizedBox(
           height: 40,
           child: TextField(
             controller: controller,
             textAlignVertical: TextAlignVertical.center,
-            obscureText: fieldName == "Password",
+            obscureText: fieldName == "password",
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.all(10.0),
               border: InputBorder.none,

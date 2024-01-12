@@ -39,7 +39,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: const Text("Schedule Informaation"),
+        title: const Text("Schedule Information"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

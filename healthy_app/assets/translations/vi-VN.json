@@ -1,6 +1,8 @@
 {
   "login": "Đăng nhập",
   "logout": "Đăng xuất",
+  "register": "Đăng ký",
+  "password": "Mật khẩu",
   "changepassword": "Đổi mật khẩu",
   "forgotpassword": "Quên mật khẩu",
   "security": "Bảo mật",
@@ -10,5 +12,12 @@
   "helpsupport": "Trợ giúp",
   "darkmode": "Chế độ tối",
   "en": "Tiếng Anh",
-  "vi": "Tiếng Việt"
+  "vi": "Tiếng Việt",
+  "mon": "T.Hai",
+  "tue": "T.Ba",
+  "wed": "T.Tư",
+  "thu": "T.Năm",
+  "fri": "T.Sáu",
+  "sat": "T.Bảy",
+  "sun": "C.Nhật"
 }

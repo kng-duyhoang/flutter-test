@@ -107,7 +107,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: const Text("Create Schedule"),
+        title: const Text("c"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground),
           onPressed: () => widget.goPage(0),

@@ -17,7 +17,7 @@ class SubActivity {
 
   factory SubActivity.fromJson(Map<String, dynamic> json) {
     return SubActivity(
-      subActivityId: json['subActivityId'],
+      subActivityId: json['subActivityId'] ?? "",
       duration: json['duration'] ?? "",
       subActivityName: json['subActivityName'] ?? ""
     );

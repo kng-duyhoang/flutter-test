@@ -1,6 +1,8 @@
 {
   "login": "Login",
   "logout": "Logout",
+  "register": "Register",
+  "password": "Password",
   "changepassword": "Change Password",
   "forgotpassword": "Forgot Password",
   "security": "Security",
@@ -10,5 +12,16 @@
   "helpsupport": "Help & Support",
   "darkmode": "Dark Mode",
   "en": "EngLish",
-  "vi": "Vietnamese"
+  "vi": "Vietnamese",
+  "mon": "mon",
+  "tue": "tue",
+  "wed": "wed",
+  "thu": "thu",
+  "fri": "fri",
+  "sat": "sat",
+  "sun": "sun",
+  "home": "home",
+  "schedule": "schedule",
+  "statistics": "statistics",
+  "setting": "setting"
 }

@@ -72,7 +72,6 @@ class _AppState extends State<App> {
     DarkModeBloc.instance.add(DarkModeEventUpdate(mode));
     if(Store.instance.containsKey(StoreKeys.token)) {
       String token = Store.instance.getString(StoreKeys.token) ?? "";
-      print(token);
       CoreApi.instance.setToken(token);
       AuthorizeBloc.instance.add(AuthorizeEventSuccess(token));
     }

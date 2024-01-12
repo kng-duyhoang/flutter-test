@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:healthy_app/screen/home/index.dart';
 import 'package:healthy_app/screen/schedule/list-schedule/index.dart';
 import 'package:healthy_app/screen/setting/index.dart';
+import 'package:healthy_app/screen/stat/index.dart';
 
 class NavigatorScreen extends StatefulWidget {
   const NavigatorScreen({super.key});
@@ -28,6 +29,8 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       case 1:
         return const ScheduleScreen();
       case 2:
+        return StatScreen();
+      case 3: 
         return const SettingScreen();
     }
     return Container();
@@ -54,15 +57,19 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.schedule),
-              label: 'Schedule',
+              label: 'schedule',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.trending_down),
+              label: 'statistics',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: 'Setting',
+              label: 'setting',
             ),
           ],
           currentIndex: _indexKey,
