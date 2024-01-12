@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_const, must_be_immutable, prefer_const_constructors_in_immutables
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/images.dart';
@@ -40,11 +41,11 @@ class CoverDetail extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back, color: AppColor.lightSecondColor,)),
                 ),
                 const SizedBox(width: 50),
-                const Text('Schedule Detail',
+                const Text('scheduleDetail',
                     style: TextStyle(
                         color: AppColor.white1,
                         fontSize: 24,
-                        fontWeight: FontWeight.bold))
+                        fontWeight: FontWeight.bold)).tr()
               ],
             ),
           ),

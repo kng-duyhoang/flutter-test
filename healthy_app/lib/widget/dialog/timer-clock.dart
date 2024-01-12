@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
@@ -43,9 +44,9 @@ class _TimerDialogState extends State<TimerDialog> {
               height: 50,
               width: 300,
               child: Stack(children: [
-                const Center(
-                  child: Text("Select Time",
-                      style: AppText.titleLargeLight, textAlign: TextAlign.center),
+                 Center(
+                  child: const Text("{select} Time",
+                      style: AppText.titleLargeLight, textAlign: TextAlign.center).tr(),
                 ),
                 Positioned(
                     top: 5.0,

@@ -1,7 +1,9 @@
 // ignore_for_file: file_names, must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
+import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/sub-activity/index.dart';
 
@@ -61,13 +63,23 @@ class _AddSubActivityDialogState extends State<AddSubActivityDialog> {
                 height: 50,
                 width: 300,
                 child: Stack(children: [
-                  const Center(
-                    child: Text("Select SubActivity",
-                        style: AppText.titleLargeLight, textAlign: TextAlign.center),
-                  ),
+                  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     const Text(
+                       "select",
+                       style: AppText.titleLargeLight, textAlign: TextAlign.center
+                     ).tr(),
+                     const Text(" "),
+                     const Text(
+                       "subActivity",
+                       style: AppText.titleLargeLight, textAlign: TextAlign.center
+                     ).tr(),
+                   ],
+                 ),
                   Positioned(
-                      top: 5.0,
-                      right: 5.0,
+                      top: -5.0,
+                      right: -5.0,
                       child: SizedBox(
                         width: 40,
                         height: 40.0,
@@ -90,7 +102,7 @@ class _AddSubActivityDialogState extends State<AddSubActivityDialog> {
                           children: [
                             ElevatedButton.icon(onPressed: () {
                               _onCheck(listRender[index]);
-                            }, icon: const Icon(Icons.add), label: Text(listRender[index].subActivityName, style: Theme.of(context).textTheme.titleSmall,)),
+                            }, icon: const Icon(Icons.add, color: AppColor.white1,), label: Text(listRender[index].subActivityName, style: AppText.textWhite,)),
                             const SizedBox(
                               height: 10,
                             )

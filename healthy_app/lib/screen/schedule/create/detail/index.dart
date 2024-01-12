@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, curly_braces_in_flow_control_structures, use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/apis/schedule/index.dart';
 import 'package:healthy_app/constant/color.dart';
@@ -107,7 +108,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: const Text("c"),
+        title: const Text("createschedule").tr(),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground),
           onPressed: () => widget.goPage(0),

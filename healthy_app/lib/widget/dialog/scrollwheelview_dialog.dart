@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
@@ -63,7 +64,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
               child: Stack(children: [
                 Center(
                   child: Text("Select ${isHeight ? 'Height' : 'Weight'}",
-                      style: AppText.titleLargeLight, textAlign: TextAlign.center),
+                      style: AppText.titleLargeLight, textAlign: TextAlign.center).tr(),
                 ),
                 Positioned(
                     top: 5.0,
@@ -140,7 +141,7 @@ class _ScrollWeightDialogState extends State<ScrollWeightDialog> {
             SizedBox(
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: _onClose, child: const Text('Submit', style: AppText.titleMediumDark,))),
+                    onPressed: _onClose, child: const Text('submit', style: AppText.titleMediumDark,).tr())),
           ],
         ),
       ),

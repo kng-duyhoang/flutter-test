@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, file_names
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/text.dart';
 import 'package:healthy_app/model/schedule/index.dart';
@@ -27,10 +28,10 @@ class _ListDayScheduleState extends State<ListDaySchedule> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("List day", style: AppText.titleLargeLight),
+          const Text("listday", style: AppText.titleLargeLight).tr(),
           TextButton(onPressed: () {
 
-          }, child: const Text('View Detail'))
+          }, child: const Text('viewmore').tr())
         ],
       ),
     );

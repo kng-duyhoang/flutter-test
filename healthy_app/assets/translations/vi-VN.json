@@ -19,5 +19,15 @@
   "thu": "T.Năm",
   "fri": "T.Sáu",
   "sat": "T.Bảy",
-  "sun": "C.Nhật"
+  "sun": "C.Nhật",
+  "scheduleDetail": "Chi tiết lịch trình",
+  "listday": "Lịch trình theo ngày",
+  "viewmore": "Xem thêm",
+  "activity": "hoạt động",
+  "subActivity": "hoạt động con",
+  "submit": "Tiếp tục",
+  "select": "Chọn",
+  "createschedule": "Tạo lịch trình",
+  "scheduleinformation": "Thông tin lịch trình",
+  "next": "tiếp tục"
 }

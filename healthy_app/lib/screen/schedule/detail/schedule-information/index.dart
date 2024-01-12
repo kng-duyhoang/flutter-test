@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/images.dart';
@@ -48,10 +49,10 @@ class _ScheduleInformationState extends State<ScheduleInformation> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("List day", style: Theme.of(context).textTheme.titleLarge),
+                              Text("listday", style: Theme.of(context).textTheme.titleLarge).tr(),
                               TextButton(onPressed: () {
                                 widget.changeIndex(1);
-                              }, child: const Text('View Detail', style: AppText.textSecondary))
+                              }, child: const Text('viewmore', style: AppText.textSecondary).tr())
                             ],
                           ),
                         )

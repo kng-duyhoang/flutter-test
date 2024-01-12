@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/constant/color.dart';
 import 'package:healthy_app/constant/text.dart';
@@ -39,7 +40,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: const Text("Schedule Information"),
+        title: const Text("scheduleinformation").tr(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -70,7 +71,6 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
                     decoration: const InputDecoration(
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                      hintText: "Shedule Name",
                       hintStyle: TextStyle(fontSize: 12),
                       border: InputBorder.none,
                       focusedBorder: OutlineInputBorder(
@@ -148,7 +148,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
                 widget.goPage(1);
               },
               child:
-                Text("Next", style: AppText.textWhiteLarge)),
+                Text("next", style: AppText.textWhiteLarge).tr()),
         ),
       ),
     );

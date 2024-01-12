@@ -23,5 +23,15 @@
   "home": "home",
   "schedule": "schedule",
   "statistics": "statistics",
-  "setting": "setting"
+  "setting": "setting",
+  "scheduleDetail": "Schedule Detail",
+  "listday": "List schedule per day",
+  "viewmore": "View more",
+  "activity": "activity",
+  "subActivity": "subActivity",
+  "submit": "Submit",
+  "select": "Select",
+  "createschedule": "Create Schedule",
+  "scheduleinformation": "Schedule Information",
+  "next": "next"
 }

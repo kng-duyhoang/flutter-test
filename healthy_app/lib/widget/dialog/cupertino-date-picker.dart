@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:healthy_app/bloc/user_status/userinfor_bloc.dart';
@@ -75,7 +76,7 @@ class _CupertinoDatePickerDialogState extends State<CupertinoDatePickerDialog> {
             SizedBox(
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: _onClose, child: const Text('Submit', style: AppText.textWhite))),
+                    onPressed: _onClose, child: const Text('submit', style: AppText.textWhite).tr())),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/activity/activity_bloc.dart';
 import 'package:healthy_app/constant/text.dart';
@@ -54,14 +55,22 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
               height: 50,
               width: 300,
               child: Stack(children: [
-                const Center(
-                  child: Text(
-                    "Select Activity",
-                    style: AppText.titleLargeLight, textAlign: TextAlign.center
-                  ),
-                ),
+                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     const Text(
+                       "select",
+                       style: AppText.titleLargeLight, textAlign: TextAlign.center
+                     ).tr(),
+                     const Text(" "),
+                     const Text(
+                       "activity",
+                       style: AppText.titleLargeLight, textAlign: TextAlign.center
+                     ).tr(),
+                   ],
+                 ),
                 Positioned(
-                  top: 5.0,
+                  top: 0.0,
                   right: 5.0,
                   child: SizedBox(
                     width: 40,
