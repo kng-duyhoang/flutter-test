@@ -177,7 +177,7 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
               onPressed: () {
                 createSchedule();
               },
-              child: Text("Create", style: AppText.textWhiteLarge)),
+              child: Text("create", style: AppText.textWhiteLarge).tr()),
         ),
       ),
     );

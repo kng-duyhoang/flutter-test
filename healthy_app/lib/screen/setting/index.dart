@@ -38,6 +38,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 SettingBlock(listRender: listRenderGeneral, title: 'General'),
                 const SizedBox(height: 16),
                 SettingBlock(listRender: listRenderAbout, title: 'About'),
+                const SizedBox(height: 50,),
               ],
             ),
           ),

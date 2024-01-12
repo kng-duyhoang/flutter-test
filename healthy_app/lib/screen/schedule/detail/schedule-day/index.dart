@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/timer/timer_bloc.dart';
 import 'package:healthy_app/constant/color.dart';
@@ -93,19 +94,19 @@ class TextDayBlock extends StatelessWidget {
   String renderTime(int index) {
     switch (index) {
       case 0:
-        return 'Mon';   
+        return 'mon';   
       case 1:
-        return 'Tue';
+        return 'tue';
       case 2:
-        return 'Wed'; 
+        return 'wed'; 
       case 3:
-        return 'Thu'; 
+        return 'thu'; 
       case 4:
-        return 'Fri'; 
+        return 'fri'; 
       case 5:
-        return 'Sat';      
+        return 'sat';      
       default:
-        return 'Sun';        
+        return 'sun';        
     }
   }
   @override
@@ -125,7 +126,7 @@ class TextDayBlock extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text((index + 1).toString(), style: AppText.textWhite,),
-                Text(renderTime(index),  style: AppText.textWhite)
+                Text(renderTime(index),  style: AppText.textWhite).tr()
               ]),
           ),
           const SizedBox(width: 15)

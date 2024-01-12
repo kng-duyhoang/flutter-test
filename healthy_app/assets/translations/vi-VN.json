@@ -29,5 +29,6 @@
   "select": "Chọn",
   "createschedule": "Tạo lịch trình",
   "scheduleinformation": "Thông tin lịch trình",
-  "next": "tiếp tục"
+  "next": "Tiếp tục",
+  "create": "Tạo mới"
 }

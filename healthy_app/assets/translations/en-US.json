@@ -33,5 +33,6 @@
   "select": "Select",
   "createschedule": "Create Schedule",
   "scheduleinformation": "Schedule Information",
-  "next": "next"
+  "next": "next",
+  "create": "create"
 }

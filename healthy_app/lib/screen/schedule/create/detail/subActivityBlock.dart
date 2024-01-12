@@ -18,10 +18,10 @@ class SubActivityBlock extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: AppColor.lightPrimaryColor,
+            color: AppColor.lightSecondColor,
             width: 1.5
           ),
-          color: AppColor.lightPrimaryColor,
+          color: AppColor.lightSecondColor,
           borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
         child: Padding(
