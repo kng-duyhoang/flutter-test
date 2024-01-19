@@ -30,7 +30,8 @@ class _TimerDialogState extends State<TimerDialog> {
 
   @override
   Widget build(BuildContext context) {
-
+    var select = "select".tr();
+    var time = "time".tr();
     return Dialog(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.transparent,
@@ -45,7 +46,7 @@ class _TimerDialogState extends State<TimerDialog> {
               width: 300,
               child: Stack(children: [
                  Center(
-                  child: const Text("{select} Time",
+                  child: Text("$select $time",
                       style: AppText.titleLargeLight, textAlign: TextAlign.center).tr(),
                 ),
                 Positioned(
@@ -134,7 +135,7 @@ class _TimerDialogState extends State<TimerDialog> {
             SizedBox(
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: _onSubmit, child: const Text('Submit')),)
+                    onPressed: _onSubmit, child: const Text('submit', style: AppText.textWhite,).tr()),)
           ],
         ),
       ),

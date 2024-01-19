@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:healthy_app/bloc/darkmode/darkmode_bloc.dart';
 import 'package:healthy_app/model/setting/index.dart';
 import 'package:healthy_app/store/index.dart';
-import 'package:healthy_app/widget/dialog/change-langua.dart';
+import 'package:healthy_app/widget/dialog/change-language.dart';
 
 class SettingBlock extends StatefulWidget {
   const SettingBlock(

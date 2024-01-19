@@ -32,6 +32,7 @@ class _CreateInforScheduleState extends State<CreateInforSchedule> {
     setState(() {
       dropdownValue = widget.listSchedule.type;
       _nameController.text = widget.listSchedule.nameSchedule;
+      
     });
   }
 

@@ -111,7 +111,20 @@ class _CreateDetailScheduleState extends State<CreateDetailSchedule> {
         title: const Text("createschedule").tr(),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onBackground),
-          onPressed: () => widget.goPage(0),
+          onPressed: () {
+            Schedule scheduleTemp = Schedule(nameSchedule: widget.listSchedule.nameSchedule, type: widget.listSchedule.type, timeLine: []);
+              if (widget.listSchedule.type == "Day") {
+                scheduleTemp.timeLine.add(DaySchedule(itemsActivity: []));
+              } else {
+                for (var i = 0; i < 7; i++) {
+                  scheduleTemp.timeLine.add(DaySchedule(itemsActivity: []));
+                }
+              }
+            setState(() {
+              widget.listSchedule = scheduleTemp;
+            });
+            widget.goPage(0);
+          },
         ),
       ),
       body: Padding(

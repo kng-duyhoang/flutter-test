@@ -27,7 +27,7 @@ class SubActivityBlock extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            data.subActivityName,
+            '${data.subActivityName} ${data.amount}',
             style: AppText.textWhite,
           ),
         ));

@@ -44,6 +44,10 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var home = "home".tr();
+    var setting = "setting".tr();
+    var statistics = "statistics".tr();
+    var schedule = "schedule".tr();
     return Scaffold(
       body: body(),
       bottomNavigationBar: Container(
@@ -57,22 +61,22 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
           showSelectedLabels: true,
           showUnselectedLabels: true,
           elevation: 0.0,
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'home',
+              icon: const Icon(Icons.home),
+              label: home,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.schedule),
-              label: 'schedule',
+              icon: const Icon(Icons.schedule),
+              label: schedule,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.trending_down),
-              label: 'statistics',
+              icon: const Icon(Icons.trending_down),
+              label: statistics,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'setting',
+              icon: const Icon(Icons.settings),
+              label: setting,
             ),
           ],
           currentIndex: _indexKey,

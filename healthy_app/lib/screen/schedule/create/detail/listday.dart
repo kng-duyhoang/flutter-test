@@ -21,17 +21,16 @@ class ListDay extends StatelessWidget {
         child: Row(
           children: [
             ElevatedButton(
+              
               child: Text(
                 "Ngày  ${carouselIndex + 1}",
                 style: AppText.textWhite,
               ),
               style: ElevatedButton.styleFrom(
-                  side: BorderSide(
-                width: 1.0,
-                color: carouselIndex == onActive
-                    ? AppColor.defaultColor
-                    : AppColor.borderColor,
-              )),
+                backgroundColor: carouselIndex == onActive
+                    ? AppColor.lightPrimaryColor
+                    : AppColor.lightSecondColor,
+              ),
               onPressed: () {
                 changeActive(carouselIndex);
               },

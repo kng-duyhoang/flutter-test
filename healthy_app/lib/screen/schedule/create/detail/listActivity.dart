@@ -29,7 +29,7 @@ class _ListAcitivyRenderState extends State<ListAcitivyRender> {
   void addSubActivity(SubActivity data) {
     setState(() {
       widget.data.itemsSubActivity.add(SubActivity(
-          duration: 10, subActivityName: data.subActivityName, subActivityId: data.subActivityId));
+          amount: "", subActivityName: data.subActivityName, subActivityId: data.subActivityId));
     });
   }
 

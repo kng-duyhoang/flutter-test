@@ -1,25 +1,28 @@
 class SubActivity {
   String subActivityId;
-  dynamic duration;
+  dynamic amount;
   String subActivityName;
+  String type;
   SubActivity({
     required this.subActivityId,
-    required this.duration,
-    required this.subActivityName
+    required this.amount,
+    required this.subActivityName,
+    this.type = ""
   });
 
   Map<String, dynamic> toJson(){
     return {
       "subActivityId": subActivityId ,
-      "duration": duration,
+      "amount": amount,
     };
   }
 
   factory SubActivity.fromJson(Map<String, dynamic> json) {
     return SubActivity(
       subActivityId: json['subActivityId'] ?? "",
-      duration: json['duration'] ?? "",
-      subActivityName: json['subActivityName'] ?? ""
+      amount: json['amount'] ?? "",
+      subActivityName: json['subActivityName'] ?? "",
+      type: json['type'] ?? ""
     );
   }
 }

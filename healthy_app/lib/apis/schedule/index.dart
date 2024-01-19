@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:healthy_app/apis/core_api.dart';
 import 'package:healthy_app/model/activity/index.dart';
 import 'package:healthy_app/model/schedule/index.dart';
@@ -36,6 +38,7 @@ class ScheduleApi {
   }
 
   Future<String> createSchedule(data) async {
+    print(jsonEncode(data));
     final response = await CoreApi.instance.post('/schedule/create-schedule', data: data);
     try {
       return response.data["message"];
