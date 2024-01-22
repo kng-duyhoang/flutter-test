@@ -3,6 +3,7 @@
   "logout": "Đăng xuất",
   "register": "Đăng ký",
   "password": "Mật khẩu",
+  "confirmpassword": "Nhập lại mật khẩu",
   "changepassword": "Đổi mật khẩu",
   "forgotpassword": "Quên mật khẩu",
   "security": "Bảo mật",
@@ -35,5 +36,12 @@
   "scheduleinformation": "Thông tin lịch trình",
   "next": "Tiếp tục",
   "create": "Tạo mới",
-  "registerContent": "Bạn có tài khoản chưa?"
+  "registerContent": "Bạn có tài khoản chưa? ",
+  "loginContent": "Bạn đã có tài khoản? ",
+  "orContinueWith": "Hoặc tiếp tục với",
+  "signInWithGoogle": "Tiếp tục với Google",
+  "signInWithApple": "Tiếp tục với Apple",
+  "placeholderEmail": "Nhập địa chỉ Email",
+  "placeholderPassword": "Nhập mật khẩu",
+  "placeholderConfirmPassword": "Nhập lại mật khẩu"
 }

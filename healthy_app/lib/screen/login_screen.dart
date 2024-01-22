@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isLoading = false;
+  bool isPasswordVisible = false;
 
   void _onLoginHandler(String userName, String password) async {
     final data = LoginRequest(gmail: userName, password: password);
@@ -52,25 +53,120 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.all(16.0),
           child: ListView(
             children: [
-              renderInput(_usernameController, 'Email'),
+              renderInput(_usernameController, 'Email', 'placeholderEmail'),
               const SizedBox(height: 20),
-              renderInput(_passwordController, 'password'),
+              renderInput(
+                  _passwordController, 'password', 'placeholderPassword'),
               const SizedBox(height: 30),
               IgnorePointer(
                 ignoring: isLoading,
                 child: ElevatedButton(
-                  onPressed: () {
-                    final userName = _usernameController.text;
-                    final password = _passwordController.text;
-                    _onLoginHandler(userName, password);
-                  },
-                  child: const Text(
-                    'login',
-                    style: TextStyle(fontSize: 20, color: AppColor.white1),
-                  ).tr(),
-                ),
+                    onPressed: () {
+                      final userName = _usernameController.text;
+                      final password = _passwordController.text;
+                      _onLoginHandler(userName, password);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Text(
+                        'login',
+                        style: TextStyle(fontSize: 20, color: AppColor.white1),
+                      ).tr(),
+                    )),
               ),
-              const SizedBox(height: 30),
+              Column(
+                children: [
+                  const SizedBox(height: 20),
+                  Container(
+                    constraints: BoxConstraints(maxWidth: 300),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Expanded(
+                          child: Divider(
+                            color: AppColor.darkPrimaryColor,
+                            thickness: 1.0,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: const Text(
+                            'orContinueWith',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: AppColor.lightColor2,
+                            ),
+                          ).tr(),
+                        ),
+                        const Expanded(
+                          child: Divider(
+                            color: AppColor.darkPrimaryColor,
+                            thickness: 1.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black, width: 1.0),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.network(
+                            'http://res.cloudinary.com/daroieekk/image/upload/v1705495985/DATN/google.png',
+                            height: 28.0,
+                          ),
+                          const SizedBox(width: 8.0),
+                          const Text(
+                            'signInWithGoogle',
+                            style: TextStyle(fontSize: 20.0),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black, width: 1.0),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.network(
+                            'http://res.cloudinary.com/daroieekk/image/upload/v1705674310/DATN/apple.png',
+                            height: 24.0,
+                          ),
+                          const SizedBox(width: 8.0),
+                          const Text(
+                            'signInWithApple',
+                            style: TextStyle(fontSize: 20.0),
+                          ).tr(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
               Center(
                 child: RichText(
                   text: TextSpan(
@@ -94,7 +190,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
-  Column renderInput(TextEditingController controller, String fieldName) {
+  Column renderInput(
+      TextEditingController controller, String fieldName, String placeholder) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,22 +202,45 @@ class _LoginScreenState extends State<LoginScreen> {
         ).tr(),
         const SizedBox(height: 5),
         SizedBox(
-          height: 40,
+          height: 50,
           child: TextField(
             controller: controller,
             textAlignVertical: TextAlignVertical.center,
-            obscureText: fieldName == "password",
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.all(10.0),
+            obscureText: !isPasswordVisible,
+            decoration: InputDecoration(
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+              hintText: placeholder.tr(),
+              hintStyle: const TextStyle(
+                color: AppColor.lightColor2,
+                fontWeight: FontWeight.w400,
+              ),
               border: InputBorder.none,
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromARGB(255, 89, 92, 91), width: 1.0),
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Color.fromARGB(255, 102, 90, 89), width: 1.0),
               ),
+              suffixIcon: fieldName == "password"
+                  ? InkWell(
+                      onTap: () {
+                        setState(() {
+                          isPasswordVisible = !isPasswordVisible;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                      ),
+                    )
+                  : null,
             ),
           ),
         ),
